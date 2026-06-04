@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Table &amp; Figure Lab — Applied Economics</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="method-did">
+  <div class="topbar">
+    <h1>Table &amp; Figure Lab</h1>
+    <span class="sub">Canonical exhibits for applied-economics papers · simulated data · live standard-error lab</span>
+    <span class="spacer"></span>
+    <div class="viewtoggle" role="group" aria-label="View">
+      <button data-view="paper" class="active">Paper view</button>
+      <button data-view="present">Presentation view</button>
+    </div>
+  </div>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="ctrl-group">
+        <h2>Methodology</h2>
+        <div class="methtabs">
+          <button data-method="did" class="active">DiD / Event study</button>
+          <button data-method="rct">RCT</button>
+          <button data-method="iv">IV</button>
+          <button data-method="rdd">RDD</button>
+        </div>
+      </div>
+
+      <div class="ctrl-group">
+        <h2>Inference</h2>
+        <div class="ctrl">
+          <label for="seMethod">Standard errors</label>
+          <select id="seMethod">
+            <option value="iid">Classical (iid)</option>
+            <option value="HC1">Robust HC1 (Stata , robust)</option>
+            <option value="HC2">Robust HC2</option>
+            <option value="HC3">Robust HC3</option>
+            <option value="cluster" selected>Cluster-robust (CR1)</option>
+            <option value="wildboot">Wild cluster bootstrap</option>
+            <option value="ri">Randomization inference</option>
+          </select>
+          <div class="hint">Changes inference live across tables &amp; the event study.</div>
+        </div>
+      </div>
+
+      <div class="ctrl-group">
+        <h2>Simulation (DGP)</h2>
+        <div class="ctrl">
+          <label for="nClusters">Clusters (G) <span class="val" data-out="nClusters"></span></label>
+          <input type="range" id="nClusters" min="4" max="50" step="1" value="6" />
+          <div class="hint">Few clusters → wild bootstrap matters.</div>
+        </div>
+        <div class="ctrl">
+          <label for="unitsPerCluster">Units / cluster <span class="val" data-out="unitsPerCluster"></span></label>
+          <input type="range" id="unitsPerCluster" min="2" max="30" step="1" value="8" />
+        </div>
+        <div class="ctrl">
+          <label for="T">Periods (T) <span class="val" data-out="T"></span></label>
+          <input type="range" id="T" min="6" max="20" step="1" value="12" />
+        </div>
+        <div class="ctrl">
+          <label for="effect">Treatment effect <span class="val" data-out="effect"></span></label>
+          <input type="range" id="effect" min="-1" max="3" step="0.1" value="1" />
+        </div>
+        <div class="ctrl">
+          <label for="icc">Intra-cluster corr. (ICC) <span class="val" data-out="icc"></span></label>
+          <input type="range" id="icc" min="0" max="0.8" step="0.05" value="0.2" />
+        </div>
+        <div class="ctrl">
+          <label for="preTrend">Pre-trend (violation) <span class="val" data-out="preTrend"></span></label>
+          <input type="range" id="preTrend" min="-0.3" max="0.3" step="0.02" value="0" />
+          <div class="hint">Nonzero bends the event-study leads.</div>
+        </div>
+        <div class="ctrl">
+          <label for="timing">Adoption timing</label>
+          <select id="timing">
+            <option value="staggered" selected>Staggered</option>
+            <option value="single">Single date</option>
+          </select>
+        </div>
+        <div class="ctrl">
+          <label for="reps">Bootstrap / RI reps <span class="val" data-out="reps"></span></label>
+          <input type="range" id="reps" min="99" max="599" step="100" value="199" />
+        </div>
+        <div class="ctrl">
+          <label for="seed">Seed</label>
+          <div class="row2">
+            <input type="number" id="seed" value="12345" />
+            <button class="btn" id="reseed">Re-seed ↻</button>
+          </div>
+          <div class="hint">Same seed → identical numbers (reproducible).</div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="methhead">
+        <p id="methBlurb"></p>
+        <div id="methMeta"></div>
+      </div>
+
+      <div id="cards"></div>
+
+      <section class="story-panel">
+        <h2>Communication &amp; data-storytelling principles</h2>
+        <ul id="storyGeneral"></ul>
+        <h2>Paper vs. presentation</h2>
+        <table class="pv-table">
+          <thead><tr><th>Dimension</th><th>Paper</th><th>Presentation</th></tr></thead>
+          <tbody id="pvBody"></tbody>
+        </table>
+        <h2 style="margin-top:16px">Standard-error glossary</h2>
+        <dl class="se-gloss" id="seGloss"></dl>
+        <p class="note">Reference index of replication packages:
+          <a href="https://ejd.econ.mathematik.uni-ulm.de/" target="_blank" rel="noopener">EJD — Find Economic Articles with Data</a>
+          (S. Kranz, Uni Ulm). Exhibits here use simulated data; EJD links point to real papers as visual ground-truth.</p>
+      </section>
+    </main>
+  </div>
+
+  <!-- engine -->
+  <script src="js/econ.js"></script>
+  <script src="js/dgp.js"></script>
+  <script src="js/models.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/taxonomy.js"></script>
+  <script src="js/app.js"></script>
+  <!-- static storytelling content from the taxonomy -->
+  <script>
+    (function () {
+      var T = window.TAXONOMY; if (!T) return;
+      document.getElementById("storyGeneral").innerHTML =
+        T.storytelling.general.map(function (s) { return "<li>" + s + "</li>"; }).join("");
+      document.getElementById("pvBody").innerHTML =
+        T.storytelling.paperVsPresent.map(function (r) {
+          return "<tr><td>" + r[0] + "</td><td>" + r[1] + "</td><td>" + r[2] + "</td></tr>";
+        }).join("");
+      document.getElementById("seGloss").innerHTML =
+        T.seGlossary.map(function (g) { return "<dt>" + g.label + "</dt><dd>" + g.when + "</dd>"; }).join("");
+    })();
+  </script>
+</body>
+</html>

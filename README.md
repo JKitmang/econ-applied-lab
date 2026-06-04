@@ -34,8 +34,11 @@ for the preview tools.
 
 ## What's inside
 
-- **Methodology switcher** — DiD / event study (full depth), plus RCT, IV, RDD
-  (identification figure + the strategy's exhibit grammar).
+- **Methodology switcher** — all four built out:
+  - **DiD / event study**: summary → raw trends → event study → main results → SE robustness → heterogeneity
+  - **RCT**: balance → ITT (unadjusted → ANCOVA → strata FE) + LATE → attrition → heterogeneity
+  - **IV**: first-stage scatter (with F) → OLS vs 2SLS (weak-instrument flag)
+  - **RDD**: RD plot → bandwidth × polynomial grid + density test + covariate placebo
 - **Exhibit cards** following the canonical paper order (see
   [`docs/applied-econ-table-taxonomy.md`](docs/applied-econ-table-taxonomy.md)):
   summary stats → raw trends → event study → main results → SE robustness →
@@ -108,11 +111,27 @@ tables/figures matching your installed toolkit. The conventions already line up:
 
 ---
 
-## Roadmap (Phase 2)
+## Phase-2 skill (shipped)
 
-1. Package the generator as a **Claude Code skill** (`table-figure-lab`) that
-   takes a methodology + a dataset/spec and emits the Stata/R script **and** the
-   LaTeX/figure, reusing `reg-table` and `beamer-slides`.
-2. Flesh out RCT/IV/RDD to the same depth as DiD.
-3. Optional **hybrid data mode:** load a real public replication dataset
+A Claude Code command, **`/table-figure-lab`**, orchestrates the *whole* exhibit
+sequence for a paper (where `reg-table` does a single table): it picks the
+exhibits and order for the chosen methodology, covers the figures `reg-table`
+doesn't (event-study, RD plot, first-stage scatter, forest plots), makes the
+standard-error decision, and emits Stata + R + AEJ booktabs LaTeX in both paper
+and presentation variants — composing with `reg-table`, `balance-table`,
+`attrition-check`, and `beamer-slides`.
+
+- Installed at `~/.claude/commands/table-figure-lab.md`
+- Versioned copy in this repo: [`skill/table-figure-lab.md`](skill/table-figure-lab.md)
+
+To (re)install from the repo copy:
+```bash
+cp "skill/table-figure-lab.md" ~/.claude/commands/table-figure-lab.md
+```
+
+## Roadmap (next)
+
+1. Optional **hybrid data mode:** load a real public replication dataset
    (AEA/openICPSR/Dataverse, via EJD) to reproduce a specific paper's exhibit.
+2. Sensitivity exhibits in the lab (HonestDiD bands, RD bandwidth curve,
+   weak-IV Anderson–Rubin confidence sets).

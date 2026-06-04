@@ -32,7 +32,7 @@
   /* ---- build dataset for the active methodology ------------------------ */
   function buildData(method, p) {
     if (method === "did") return DGP.did({ nClusters: p.nClusters, unitsPerCluster: p.unitsPerCluster, T: p.T, tau: p.effect, ramp: 3, preTrend: p.preTrend, icc: p.icc, timing: p.timing, seed: p.seed });
-    if (method === "rct") return DGP.rct({ n: p.nClusters * p.unitsPerCluster * 6, tau: p.effect * 0.3, nClusters: Math.max(p.nClusters, 8), icc: p.icc, seed: p.seed });
+    if (method === "rct") return DGP.rct({ n: 1800, tau: p.effect * 0.5, nClusters: Math.max(p.nClusters * 8, 60), icc: Math.min(p.icc, 0.03), seed: p.seed });
     if (method === "iv") return DGP.iv({ n: Math.max(p.nClusters * p.unitsPerCluster * 40, 1600), beta: p.effect * 0.5, strength: 0.6, seed: p.seed });
     if (method === "rdd") return DGP.rdd({ n: Math.max(p.nClusters * p.unitsPerCluster * 40, 2000), jump: p.effect * 0.6, seed: p.seed });
   }
@@ -85,6 +85,38 @@
           extra = badge("estimated jump = " + rd.jump.toFixed(3)) + badge("true jump = " + rd.trueJump.toFixed(3));
           break;
         }
+        case "rctmain": {
+          const m = Models.rctMainITT(data, state.se, rng(), p.reps);
+          const late = Models.rctLATE(data);
+          inner = Render.resultsTable(m.spec, state.view);
+          latex = Render.latexResults(m.spec, m.caption);
+          extra = badge("LATE (2SLS) = " + late.late.toFixed(3)) + badge("compliance = " + (100 * late.compliance).toFixed(0) + "%") + badge("true LATE = " + late.trueLATE.toFixed(2));
+          break;
+        }
+        case "rctattrition": {
+          const att = Models.rctAttrition(data);
+          inner = Render.attritionTable(att, state.view);
+          extra = att.p < 0.10 ? badge("⚠ differential attrition (p=" + att.p.toFixed(3) + ")", "warn") : badge("attrition balanced");
+          break;
+        }
+        case "rctheterogeneity": inner = Render.forest(Models.rctHeterogeneity(data, state.se, rng(), p.reps), state.view); break;
+        case "ivresults": {
+          const r = Models.ivResults(data);
+          inner = Render.resultsTable(r.spec, state.view);
+          latex = Render.latexResults(r.spec, r.caption);
+          extra = badge("first-stage F = " + r.F.toFixed(1), r.weak ? "warn" : "") + (r.weak ? badge("⚠ weak instrument → Anderson–Rubin", "warn") : "");
+          break;
+        }
+        case "rddestimates": {
+          const r = Models.rddEstimates(data);
+          const dens = Models.rddDensity(data);
+          inner = Render.resultsTable(r.spec, state.view);
+          latex = Render.latexResults(r.spec, r.caption);
+          extra = badge("density test p = " + dens.p.toFixed(3), dens.p < 0.10 ? "warn" : "") +
+            badge("covariate placebo = " + r.placebo.jump.toFixed(3)) +
+            (dens.p < 0.10 ? badge("⚠ possible manipulation", "warn") : badge("no manipulation"));
+          break;
+        }
         default: inner = "<em>Not implemented.</em>";
       }
     } catch (err) {
@@ -103,8 +135,13 @@
       robustness: ["reghdfe y D, absorb(unit period) cluster(group)\nboottest D, reps(999) cluster(group)   // wild bootstrap", "feols(y~D|unit+period, df) ; boottest::boottest(m, clustid=~group, B=999, param=\"D\")"],
       heterogeneity: ["reghdfe y c.D##i.subgroup, absorb(unit period) cluster(group)\ncoefplot, keep(*D*)", "feols(y ~ D | unit+period, split=~subgroup, df) |> coefplot()"],
       balance: ["iebaltab x1 x2 x3, grpvar(treat) save(balance) format(%9.3f)", "modelsummary(datasummary_balance(~treat, df))"],
+      rctmain: ["eststo: reg y i.treat##c.x i.strata, cluster(cluster)\nivregress 2sls y (received = treat), cluster(cluster)  // LATE", "feols(y ~ treat + x | strata, df, cluster=~cluster)\nfeols(y ~ 1 | received ~ treat, df)  # LATE"],
+      rctattrition: ["reg attrited i.treat, cluster(cluster)\nleebounds y treat   // Lee bounds if differential", "feols(attrited ~ treat, df); attrition::lee_bounds(df, ...)"],
+      rctheterogeneity: ["reg y i.treat##i.subgroup, cluster(cluster)\ncoefplot, keep(*treat*)", "feols(y ~ treat, split=~subgroup, df) |> coefplot()"],
       firststage: ["ivreg2 y (d = z), robust first   // reports first-stage F", "feols(y ~ 1 | d ~ z, df) |> fitstat(~ivf)"],
+      ivresults: ["reg y d, robust                       // OLS (biased)\nivreg2 y (d = z), robust first        // 2SLS + first-stage F\nweakiv ...                            // Anderson-Rubin", "feols(y ~ d, df)                      # OLS\nfeols(y ~ 1 | d ~ z, df) |> fitstat(~ivf)  # 2SLS + F"],
       rdplot: ["rdplot y run, c(0)\nrdrobust y run, c(0)   // CCT robust bias-corrected", "rdrobust::rdplot(df$y, df$run, c=0); rdrobust(df$y, df$run, c=0)"],
+      rddestimates: ["foreach h in 0.5 0.3 0.2 { rdrobust y run, c(0) h(`h') }\nrddensity run, c(0)            // manipulation test", "rdrobust(y, run, c=0, h=0.3)\nrddensity::rddensity(run, c=0)  # manipulation"],
     };
     const r = S[ex.render] || ["", ""];
     return { stata: r[0], r: r[1] };

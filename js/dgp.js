@@ -86,24 +86,37 @@
    *  RCT (single cross-section, possibly clustered assignment)
    * ---------------------------------------------------------------------- */
   function rct(p) {
-    p = Object.assign({ n: 1000, tau: 0.3, nClusters: 40, icc: 0.05, sigma: 1.0, seed: 777, controls: 3 }, p || {});
+    p = Object.assign({
+      n: 1000, tau: 0.3, nClusters: 40, icc: 0.05, sigma: 1.0, seed: 777, controls: 3,
+      nStrata: 4, complyRate: 0.7, attritBase: 0.10, attritDiff: 0.04,
+    }, p || {});
     const rng = RNG(p.seed);
     const perCl = Math.max(1, Math.round(p.n / p.nClusters));
     const N = perCl * p.nClusters;
-    const unit = [], cluster = [], W = [], y = [], X = [];
-    // cluster-level treatment assignment (half treated)
-    const clTreat = Array.from({ length: p.nClusters }, (_, g) => (g % 2 === 0 ? 1 : 0));
+    const unit = [], cluster = [], strata = [], W = [], D = [], y = [], X = [], attrit = [], complier = [];
+    // stratified assignment: strata = g % nStrata; treatment varies WITHIN stratum
+    // (alternate by the cluster's index within its stratum) so W is not collinear with strata.
+    const stratumOf = (g) => g % p.nStrata;
+    const clTreat = Array.from({ length: p.nClusters }, (_, g) => (Math.floor(g / p.nStrata) % 2 === 0 ? 1 : 0));
     const groupSd = Math.sqrt(p.icc) * 1.5, epsSd = Math.sqrt(1 - Math.min(p.icc, 0.95)) * p.sigma;
     let id = 0;
     for (let g = 0; g < p.nClusters; g++) {
       const gEff = groupSd * rng.normal();
+      const st = stratumOf(g);
       for (let u = 0; u < perCl; u++) {
         const xs = Array.from({ length: p.controls }, () => rng.normal());
-        const yi = 1 + p.tau * clTreat[g] + 0.4 * xs[0] + gEff + epsSd * rng.normal();
-        unit.push(id++); cluster.push(g); W.push(clTreat[g]); y.push(yi); X.push(xs);
+        const isComplier = rng.uniform() < p.complyRate;
+        const assigned = clTreat[g];
+        const received = assigned * (isComplier ? 1 : 0);      // one-sided noncompliance
+        const yi = 1 + p.tau * received + 0.4 * xs[0] + 0.2 * st + gEff + epsSd * rng.normal();
+        const pAtt = p.attritBase + p.attritDiff * assigned;   // differential attrition
+        const att = rng.uniform() < pAtt ? 1 : 0;
+        unit.push(id++); cluster.push(g); strata.push(st);
+        W.push(assigned); D.push(received); y.push(yi); X.push(xs);
+        attrit.push(att); complier.push(isComplier ? 1 : 0);
       }
     }
-    return { kind: "rct", n: N, cols: { unit, cluster, W, y, X }, clTreat, params: p };
+    return { kind: "rct", n: N, cols: { unit, cluster, strata, W, D, y, X, attrit, complier }, clTreat, params: p };
   }
 
   /* ---------------------------------------------------------------------- *
@@ -129,14 +142,15 @@
   function rdd(p) {
     p = Object.assign({ n: 1500, cutoff: 0, jump: 0.6, slope: 0.8, curve: 0.3, sigma: 0.4, seed: 2024 }, p || {});
     const rng = RNG(p.seed);
-    const run = [], y = [], T = [];
+    const run = [], y = [], T = [], cov = [];
     for (let i = 0; i < p.n; i++) {
       const r = 2 * (rng.uniform() - 0.5) * 1.0; // running var in [-1,1]
       const above = r >= p.cutoff ? 1 : 0;
       const yi = 0.5 + p.slope * r + p.curve * r * r + p.jump * above + p.sigma * rng.normal();
-      run.push(r); y.push(yi); T.push(above);
+      const ci = 0.3 + 0.5 * r + 0.4 * rng.normal();  // a covariate, CONTINUOUS at cutoff (placebo)
+      run.push(r); y.push(yi); T.push(above); cov.push(ci);
     }
-    return { kind: "rdd", n: p.n, cols: { run, y, T }, params: p };
+    return { kind: "rdd", n: p.n, cols: { run, y, T, cov }, params: p };
   }
 
   function range(a, b) { const o = []; for (let i = a; i <= b; i++) o.push(i); return o; }

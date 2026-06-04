@@ -270,7 +270,160 @@
     return { binned, jump: right - left, cutoff: cut, left, right, trueJump: data.params.jump };
   }
 
+  /* ====================================================================== *
+   *  RCT: ITT progressive columns (unadjusted → +covariates → +strata FE)
+   * ====================================================================== */
+  function rctMainITT(data, method, rng, B) {
+    const c = data.cols;
+    const obs = []; for (let i = 0; i < data.n; i++) if (!c.attrit[i]) obs.push(i); // observed (post-attrition)
+    const y = obs.map(i => c.y[i]), W = obs.map(i => c.W[i]), cl = obs.map(i => c.cluster[i]),
+      strata = obs.map(i => c.strata[i]), X = obs.map(i => c.X[i]);
+    const m = (method === "ri" ? "cluster" : method);
+    const ctrlMean = mean(y.filter((v, i) => W[i] === 0));
+    function run(buildX) {
+      const Xm = buildX(); const fit = E.ols(Xm, y);
+      const r = seForTarget({ fit, method: m, clusterIds: cl, dfAbsorb: 0, target: 1, buildFitY: ys => E.ols(Xm, ys), rng, B });
+      return { coef: fit.beta[1], se: r.se, p: r.p, stars: r.stars, n: fit.n };
+    }
+    const lv = uniqueSorted(strata);
+    const c1 = run(() => W.map(w => [1, w]));
+    const c2 = run(() => W.map((w, i) => [1, w].concat(X[i])));
+    const c3 = run(() => W.map((w, i) => { const row = [1, w].concat(X[i]); for (let s = 1; s < lv.length; s++) row.push(strata[i] === lv[s] ? 1 : 0); return row; }));
+    const cols = [
+      { label: "(1)", coef: c1.coef, se: c1.se, p: c1.p, stars: c1.stars },
+      { label: "(2)", coef: c2.coef, se: c2.se, p: c2.p, stars: c2.stars },
+      { label: "(3)", coef: c3.coef, se: c3.se, p: c3.p, stars: c3.stars, pref: true },
+    ];
+    const rows = [
+      { name: "Covariates", vals: ["No", "Yes", "Yes"] },
+      { name: "Strata FE", vals: ["No", "No", "Yes"] },
+      { name: "Observations", vals: [c1.n, c2.n, c3.n] },
+      { name: "Control mean", vals: [f3(ctrlMean), f3(ctrlMean), f3(ctrlMean)] },
+    ];
+    const trueITT = data.params.tau * data.params.complyRate;
+    const note = "Intention-to-treat (assignment). SEs " + (METHOD_LABEL[m] || m).toLowerCase() + ". True ITT (DGP) = " + f3(trueITT) + ".";
+    return { spec: { target: "Assigned to treatment", columns: cols, rows: rows, note: note }, caption: "RCT: intention-to-treat estimates" };
+  }
+
+  function rctLATE(data) {
+    const c = data.cols;
+    const obs = []; for (let i = 0; i < data.n; i++) if (!c.attrit[i]) obs.push(i);
+    const y = obs.map(i => c.y[i]), W = obs.map(i => c.W[i]), D = obs.map(i => c.D[i]);
+    const late = cov(y, W) / cov(D, W);
+    const fsT = mean(D.filter((v, i) => W[i] === 1)), fsC = mean(D.filter((v, i) => W[i] === 0));
+    return { late, compliance: fsT - fsC, trueLATE: data.params.tau };
+  }
+
+  function rctAttrition(data) {
+    const c = data.cols;
+    const byArm = [{ arm: "Control", w: 0 }, { arm: "Treatment", w: 1 }].map(a => {
+      let n = 0, nAtt = 0;
+      for (let i = 0; i < data.n; i++) if (c.W[i] === a.w) { n++; nAtt += c.attrit[i]; }
+      return { arm: a.arm, n, nAtt, rate: nAtt / n };
+    });
+    const X = c.W.map(w => [1, w]); const fit = E.ols(X, c.attrit);
+    const V = E.vcovCluster(fit, c.cluster, 0); const se = Math.sqrt(Math.max(V[1][1], 0));
+    return { byArm, diff: fit.beta[1], p: E.pValueFromZ(fit.beta[1] / se) };
+  }
+
+  function rctHeterogeneity(data, method, rng, B) {
+    const c = data.cols;
+    const obs = []; for (let i = 0; i < data.n; i++) if (!c.attrit[i]) obs.push(i);
+    const x1 = obs.map(i => c.X[i][0]); const med = median(x1);
+    const defs = [{ label: "Below median X1", keep: (k) => c.X[obs[k]][0] <= med }, { label: "Above median X1", keep: (k) => c.X[obs[k]][0] > med }];
+    const m = (method === "ri" || method === "wildboot" ? "cluster" : method);
+    const groups = defs.map(gd => {
+      const idx = []; for (let k = 0; k < obs.length; k++) if (gd.keep(k)) idx.push(obs[k]);
+      const y = idx.map(i => c.y[i]), W = idx.map(i => c.W[i]), cl = idx.map(i => c.cluster[i]);
+      const Xm = W.map(w => [1, w]); const fit = E.ols(Xm, y);
+      const r = seForTarget({ fit, method: m, clusterIds: cl, dfAbsorb: 0, target: 1, buildFitY: ys => E.ols(Xm, ys), rng, B });
+      return { label: gd.label, coef: fit.beta[1], se: r.se, lo: r.lo, hi: r.hi, n: idx.length };
+    });
+    return { groups };
+  }
+
+  /* ====================================================================== *
+   *  IV: OLS vs 2SLS (just-identified) + first stage / reduced form
+   * ====================================================================== */
+  function ivResults(data) {
+    const c = data.cols;
+    // OLS y ~ d
+    const Xd = c.d.map(d => [1, d]); const ols = E.ols(Xd, c.y); const Vo = E.vcovHC(ols, "HC1");
+    const seO = Math.sqrt(Vo[1][1]), pO = E.pValueFromZ(ols.beta[1] / seO);
+    // First stage d ~ z ; reduced form y ~ z
+    const Xz = c.z.map(z => [1, z]); const fs = E.ols(Xz, c.d); const Vf = E.vcovHC(fs, "HC1");
+    const F = (fs.beta[1] * fs.beta[1]) / Vf[1][1];
+    const rf = E.ols(Xz, c.y); const Vr = E.vcovHC(rf, "HC1"); const seR = Math.sqrt(Vr[1][1]);
+    // 2SLS just-identified with robust SE: b = (Z'X)^-1 Z'y
+    const Z = c.z.map(z => [1, z]); const Xm = c.d.map(d => [1, d]);
+    const ZX = E.matMul(E.transpose(Z), Xm); const ZXinv = E.inverse(ZX);
+    const b = E.matVec(ZXinv, E.matVec(E.transpose(Z), c.y));
+    const e = c.y.map((yi, i) => yi - (b[0] + b[1] * c.d[i]));
+    const meat = [[0, 0], [0, 0]];
+    for (let i = 0; i < data.n; i++) { const zi = Z[i], w = e[i] * e[i]; for (let a = 0; a < 2; a++) for (let bb = 0; bb < 2; bb++) meat[a][bb] += w * zi[a] * zi[bb]; }
+    const V2 = E.matMul(E.matMul(ZXinv, meat), E.transpose(ZXinv));
+    const se2 = Math.sqrt(Math.max(V2[1][1], 0)), p2 = E.pValueFromZ(b[1] / se2);
+    const cols = [
+      { label: "(1) OLS", coef: ols.beta[1], se: seO, p: pO, stars: E.starsFromP(pO) },
+      { label: "(2) 2SLS", coef: b[1], se: se2, p: p2, stars: E.starsFromP(p2), pref: true },
+    ];
+    const rows = [
+      { name: "Estimator", vals: ["OLS", "2SLS (IV)"] },
+      { name: "First-stage F", vals: ["—", f1(F)] },
+      { name: "Observations", vals: [data.n, data.n] },
+    ];
+    const note = "OLS is biased by endogeneity; 2SLS uses z. Reduced-form slope = " + f3(rf.beta[1]) + ". True β (DGP) = " + f3(data.params.beta) + ". " + (F < 10 ? "First-stage F < 10 → weak instrument; use Anderson–Rubin CIs." : "First stage strong.");
+    return { spec: { target: "Endogenous regressor d", columns: cols, rows: rows, note: note }, caption: "Instrumental-variables estimates", F, weak: F < 10 };
+  }
+
+  /* ====================================================================== *
+   *  RDD: bandwidth × polynomial robustness + density / covariate placebo
+   * ====================================================================== */
+  function rdLocal(c, cut, h, poly, outcome) {
+    const yv = outcome || c.y;
+    const X = [], Y = [];
+    for (let i = 0; i < yv.length; i++) {
+      const rr = c.run[i] - cut; if (Math.abs(rr) > h) continue;
+      const t = c.run[i] >= cut ? 1 : 0; const row = [1, t];
+      for (let pp = 1; pp <= poly; pp++) { row.push(Math.pow(rr, pp)); row.push(t * Math.pow(rr, pp)); }
+      X.push(row); Y.push(yv[i]);
+    }
+    const fit = E.ols(X, Y); const V = E.vcovHC(fit, "HC1");
+    const jump = fit.beta[1], se = Math.sqrt(Math.max(V[1][1], 0));
+    return { jump, se, p: E.pValueFromZ(jump / se), n: X.length };
+  }
+  function rddEstimates(data) {
+    const c = data.cols, cut = data.params.cutoff;
+    const specsDef = [
+      { label: "(1)", h: 0.5, poly: 1 }, { label: "(2)", h: 0.3, poly: 1 },
+      { label: "(3)", h: 0.2, poly: 1 }, { label: "(4)", h: 0.3, poly: 2 },
+    ];
+    const est = specsDef.map(s => rdLocal(c, cut, s.h, s.poly));
+    const cols = est.map((e, i) => ({ label: specsDef[i].label, coef: e.jump, se: e.se, p: e.p, stars: E.starsFromP(e.p), pref: i === 1 }));
+    const rows = [
+      { name: "Bandwidth (h)", vals: specsDef.map(s => f2(s.h)) },
+      { name: "Polynomial", vals: specsDef.map(s => (s.poly === 1 ? "Linear" : "Quadratic")) },
+      { name: "Effective N", vals: est.map(e => e.n) },
+    ];
+    // covariate continuity placebo (jump in a covariate should be ~0)
+    const placebo = rdLocal(c, cut, 0.3, 1, c.cov);
+    const note = "Local-polynomial RD with robust SEs. True jump (DGP) = " + f3(data.params.jump) + ". Covariate placebo jump = " + f3(placebo.jump) + " (p = " + f3(placebo.p) + ").";
+    return { spec: { target: "Discontinuity at cutoff", columns: cols, rows: rows, note: note }, caption: "RD estimates across bandwidth and polynomial order", placebo };
+  }
+  function rddDensity(data) {
+    const c = data.cols, cut = data.params.cutoff, h = 0.15;
+    let left = 0, right = 0;
+    for (let i = 0; i < data.n; i++) { const r = c.run[i]; if (r >= cut - h && r < cut) left++; else if (r >= cut && r <= cut + h) right++; }
+    const logdiff = Math.log((right + 0.5) / (left + 0.5));
+    const se = Math.sqrt(1 / (right + 0.5) + 1 / (left + 0.5));
+    return { left, right, logdiff, z: logdiff / se, p: E.pValueFromZ(logdiff / se) };
+  }
+
   /* ---- small stats ----------------------------------------------------- */
+  function f3(v) { return (v == null || isNaN(v)) ? "—" : Number(v).toFixed(3); }
+  function f2(v) { return (v == null || isNaN(v)) ? "—" : Number(v).toFixed(2); }
+  function f1(v) { return (v == null || isNaN(v)) ? "—" : Number(v).toFixed(1); }
+  function uniqueSorted(a) { return Array.from(new Set(a)).sort((x, y) => x - y); }
   function mean(a) { return a.reduce((s, v) => s + v, 0) / a.length; }
   function variance(a) { const m = mean(a); return a.reduce((s, v) => s + (v - m) * (v - m), 0) / Math.max(a.length - 1, 1); }
   function sd(a) { return Math.sqrt(variance(a)); }
@@ -280,6 +433,7 @@
   global.Models = {
     METHOD_LABEL,
     didSummary, didEventStudy, didMain, didRobustnessSE, didHeterogeneity,
-    rctBalance, rctITT, ivFit, rddFit,
+    rctBalance, rctITT, rctMainITT, rctLATE, rctAttrition, rctHeterogeneity,
+    ivFit, ivResults, rddFit, rddEstimates, rddDensity,
   };
 })(typeof window !== "undefined" ? window : this);

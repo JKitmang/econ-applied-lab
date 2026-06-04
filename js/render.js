@@ -103,9 +103,60 @@
     return h;
   }
 
+  // Generic coefficient table: columns of estimates + indicator rows.
+  // spec = { target, columns:[{label,coef,se,p,stars,pref,brackets}], rows:[{name,vals:[]}], note }
+  function resultsTable(spec, view) {
+    const d = 3, cols = spec.columns;
+    let h = '<table class="econ-table ' + view + '"><thead><tr><th></th>';
+    cols.forEach(c => { h += "<th" + (c.pref ? " class='pref'" : "") + ">" + c.label + "</th>"; });
+    h += "</tr></thead><tbody>";
+    h += "<tr class='coefrow'><td class='vn'>" + spec.target + "</td>";
+    cols.forEach(c => { h += "<td" + (c.pref ? " class='pref'" : "") + ">" + coefCell(c.coef, c.stars, d) + "</td>"; });
+    h += "</tr><tr class='serow'><td></td>";
+    cols.forEach(c => { h += "<td" + (c.pref ? " class='pref'" : "") + ">" + (isNaN(c.se) ? (c.brackets || "") : paren(c.se, d)) + "</td>"; });
+    h += "</tr>";
+    (spec.rows || []).forEach(r => {
+      h += "<tr class='ferow'><td class='vn'>" + r.name + "</td>";
+      r.vals.forEach((v, i) => { h += "<td" + (cols[i].pref ? " class='pref'" : "") + ">" + v + "</td>"; });
+      h += "</tr>";
+    });
+    h += "</tbody><tfoot><tr><td colspan='" + (cols.length + 1) + "' class='note'>" +
+      (spec.note || "") + " <sup>*</sup> p&lt;0.10, <sup>**</sup> p&lt;0.05, <sup>***</sup> p&lt;0.01.</td></tr></tfoot></table>";
+    return h;
+  }
+
+  function attritionTable(att, view) {
+    let h = '<table class="econ-table ' + view + '"><thead><tr>' +
+      "<th>Group</th><th>N assigned</th><th>Attrited</th><th>Attrition rate</th></tr></thead><tbody>";
+    att.byArm.forEach(a => {
+      h += "<tr><td class='vn'>" + a.arm + "</td><td>" + a.n + "</td><td>" + a.nAtt + "</td><td>" + f(a.rate, 3) + "</td></tr>";
+    });
+    const flag = att.p < 0.10 ? " class='warn'" : "";
+    h += "</tbody><tfoot><tr><td colspan='4' class='note'>Differential attrition (T − C): <strong" + flag + ">" +
+      f(att.diff, 3) + "</strong> (p = " + f(att.p, 3) + "). " +
+      (att.p < 0.10 ? "Differential attrition detected — consider Lee bounds." : "No significant differential attrition.") +
+      "</td></tr></tfoot></table>";
+    return h;
+  }
+
   /* ====================================================================== *
    *  LaTeX EXPORT (booktabs / threeparttable — matches reg-table skill)
    * ====================================================================== */
+  function latexResults(spec, caption) {
+    const d = 3, cols = spec.columns, k = cols.length;
+    let L = "\\begin{table}[htbp]\\centering\n\\caption{" + (caption || "Results") + "}\n";
+    L += "\\begin{threeparttable}\n\\begin{tabular}{l" + "c".repeat(k) + "}\n\\toprule\n";
+    L += " & " + cols.map((c, i) => "(" + (i + 1) + ")").join(" & ") + " \\\\\n";
+    L += " & " + cols.map(c => escapeAmp(c.label)).join(" & ") + " \\\\\n\\midrule\n";
+    L += escapeAmp(spec.target) + " & " + cols.map(c => "$" + f(c.coef, d) + (c.stars ? "^{" + c.stars + "}" : "") + "$").join(" & ") + " \\\\\n";
+    L += " & " + cols.map(c => (isNaN(c.se) ? "" : "(" + f(c.se, d) + ")")).join(" & ") + " \\\\\n\\addlinespace\n";
+    (spec.rows || []).forEach(r => { L += escapeAmp(r.name) + " & " + r.vals.map(escapeAmp).join(" & ") + " \\\\\n"; });
+    L += "\\bottomrule\n\\end{tabular}\n\\begin{tablenotes}[flushleft]\\footnotesize\n";
+    L += "\\item " + escapeAmp(spec.note || "") + "\n";
+    L += "\\item \\textsuperscript{*} $p<0.10$, \\textsuperscript{**} $p<0.05$, \\textsuperscript{***} $p<0.01$.\n";
+    L += "\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}\n";
+    return L;
+  }
   function latexMain(main) {
     const d = 3, cols = main.columns, k = cols.length;
     const star = (c) => c.stars;
@@ -327,8 +378,8 @@
   function padDomain(lo, hi, frac) { if (lo === hi) { lo -= 1; hi += 1; } const pad = (hi - lo) * frac; return [lo - pad, hi + pad]; }
 
   global.Render = {
-    table1, mainTable, robustnessTable, balanceTable,
-    latexMain, latexRobustness,
+    table1, mainTable, robustnessTable, balanceTable, resultsTable, attritionTable,
+    latexMain, latexRobustness, latexResults,
     eventStudy, forest, trends, firstStage, rdPlot,
   };
 })(typeof window !== "undefined" ? window : this);

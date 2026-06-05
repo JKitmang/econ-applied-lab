@@ -74,7 +74,7 @@
 <header class="top">
   <div class="brand">Applied-Economics <span>Lab</span></div>
   <nav>
-    <a href="index.html">Simulation Lab</a>
+    <a href="index.html">Story Builder</a>
     <a href="library.html" class="active">Exhibit Library</a>
   </nav>
 </header>
@@ -108,7 +108,18 @@ fetch("library/library.json").then(r=>r.json()).then(d=>{LIB=d;init();})
 
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 
+function applyUrlParams(){
+  const u=new URLSearchParams(location.search);
+  if(u.get("paper")) state.paper=u.get("paper");
+  if(u.get("section")) state.section=u.get("section");
+  if(u.get("kind")) state.kind=u.get("kind");
+  if(u.get("exports")) state.exports=u.get("exports");
+  if(u.get("q")) state.q=u.get("q").toLowerCase();
+  if(u.get("tag")) u.get("tag").split(",").forEach(t=>state.tags.add(t.trim()));
+}
+
 function init(){
+  applyUrlParams();
   document.getElementById("blurb").textContent=LIB.blurb;
   document.getElementById("foot").textContent=LIB.source;
   // paper summary cards
@@ -128,9 +139,10 @@ function init(){
   chips("fKind",[["all","All"],["table","Tables"],["figure","Figures"]],v=>state.kind=v,()=>state.kind);
   chips("fExports",[["all","All"],["yes","Exports to file"],["no","Log only"]],v=>state.exports=v,()=>state.exports);
   const tb=document.getElementById("fTags");
-  LIB.tags.forEach(t=>{const c=document.createElement("span");c.className="chip";c.textContent=t;
+  LIB.tags.forEach(t=>{const c=document.createElement("span");c.className="chip"+(state.tags.has(t)?" on":"");c.textContent=t;
     c.onclick=()=>{state.tags.has(t)?state.tags.delete(t):state.tags.add(t);c.classList.toggle("on");render();};tb.appendChild(c);});
-  document.getElementById("search").addEventListener("input",e=>{state.q=e.target.value.toLowerCase();render();});
+  const sb=document.getElementById("search"); sb.value=state.q;
+  sb.addEventListener("input",e=>{state.q=e.target.value.toLowerCase();render();});
   render();
 }
 function chips(id,opts,set,get){

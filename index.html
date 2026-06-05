@@ -1,150 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Table &amp; Figure Lab — Applied Economics</title>
-  <link rel="stylesheet" href="css/styles.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Story Builder · Applied-Economics Lab</title>
+<style>
+  :root{
+    --blue:#0072B2; --green:#009E73; --orange:#D55E00; --yellow:#F0E442;
+    --ink:#1a1a1a; --mut:#5b6470; --line:#e3e6ea; --bg:#f7f8fa; --card:#fff; --panel:#f2f4f7;
+    --warn:#8a5400; --warnbg:#fbf1df;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace; --maxw:1000px;
+  }
+  *{box-sizing:border-box} html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);font-size:15px;line-height:1.55}
+  a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+  header.top{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;padding:12px 22px}
+  header.top .brand{font-weight:700;letter-spacing:-.01em} header.top .brand span{color:var(--blue)}
+  header.top nav{margin-left:auto;display:flex;gap:6px;font-size:14px}
+  header.top nav a{color:var(--mut);padding:6px 12px;border-radius:8px}
+  header.top nav a.active{color:#fff;background:var(--blue);font-weight:600}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:24px}
+  h1{font-size:26px;margin:2px 0 6px;letter-spacing:-.02em}
+  .lede{color:var(--mut);font-size:15px;max-width:720px;margin:0 0 18px}
+  .tabs{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px}
+  .tabs button{border:1px solid var(--line);background:#fff;border-radius:9px;padding:9px 15px;font:inherit;font-size:14px;cursor:pointer;color:var(--mut)}
+  .tabs button.active{border-color:var(--blue);background:#eef6fc;color:var(--blue);font-weight:600}
+  .methhead{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:20px}
+  .methhead h2{margin:0 0 6px;font-size:18px}
+  .methhead p{margin:0 0 10px;color:#36404e;font-size:14.5px}
+  .methhead .ml{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:#9aa3ad;min-width:96px;display:inline-block}
+  .methhead .mrow{font-size:12.5px;color:var(--mut);margin:2px 0}
+  .arc{position:relative;margin:0 0 26px;padding-left:30px}
+  .arc::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:var(--line)}
+  .step{position:relative;background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px 17px;margin-bottom:14px}
+  .step::before{content:"";position:absolute;left:-25px;top:20px;width:12px;height:12px;border-radius:50%;background:var(--blue);border:3px solid #fff;box-shadow:0 0 0 1px var(--line)}
+  .step .pos{font-size:11px;font-weight:700;color:#fff;background:var(--ink);padding:2px 9px;border-radius:20px}
+  .step .typ{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut);border:1px solid var(--line);padding:1px 7px;border-radius:4px;margin-left:6px}
+  .step h3{display:inline;font-size:15.5px;margin:0 0 0 9px}
+  .step .why{color:#36404e;font-size:14px;margin:9px 0 8px}
+  .step .cons{background:var(--panel);border-left:3px solid var(--yellow);border-radius:0 6px 6px 0;padding:8px 12px;font-size:13px;color:#3a4350;margin:0 0 10px}
+  .step .cons b{color:var(--ink)}
+  .step .seealso{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;background:#eef6fc;color:var(--blue);border:1px solid #cfe6f7;border-radius:8px;padding:6px 12px}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:18px}
+  .panel h2{font-size:15px;margin:0 0 10px}
+  dl.se{font-size:13px;margin:0} dl.se dt{font-weight:600;color:var(--blue);margin-top:7px} dl.se dd{margin:0 0 2px;color:#465161}
+  .pv{width:100%;border-collapse:collapse;font-size:12.5px} .pv th,.pv td{text-align:left;padding:6px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  .pv th{color:var(--mut);font-weight:600;text-transform:uppercase;font-size:11px} .pv td:first-child{font-weight:600}
+  ul.gen{margin:0;padding-left:18px;font-size:13.5px;color:#36404e} ul.gen li{margin:4px 0}
+  .sandbox-note{font-size:13px;color:var(--mut);background:#fff;border:1px dashed var(--line);border-radius:10px;padding:11px 14px;margin-bottom:18px}
+  footer{color:var(--mut);font-size:12.5px;text-align:center;padding:28px 0}
+</style>
 </head>
-<body class="method-did">
-  <div class="topbar">
-    <h1>Applied-Economics Lab</h1>
-    <span class="sub">Simulation lab (canonical exhibits · live SE lab) + a real-paper Exhibit Library</span>
-    <span class="spacer"></span>
-    <nav class="labnav" style="display:flex;gap:6px;font-size:14px;margin-right:14px">
-      <a href="index.html" style="padding:6px 12px;border-radius:8px;background:#0072B2;color:#fff;font-weight:600;text-decoration:none">Simulation Lab</a>
-      <a href="library.html" style="padding:6px 12px;border-radius:8px;color:#5b6470;text-decoration:none">Exhibit Library</a>
-    </nav>
-    <div class="viewtoggle" role="group" aria-label="View">
-      <button data-view="paper" class="active">Paper view</button>
-      <button data-view="present">Presentation view</button>
-    </div>
-  </div>
+<body>
+<header class="top">
+  <div class="brand">Applied-Economics <span>Lab</span></div>
+  <nav>
+    <a href="index.html" class="active">Story Builder</a>
+    <a href="library.html">Exhibit Library</a>
+  </nav>
+</header>
 
-  <div class="layout">
-    <aside class="sidebar">
-      <div class="ctrl-group">
-        <h2>Methodology</h2>
-        <div class="methtabs">
-          <button data-method="did" class="active">DiD / Event study</button>
-          <button data-method="rct">RCT</button>
-          <button data-method="iv">IV</button>
-          <button data-method="rdd">RDD</button>
-        </div>
-      </div>
+<div class="wrap">
+  <h1>Story Builder</h1>
+  <p class="lede">The analyses and exhibits to produce to build a credible empirical narrative — in order, by methodology, with the considerations that make each one defensible. Every step links to <strong>real published examples</strong> in the Exhibit Library so you can see how leading papers do it and reuse their code.</p>
 
-      <div class="ctrl-group">
-        <h2>Inference</h2>
-        <div class="ctrl">
-          <label for="seMethod">Standard errors</label>
-          <select id="seMethod">
-            <option value="iid">Classical (iid)</option>
-            <option value="HC1">Robust HC1 (Stata , robust)</option>
-            <option value="HC2">Robust HC2</option>
-            <option value="HC3">Robust HC3</option>
-            <option value="cluster" selected>Cluster-robust (CR1)</option>
-            <option value="wildboot">Wild cluster bootstrap</option>
-            <option value="ri">Randomization inference</option>
-          </select>
-          <div class="hint">Changes inference live across tables &amp; the event study.</div>
-        </div>
-      </div>
+  <div class="sandbox-note">Want to <em>play</em> with simulated data, standard-error definitions, and paper-vs-presentation styling? The interactive <a href="sandbox.html">Simulation Sandbox →</a> is still here.</div>
 
-      <div class="ctrl-group">
-        <h2>Simulation (DGP)</h2>
-        <div class="ctrl">
-          <label for="nClusters">Clusters (G) <span class="val" data-out="nClusters"></span></label>
-          <input type="range" id="nClusters" min="4" max="50" step="1" value="6" />
-          <div class="hint">Few clusters → wild bootstrap matters.</div>
-        </div>
-        <div class="ctrl">
-          <label for="unitsPerCluster">Units / cluster <span class="val" data-out="unitsPerCluster"></span></label>
-          <input type="range" id="unitsPerCluster" min="2" max="30" step="1" value="8" />
-        </div>
-        <div class="ctrl">
-          <label for="T">Periods (T) <span class="val" data-out="T"></span></label>
-          <input type="range" id="T" min="6" max="20" step="1" value="12" />
-        </div>
-        <div class="ctrl">
-          <label for="effect">Treatment effect <span class="val" data-out="effect"></span></label>
-          <input type="range" id="effect" min="-1" max="3" step="0.1" value="1" />
-        </div>
-        <div class="ctrl">
-          <label for="icc">Intra-cluster corr. (ICC) <span class="val" data-out="icc"></span></label>
-          <input type="range" id="icc" min="0" max="0.8" step="0.05" value="0.2" />
-        </div>
-        <div class="ctrl">
-          <label for="preTrend">Pre-trend (violation) <span class="val" data-out="preTrend"></span></label>
-          <input type="range" id="preTrend" min="-0.3" max="0.3" step="0.02" value="0" />
-          <div class="hint">Nonzero bends the event-study leads.</div>
-        </div>
-        <div class="ctrl">
-          <label for="timing">Adoption timing</label>
-          <select id="timing">
-            <option value="staggered" selected>Staggered</option>
-            <option value="single">Single date</option>
-          </select>
-        </div>
-        <div class="ctrl">
-          <label for="reps">Bootstrap / RI reps <span class="val" data-out="reps"></span></label>
-          <input type="range" id="reps" min="99" max="599" step="100" value="199" />
-        </div>
-        <div class="ctrl">
-          <label for="seed">Seed</label>
-          <div class="row2">
-            <input type="number" id="seed" value="12345" />
-            <button class="btn" id="reseed">Re-seed ↻</button>
-          </div>
-          <div class="hint">Same seed → identical numbers (reproducible).</div>
-        </div>
-      </div>
-    </aside>
+  <div class="tabs" id="tabs"></div>
+  <div id="methhead"></div>
+  <div class="arc" id="arc"></div>
 
-    <main class="main">
-      <div class="methhead">
-        <p id="methBlurb"></p>
-        <div id="methMeta"></div>
-      </div>
+  <div class="panel" id="sePanel"></div>
+  <div class="panel" id="storyPanel"></div>
+</div>
 
-      <div id="cards"></div>
+<footer>Built on the canonical structure of applied-microeconomics papers. Examples link to the Exhibit Library (real replication packages indexed by EJD).</footer>
 
-      <section class="story-panel">
-        <h2>Communication &amp; data-storytelling principles</h2>
-        <ul id="storyGeneral"></ul>
-        <h2>Paper vs. presentation</h2>
-        <table class="pv-table">
-          <thead><tr><th>Dimension</th><th>Paper</th><th>Presentation</th></tr></thead>
-          <tbody id="pvBody"></tbody>
-        </table>
-        <h2 style="margin-top:16px">Standard-error glossary</h2>
-        <dl class="se-gloss" id="seGloss"></dl>
-        <p class="note">Reference index of replication packages:
-          <a href="https://ejd.econ.mathematik.uni-ulm.de/" target="_blank" rel="noopener">EJD — Find Economic Articles with Data</a>
-          (S. Kranz, Uni Ulm). Exhibits here use simulated data; EJD links point to real papers as visual ground-truth.</p>
-      </section>
-    </main>
-  </div>
+<script src="js/taxonomy.js"></script>
+<script>
+const T=window.TAXONOMY;
+const ORDER=["did","rct","iv","rdd"];
+const NAMES={did:"DiD / Event study",rct:"RCT",iv:"IV",rdd:"RDD"};
+const METHOD_TAG={did:"Difference-in-differences",rct:"RCT / experiment",iv:"IV / 2SLS",rdd:"Regression discontinuity"};
+const ROLE_Q={summary:"",balance:"balance",robustness:"robustness",heterogeneity:"heterogeneity",rctHet:"heterogeneity",attrition:"attrition",firststage:"first stage",rdplot:"discontinuit"};
+const CONS={
+  summary:"No SEs needed — it's descriptive. A normalized-difference column summarises imbalance in one glance.",
+  trends:"Unadjusted series only. This figure earns trust in parallel trends <b>before</b> any model is run.",
+  eventstudy:"Always show CIs, mark the reference period (−1), and shade the post window. Leads ≈ 0 support parallel trends.",
+  main:"Build the spec in columns (→ +controls → +FE → preferred). Report the DV mean and cluster SEs at the level of treatment assignment.",
+  robustness:"Hold the point estimate fixed; vary estimator, sample, and SE definition. With few clusters, trust the wild cluster bootstrap.",
+  heterogeneity:"A forest plot beats a wide interaction table. Pre-specify subgroups to avoid fishing.",
+  balance:"Control/treatment means, normalized differences (flag |ND|>0.25), and a joint F-test — the reader is checking randomization 'took'.",
+  itt:"ITT first (unadjusted → +covariates → +strata FE); report LATE under non-compliance and the control mean.",
+  attrition:"Test differential attrition by arm; if non-zero, bound the effect (Lee bounds) rather than ignore it.",
+  rctHet:"Pre-specified subgroups only; a forest plot keeps you honest about how many cuts you took.",
+  firststage:"Show the first-stage F / effective F. A weak first stage is a fatal flaw shown honestly, not hidden.",
+  ivmain:"Put OLS next to 2SLS — the gap is the story. Use weak-IV-robust CIs (Anderson–Rubin) when F is low.",
+  rdplot:"Binned means + a low-order polynomial; don't over-smooth. Pair with a density (McCrary) manipulation test.",
+  rdmain:"Show estimates across bandwidths and polynomial orders, with robust bias-corrected SEs (CCT).",
+};
+let active="did";
 
-  <!-- engine -->
-  <script src="js/econ.js"></script>
-  <script src="js/dgp.js"></script>
-  <script src="js/models.js"></script>
-  <script src="js/render.js"></script>
-  <script src="js/taxonomy.js"></script>
-  <script src="js/app.js"></script>
-  <!-- static storytelling content from the taxonomy -->
-  <script>
-    (function () {
-      var T = window.TAXONOMY; if (!T) return;
-      document.getElementById("storyGeneral").innerHTML =
-        T.storytelling.general.map(function (s) { return "<li>" + s + "</li>"; }).join("");
-      document.getElementById("pvBody").innerHTML =
-        T.storytelling.paperVsPresent.map(function (r) {
-          return "<tr><td>" + r[0] + "</td><td>" + r[1] + "</td><td>" + r[2] + "</td></tr>";
-        }).join("");
-      document.getElementById("seGloss").innerHTML =
-        T.seGlossary.map(function (g) { return "<dt>" + g.label + "</dt><dd>" + g.when + "</dd>"; }).join("");
-    })();
-  </script>
+function libLink(mk,ex){
+  const p=new URLSearchParams();
+  if(METHOD_TAG[mk]) p.set("tag",METHOD_TAG[mk]);
+  if(ex.type==="figure") p.set("kind","figure"); else if(ex.type==="table") p.set("kind","table");
+  if(ROLE_Q[ex.id]) p.set("q",ROLE_Q[ex.id]);
+  return "library.html?"+p.toString();
+}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function renderTabs(){
+  document.getElementById("tabs").innerHTML=ORDER.map(k=>
+    `<button data-k="${k}" class="${k===active?'active':''}">${esc(NAMES[k])}</button>`).join("");
+  document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>{active=b.dataset.k;render();});
+}
+function render(){
+  renderTabs();
+  const m=T.methodologies[active];
+  document.getElementById("methhead").innerHTML=
+    `<div class="methhead"><h2>${esc(m.name)}</h2><p>${esc(m.blurb)}</p>
+      <div class="mrow"><span class="ml">Estimators</span> ${esc(m.estimators.join(" · "))}</div>
+      <div class="mrow"><span class="ml">Diagnostics</span> ${esc((m.diagnostics||[]).join(" · "))}</div></div>`;
+  document.getElementById("arc").innerHTML=m.exhibits.map(ex=>{
+    const cons=CONS[ex.id]?`<div class="cons"><b>What to get right:</b> ${CONS[ex.id]}</div>`:"";
+    return `<div class="step">
+      <span class="pos">${esc(ex.n)}</span><span class="typ">${esc(ex.type)}</span><h3>${esc(ex.title)}</h3>
+      <div class="why">${esc(ex.story)}</div>
+      ${cons}
+      <a class="seealso" href="${libLink(active,ex)}">See real examples in the Exhibit Library →</a>
+    </div>`;
+  }).join("");
+  // SE considerations
+  document.getElementById("sePanel").innerHTML=
+    `<h2>Standard-error considerations</h2><dl class="se">${T.seGlossary.map(g=>`<dt>${esc(g.label)}</dt><dd>${esc(g.when)}</dd>`).join("")}</dl>`;
+  // storytelling
+  document.getElementById("storyPanel").innerHTML=
+    `<h2>Communication &amp; data-storytelling principles</h2>
+     <ul class="gen">${T.storytelling.general.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>
+     <h2 style="margin-top:14px">Paper vs. presentation</h2>
+     <table class="pv"><thead><tr><th>Dimension</th><th>Paper</th><th>Presentation</th></tr></thead>
+     <tbody>${T.storytelling.paperVsPresent.map(r=>`<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td><td>${esc(r[2])}</td></tr>`).join("")}</tbody></table>`;
+}
+render();
+</script>
 </body>
 </html>

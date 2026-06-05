@@ -16,7 +16,14 @@
   "Structural estimation",
   "Counterfactual simulation",
   "Model fit",
-  "Welfare / diversity"
+  "Welfare / diversity",
+  "Regression discontinuity",
+  "Difference-in-differences",
+  "RCT / experiment",
+  "Balance / first stage",
+  "Robustness / placebo",
+  "Heterogeneity",
+  "Event study"
  ],
  "papers": [
   {
@@ -55,6 +62,336 @@
    "dataNote": "Restricted-use THEOP data; exhibits captured from the published PDF. Code from the replication package.",
    "site": "",
    "n_exhibits": 7
+  },
+  {
+   "id": "harris-2025-should-college-be-free",
+   "short": "Harris (2025)",
+   "title": "Should College Be \"Free\"? Evidence on Free College, Early Commitment, and Merit Aid from an Eight-Year Randomized Trial",
+   "journal": "American Economic Journal: Economic Policy",
+   "year": "2025",
+   "doi": "10.1257/pol.20230100",
+   "methods": [
+    "Difference-in-differences",
+    "RCT / experiment"
+   ],
+   "lang": "—",
+   "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
+   "site": "",
+   "package": "https://doi.org/10.1257/pol.20230100",
+   "n_exhibits": 2
+  },
+  {
+   "id": "barr-2025-increasing-degree-attain",
+   "short": "Barr (2025)",
+   "title": "Increasing Degree Attainment among Low-Income Students: The Role of Intensive Advising and College Quality",
+   "journal": "American Economic Review",
+   "year": "2025",
+   "doi": "10.1257/aer.20240669",
+   "methods": [
+    "RCT / experiment"
+   ],
+   "lang": "—",
+   "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
+   "site": "",
+   "package": "https://doi.org/10.1257/aer.20240669",
+   "n_exhibits": 1
+  },
+  {
+   "id": "ren-e-2025-the-long-term-effects-of",
+   "short": "Renée (2025)",
+   "title": "The Long-Term Effects of Career Guidance in High School and Student Financial Aid: Evidence from a Randomized Experiment",
+   "journal": "American Economic Journal: Applied Economics",
+   "year": "2025",
+   "doi": "10.1257/app.20230342",
+   "methods": [
+    "RCT / experiment"
+   ],
+   "lang": "—",
+   "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
+   "site": "",
+   "package": "https://doi.org/10.1257/app.20230342",
+   "n_exhibits": 2
+  },
+  {
+   "id": "dalla-zuanna-2025-pulled-in-and-crowded-ou",
+   "short": "Dalla-Zuanna (2025)",
+   "title": "Pulled In and Crowded Out: Heterogeneous Outcomes of Merit-Based School Choice",
+   "journal": "American Economic Journal: Applied Economics",
+   "year": "2025",
+   "doi": "10.1257/app.20220104",
+   "methods": [
+    "Heterogeneity",
+    "IV / 2SLS",
+    "Regression discontinuity"
+   ],
+   "lang": "—",
+   "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
+   "site": "",
+   "package": "https://doi.org/10.1257/app.20220104",
+   "n_exhibits": 5
+  },
+  {
+   "id": "andrews-2024-the-returns-to-college-m",
+   "short": "Andrews (2024)",
+   "title": "The Returns to College Major Choice: Average and Distributional Effects, Career Trajectories, and Earnings Variability",
+   "journal": "The Review of Economics and Statistics",
+   "year": "2024",
+   "doi": "10.1162/rest_a_01503",
+   "methods": [],
+   "lang": "—",
+   "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
+   "site": "",
+   "package": "https://doi.org/10.1162/rest_a_01503",
+   "n_exhibits": 7
+  },
+  {
+   "id": "deneault-2023-college-enrollment-and-m",
+   "short": "Deneault (2023)",
+   "title": "College Enrollment and Mandatory FAFSA Applications: Evidence from Louisiana",
+   "journal": "American Economic Journal: Economic Policy",
+   "year": "2023",
+   "doi": "10.1257/pol.20210360",
+   "methods": [
+    "Difference-in-differences",
+    "IV / 2SLS",
+    "RCT / experiment"
+   ],
+   "lang": "—",
+   "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
+   "site": "",
+   "package": "https://doi.org/10.1257/pol.20210360",
+   "n_exhibits": 1
+  },
+  {
+   "id": "black-2023-taking-it-to-the-limit",
+   "short": "Black (2023)",
+   "title": "Taking It to the Limit: Effects of Increased Student Loan Availability on Attainment, Earnings, and Financial Well-Being",
+   "journal": "American Economic Review",
+   "year": "2023",
+   "doi": "10.1257/aer.20210926",
+   "methods": [
+    "Difference-in-differences"
+   ],
+   "lang": "—",
+   "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
+   "site": "",
+   "package": "https://doi.org/10.1257/aer.20210926",
+   "n_exhibits": 6
+  },
+  {
+   "id": "phillips-2022-does-virtual-advising-in",
+   "short": "Phillips (2022)",
+   "title": "Does Virtual Advising Increase College Enrollment? Evidence from a Random-Assignment College Access Field Experiment",
+   "journal": "American Economic Journal: Economic Policy",
+   "year": "2022",
+   "doi": "10.1257/pol.20200515",
+   "methods": [
+    "Difference-in-differences",
+    "RCT / experiment"
+   ],
+   "lang": "—",
+   "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
+   "site": "",
+   "package": "https://doi.org/10.1257/pol.20200515",
+   "n_exhibits": 1
+  },
+  {
+   "id": "mello-2022-centralized-admissions",
+   "short": "Mello (2022)",
+   "title": "Centralized Admissions, Affirmative Action, and Access of Low-Income Students to Higher Education",
+   "journal": "American Economic Journal: Economic Policy",
+   "year": "2022",
+   "doi": "10.1257/pol.20190639",
+   "methods": [
+    "Heterogeneity"
+   ],
+   "lang": "—",
+   "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
+   "site": "",
+   "package": "https://doi.org/10.1257/pol.20190639",
+   "n_exhibits": 4
+  },
+  {
+   "id": "dynarski-2021-closing-the-gap-the-eff",
+   "short": "Dynarski (2021)",
+   "title": "Closing the Gap: The Effect of Reducing Complexity and Uncertainty in College Pricing on the Choices of Low-Income Students",
+   "journal": "American Economic Review",
+   "year": "2021",
+   "doi": "10.1257/aer.20200451",
+   "methods": [
+    "Difference-in-differences",
+    "RCT / experiment"
+   ],
+   "lang": "—",
+   "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
+   "site": "",
+   "package": "https://doi.org/10.1257/aer.20200451",
+   "n_exhibits": 6
+  },
+  {
+   "id": "londo-o-v-lez-2020-upstream-and-downstream",
+   "short": "Londoño-Vélez (2020)",
+   "title": "Upstream and Downstream Impacts of College Merit-Based Financial Aid for Low-Income Students: Ser Pilo Paga in Colombia",
+   "journal": "American Economic Journal: Economic Policy",
+   "year": "2020",
+   "doi": "10.1257/pol.20180131",
+   "methods": [
+    "Difference-in-differences",
+    "Regression discontinuity"
+   ],
+   "lang": "—",
+   "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
+   "site": "",
+   "package": "https://doi.org/10.1257/pol.20180131",
+   "n_exhibits": 3
+  },
+  {
+   "id": "bettinger-2019-the-long-run-impacts-of",
+   "short": "Bettinger (2019)",
+   "title": "The Long-Run Impacts of Financial Aid: Evidence from California's Cal Grant",
+   "journal": "American Economic Journal: Economic Policy",
+   "year": "2019",
+   "doi": "10.1257/pol.20170466",
+   "methods": [
+    "Heterogeneity",
+    "Regression discontinuity"
+   ],
+   "lang": "—",
+   "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
+   "site": "",
+   "package": "https://doi.org/10.1257/pol.20170466",
+   "n_exhibits": 1
+  },
+  {
+   "id": "denning-2019-propelled-the-effects-o",
+   "short": "Denning (2019)",
+   "title": "ProPelled: The Effects of Grants on Graduation, Earnings, and Welfare",
+   "journal": "American Economic Journal: Applied Economics",
+   "year": "2019",
+   "doi": "10.1257/app.20180100",
+   "methods": [
+    "Regression discontinuity"
+   ],
+   "lang": "—",
+   "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
+   "site": "",
+   "package": "https://doi.org/10.1257/app.20180100",
+   "n_exhibits": 5
+  },
+  {
+   "id": "arcidiacono-2016-affirmative-action-and-t",
+   "short": "Arcidiacono (2016)",
+   "title": "Affirmative Action and the Quality-Fit Trade-Off",
+   "journal": "Journal of Economic Literature",
+   "year": "2016",
+   "doi": "10.1257/jel.54.1.3",
+   "methods": [],
+   "lang": "—",
+   "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
+   "site": "",
+   "package": "https://doi.org/10.1257/jel.54.1.3",
+   "n_exhibits": 1
+  },
+  {
+   "id": "fack-2015-improving-college-access",
+   "short": "Fack (2015)",
+   "title": "Improving College Access and Success for Low-Income Students: Evidence from a Large Need-Based Grant Program",
+   "journal": "American Economic Journal: Applied Economics",
+   "year": "2015",
+   "doi": "10.1257/app.20130423",
+   "methods": [
+    "Regression discontinuity"
+   ],
+   "lang": "—",
+   "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
+   "site": "",
+   "package": "https://doi.org/10.1257/app.20130423",
+   "n_exhibits": 10
+  },
+  {
+   "id": "cohodes-2014-merit-aid-college-quali",
+   "short": "Cohodes (2014)",
+   "title": "Merit Aid, College Quality, and College Completion: Massachusetts' Adams Scholarship as an In-Kind Subsidy",
+   "journal": "American Economic Journal: Applied Economics",
+   "year": "2014",
+   "doi": "10.1257/app.6.4.251",
+   "methods": [
+    "Regression discontinuity",
+    "Robustness / placebo"
+   ],
+   "lang": "—",
+   "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
+   "site": "",
+   "package": "https://doi.org/10.1257/app.6.4.251",
+   "n_exhibits": 1
+  },
+  {
+   "id": "equityefficiency",
+   "short": "? ()",
+   "title": "EquityEfficiency",
+   "journal": "",
+   "year": "",
+   "doi": "",
+   "methods": [
+    "Balance / first stage",
+    "Heterogeneity",
+    "RCT / experiment",
+    "Regression discontinuity"
+   ],
+   "lang": "—",
+   "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
+   "site": "",
+   "package": "",
+   "n_exhibits": 2
+  },
+  {
+   "id": "cattan-first-generation-elite",
+   "short": "Cattan ()",
+   "title": "First generation elite: the role of school networks",
+   "journal": "",
+   "year": "",
+   "doi": "",
+   "methods": [
+    "RCT / experiment"
+   ],
+   "lang": "—",
+   "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
+   "site": "",
+   "package": "",
+   "n_exhibits": 22
+  },
+  {
+   "id": "scott-clayton-college-costs-financial",
+   "short": "Scott-Clayton ()",
+   "title": "College Costs, Financial Aid, and Student Decisions",
+   "journal": "",
+   "year": "",
+   "doi": "",
+   "methods": [
+    "Heterogeneity",
+    "RCT / experiment"
+   ],
+   "lang": "—",
+   "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
+   "site": "",
+   "package": "",
+   "n_exhibits": 3
+  },
+  {
+   "id": "mountjoy-marginal-returns-to-publ",
+   "short": "Mountjoy ()",
+   "title": "Marginal Returns to Public Universities",
+   "journal": "",
+   "year": "",
+   "doi": "",
+   "methods": [
+    "Regression discontinuity"
+   ],
+   "lang": "—",
+   "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
+   "site": "",
+   "package": "",
+   "n_exhibits": 3
   }
  ],
  "exhibits": [
@@ -1883,6 +2220,1947 @@
    "noteMap": "",
    "png": "library/papers/kapor-percent-plans/exhibits/main/f4.png",
    "pdf": "library/papers/kapor-percent-plans/exhibits/main/f4.pdf"
+  },
+  {
+   "paper": "harris-2025-should-college-be-free",
+   "section": "main",
+   "num": "Table 4",
+   "kind": "table",
+   "title": "Average Treatment Effects on College Expectations and Nonmerit Effort (ITT)",
+   "tags": [
+    "Difference-in-differences",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/pol.20230100",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Should+College+Be+\"Free\"?+Evidence+on+Fr",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Difference-in-differences, RCT / experiment): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/harris-2025-should-college-be-free/exhibits/main/table-4.png",
+   "pdf": "library/papers/harris-2025-should-college-be-free/exhibits/main/table-4.pdf"
+  },
+  {
+   "paper": "harris-2025-should-college-be-free",
+   "section": "main",
+   "num": "Table 6",
+   "kind": "table",
+   "title": "Average Treatment Effects on College Graduation and Life Outcomes (ITT)",
+   "tags": [
+    "Difference-in-differences",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/pol.20230100",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Should+College+Be+\"Free\"?+Evidence+on+Fr",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Difference-in-differences, RCT / experiment): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/harris-2025-should-college-be-free/exhibits/main/table-6.png",
+   "pdf": "library/papers/harris-2025-should-college-be-free/exhibits/main/table-6.pdf"
+  },
+  {
+   "paper": "barr-2025-increasing-degree-attain",
+   "section": "main",
+   "num": "Table 4",
+   "kind": "table",
+   "title": "Heterogeneity in Treatment Effects by Presence of Suboptimal Baseline Preferences",
+   "tags": [
+    "Heterogeneity",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/aer.20240669",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Increasing+Degree+Attainment+among+Low-I",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Heterogeneity exhibit: effects across subgroups. A forest/coefficient plot reads faster than a wide interaction table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/barr-2025-increasing-degree-attain/exhibits/main/table-4.png",
+   "pdf": "library/papers/barr-2025-increasing-degree-attain/exhibits/main/table-4.pdf"
+  },
+  {
+   "paper": "ren-e-2025-the-long-term-effects-of",
+   "section": "main",
+   "num": "Table 3",
+   "kind": "table",
+   "title": "Gap in ­­Four-Year College Enrollment between High- and ­­Low-Income Students",
+   "tags": [
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/app.20230342",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=The+Long-Term+Effects+of+Career+Guidance",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (RCT / experiment): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/ren-e-2025-the-long-term-effects-of/exhibits/main/table-3.png",
+   "pdf": "library/papers/ren-e-2025-the-long-term-effects-of/exhibits/main/table-3.pdf"
+  },
+  {
+   "paper": "ren-e-2025-the-long-term-effects-of",
+   "section": "main",
+   "num": "Table 4",
+   "kind": "table",
+   "title": "I present the treatment effects of the three interventions on college comple",
+   "tags": [
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/app.20230342",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=The+Long-Term+Effects+of+Career+Guidance",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (RCT / experiment): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/ren-e-2025-the-long-term-effects-of/exhibits/main/table-4.png",
+   "pdf": "library/papers/ren-e-2025-the-long-term-effects-of/exhibits/main/table-4.pdf"
+  },
+  {
+   "paper": "dalla-zuanna-2025-pulled-in-and-crowded-ou",
+   "section": "main",
+   "num": "Figure 2",
+   "kind": "figure",
+   "title": "Total Potential Gains and Losses from the Reform: A Theoretical Illustration",
+   "tags": [
+    "Heterogeneity",
+    "IV / 2SLS",
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/app.20220104",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Pulled+In+and+Crowded+Out:+Heterogeneous",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Identification figure (RD plot): binned means around the cutoff make the discontinuity visible — the emotional core of an RD paper. Check that bins and bandwidth aren't over-smoothed."
+   ],
+   "noteMap": "",
+   "png": "library/papers/dalla-zuanna-2025-pulled-in-and-crowded-ou/exhibits/main/figure-2.png",
+   "pdf": "library/papers/dalla-zuanna-2025-pulled-in-and-crowded-ou/exhibits/main/figure-2.pdf"
+  },
+  {
+   "paper": "dalla-zuanna-2025-pulled-in-and-crowded-ou",
+   "section": "main",
+   "num": "Table 2",
+   "kind": "table",
+   "title": "Effect of the Reform, Separately for Each Middle School GPA Quintile",
+   "tags": [
+    "Heterogeneity",
+    "IV / 2SLS",
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/app.20220104",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Pulled+In+and+Crowded+Out:+Heterogeneous",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Heterogeneity, IV / 2SLS): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/dalla-zuanna-2025-pulled-in-and-crowded-ou/exhibits/main/table-2.png",
+   "pdf": "library/papers/dalla-zuanna-2025-pulled-in-and-crowded-ou/exhibits/main/table-2.pdf"
+  },
+  {
+   "paper": "dalla-zuanna-2025-pulled-in-and-crowded-ou",
+   "section": "main",
+   "num": "Figure 3",
+   "kind": "figure",
+   "title": "Average Outcomes for Children Born in Different Weeks around January 1, 1989",
+   "tags": [
+    "Heterogeneity",
+    "IV / 2SLS",
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/app.20220104",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Pulled+In+and+Crowded+Out:+Heterogeneous",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Identification figure (RD plot): binned means around the cutoff make the discontinuity visible — the emotional core of an RD paper. Check that bins and bandwidth aren't over-smoothed."
+   ],
+   "noteMap": "",
+   "png": "library/papers/dalla-zuanna-2025-pulled-in-and-crowded-ou/exhibits/main/figure-3.png",
+   "pdf": "library/papers/dalla-zuanna-2025-pulled-in-and-crowded-ou/exhibits/main/figure-3.pdf"
+  },
+  {
+   "paper": "dalla-zuanna-2025-pulled-in-and-crowded-ou",
+   "section": "main",
+   "num": "Table 3",
+   "kind": "table",
+   "title": "Effect of the Reform, Separately for Each Middle School GPA Quintile",
+   "tags": [
+    "Heterogeneity",
+    "IV / 2SLS",
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/app.20220104",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Pulled+In+and+Crowded+Out:+Heterogeneous",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Heterogeneity, IV / 2SLS): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/dalla-zuanna-2025-pulled-in-and-crowded-ou/exhibits/main/table-3.png",
+   "pdf": "library/papers/dalla-zuanna-2025-pulled-in-and-crowded-ou/exhibits/main/table-3.pdf"
+  },
+  {
+   "paper": "dalla-zuanna-2025-pulled-in-and-crowded-ou",
+   "section": "main",
+   "num": "Table 5",
+   "kind": "table",
+   "title": "First Stage and Treatment Effect for CCs and CPs, IV Interacted with Schools Distance",
+   "tags": [
+    "Heterogeneity",
+    "IV / 2SLS",
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/app.20220104",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Pulled+In+and+Crowded+Out:+Heterogeneous",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Heterogeneity, IV / 2SLS): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/dalla-zuanna-2025-pulled-in-and-crowded-ou/exhibits/main/table-5.png",
+   "pdf": "library/papers/dalla-zuanna-2025-pulled-in-and-crowded-ou/exhibits/main/table-5.pdf"
+  },
+  {
+   "paper": "andrews-2024-the-returns-to-college-m",
+   "section": "main",
+   "num": "Table 1",
+   "kind": "table",
+   "title": "Summary Statistics of Analysis Variables",
+   "tags": [
+    "Summary statistics"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1162/rest_a_01503",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=The+Returns+to+College+Major+Choice:+Ave",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Orienting descriptive exhibit: establishes the sample and key variables before identification — the reader sizes the setting first."
+   ],
+   "noteMap": "",
+   "png": "library/papers/andrews-2024-the-returns-to-college-m/exhibits/main/table-1.png",
+   "pdf": "library/papers/andrews-2024-the-returns-to-college-m/exhibits/main/table-1.pdf"
+  },
+  {
+   "paper": "andrews-2024-the-returns-to-college-m",
+   "section": "main",
+   "num": "Figure 1",
+   "kind": "figure",
+   "title": "Mean Returns and Earnings Growth Effects of College Major - 4-year",
+   "tags": [
+    "Results"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1162/rest_a_01503",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=The+Returns+to+College+Major+Choice:+Ave",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Exhibit supporting the the paper's design analysis."
+   ],
+   "noteMap": "",
+   "png": "library/papers/andrews-2024-the-returns-to-college-m/exhibits/main/figure-1.png",
+   "pdf": "library/papers/andrews-2024-the-returns-to-college-m/exhibits/main/figure-1.pdf"
+  },
+  {
+   "paper": "andrews-2024-the-returns-to-college-m",
+   "section": "main",
+   "num": "Figure 2",
+   "kind": "figure",
+   "title": "Mean Returns and Earnings Growth Effects of College Major - 2-year",
+   "tags": [
+    "Results"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1162/rest_a_01503",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=The+Returns+to+College+Major+Choice:+Ave",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Exhibit supporting the the paper's design analysis."
+   ],
+   "noteMap": "",
+   "png": "library/papers/andrews-2024-the-returns-to-college-m/exhibits/main/figure-2.png",
+   "pdf": "library/papers/andrews-2024-the-returns-to-college-m/exhibits/main/figure-2.pdf"
+  },
+  {
+   "paper": "andrews-2024-the-returns-to-college-m",
+   "section": "main",
+   "num": "Figure 3",
+   "kind": "figure",
+   "title": "Quantile Treatment Effects of Major on Average Quarterly Earnings",
+   "tags": [
+    "Results"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1162/rest_a_01503",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=The+Returns+to+College+Major+Choice:+Ave",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Exhibit supporting the the paper's design analysis."
+   ],
+   "noteMap": "",
+   "png": "library/papers/andrews-2024-the-returns-to-college-m/exhibits/main/figure-3.png",
+   "pdf": "library/papers/andrews-2024-the-returns-to-college-m/exhibits/main/figure-3.pdf"
+  },
+  {
+   "paper": "andrews-2024-the-returns-to-college-m",
+   "section": "main",
+   "num": "Figure 4",
+   "kind": "figure",
+   "title": "Quantile Treatment Effects of Major on Average Quarterly Earnings",
+   "tags": [
+    "Results"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1162/rest_a_01503",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=The+Returns+to+College+Major+Choice:+Ave",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Exhibit supporting the the paper's design analysis."
+   ],
+   "noteMap": "",
+   "png": "library/papers/andrews-2024-the-returns-to-college-m/exhibits/main/figure-4.png",
+   "pdf": "library/papers/andrews-2024-the-returns-to-college-m/exhibits/main/figure-4.pdf"
+  },
+  {
+   "paper": "andrews-2024-the-returns-to-college-m",
+   "section": "main",
+   "num": "Figure 6",
+   "kind": "figure",
+   "title": "Utility Estimates by Risk Aversion Parameter and the Use of Earnings",
+   "tags": [
+    "Results"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1162/rest_a_01503",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=The+Returns+to+College+Major+Choice:+Ave",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Heterogeneity exhibit: effects across subgroups. A forest/coefficient plot reads faster than a wide interaction table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/andrews-2024-the-returns-to-college-m/exhibits/main/figure-6.png",
+   "pdf": "library/papers/andrews-2024-the-returns-to-college-m/exhibits/main/figure-6.pdf"
+  },
+  {
+   "paper": "andrews-2024-the-returns-to-college-m",
+   "section": "main",
+   "num": "Figure 7",
+   "kind": "figure",
+   "title": "Utility Estimates by Risk Aversion Parameter and the Use of Earnings",
+   "tags": [
+    "Results"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1162/rest_a_01503",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=The+Returns+to+College+Major+Choice:+Ave",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Heterogeneity exhibit: effects across subgroups. A forest/coefficient plot reads faster than a wide interaction table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/andrews-2024-the-returns-to-college-m/exhibits/main/figure-7.png",
+   "pdf": "library/papers/andrews-2024-the-returns-to-college-m/exhibits/main/figure-7.pdf"
+  },
+  {
+   "paper": "deneault-2023-college-enrollment-and-m",
+   "section": "main",
+   "num": "Figure 3",
+   "kind": "figure",
+   "title": "Total FAFSAs Completed, FAFSA Completion Rate, and High School Graduation Rates",
+   "tags": [
+    "Difference-in-differences",
+    "IV / 2SLS",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/pol.20210360",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=College+Enrollment+and+Mandatory+FAFSA+A",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Exhibit supporting the Difference-in-differences, IV / 2SLS analysis."
+   ],
+   "noteMap": "",
+   "png": "library/papers/deneault-2023-college-enrollment-and-m/exhibits/main/figure-3.png",
+   "pdf": "library/papers/deneault-2023-college-enrollment-and-m/exhibits/main/figure-3.pdf"
+  },
+  {
+   "paper": "black-2023-taking-it-to-the-limit",
+   "section": "main",
+   "num": "Table 2",
+   "kind": "table",
+   "title": "Borrowing Limits and Cumulative Increase in Limits by Entry Cohort",
+   "tags": [
+    "Difference-in-differences"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/aer.20210926",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Taking+It+to+the+Limit:+Effects+of+Incre",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Heterogeneity exhibit: effects across subgroups. A forest/coefficient plot reads faster than a wide interaction table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/black-2023-taking-it-to-the-limit/exhibits/main/table-2.png",
+   "pdf": "library/papers/black-2023-taking-it-to-the-limit/exhibits/main/table-2.pdf"
+  },
+  {
+   "paper": "black-2023-taking-it-to-the-limit",
+   "section": "main",
+   "num": "Table 5",
+   "kind": "table",
+   "title": "Higher Loan Limits Increase Constrained Students’ Cumulative Borrowing",
+   "tags": [
+    "Difference-in-differences"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/aer.20210926",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Taking+It+to+the+Limit:+Effects+of+Incre",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Difference-in-differences): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/black-2023-taking-it-to-the-limit/exhibits/main/table-5.png",
+   "pdf": "library/papers/black-2023-taking-it-to-the-limit/exhibits/main/table-5.pdf"
+  },
+  {
+   "paper": "black-2023-taking-it-to-the-limit",
+   "section": "main",
+   "num": "Figure 4",
+   "kind": "figure",
+   "title": "Effects of Loan Limit Increases on Cumulative Years of Enrollment Ten Years after Entry",
+   "tags": [
+    "Difference-in-differences"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/aer.20210926",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Taking+It+to+the+Limit:+Effects+of+Incre",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Exhibit supporting the Difference-in-differences analysis."
+   ],
+   "noteMap": "",
+   "png": "library/papers/black-2023-taking-it-to-the-limit/exhibits/main/figure-4.png",
+   "pdf": "library/papers/black-2023-taking-it-to-the-limit/exhibits/main/figure-4.pdf"
+  },
+  {
+   "paper": "black-2023-taking-it-to-the-limit",
+   "section": "main",
+   "num": "Table 7",
+   "kind": "table",
+   "title": "Effects of Loan Limit Increases on Alternative Sources of College Financing",
+   "tags": [
+    "Difference-in-differences"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/aer.20210926",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Taking+It+to+the+Limit:+Effects+of+Incre",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Difference-in-differences): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/black-2023-taking-it-to-the-limit/exhibits/main/table-7.png",
+   "pdf": "library/papers/black-2023-taking-it-to-the-limit/exhibits/main/table-7.pdf"
+  },
+  {
+   "paper": "black-2023-taking-it-to-the-limit",
+   "section": "main",
+   "num": "Table 11",
+   "kind": "table",
+   "title": "Heterogeneity in the Effect on Borrowing, Attainment, and Financial Outcomes by",
+   "tags": [
+    "Difference-in-differences",
+    "Heterogeneity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/aer.20210926",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Taking+It+to+the+Limit:+Effects+of+Incre",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Heterogeneity exhibit: effects across subgroups. A forest/coefficient plot reads faster than a wide interaction table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/black-2023-taking-it-to-the-limit/exhibits/main/table-11.png",
+   "pdf": "library/papers/black-2023-taking-it-to-the-limit/exhibits/main/table-11.pdf"
+  },
+  {
+   "paper": "black-2023-taking-it-to-the-limit",
+   "section": "main",
+   "num": "Table 12",
+   "kind": "table",
+   "title": "Heterogeneity in the Effect on Borrowing, Attainment, and Financial Outcomes by",
+   "tags": [
+    "Difference-in-differences",
+    "Heterogeneity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/aer.20210926",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Taking+It+to+the+Limit:+Effects+of+Incre",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Heterogeneity exhibit: effects across subgroups. A forest/coefficient plot reads faster than a wide interaction table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/black-2023-taking-it-to-the-limit/exhibits/main/table-12.png",
+   "pdf": "library/papers/black-2023-taking-it-to-the-limit/exhibits/main/table-12.pdf"
+  },
+  {
+   "paper": "phillips-2022-does-virtual-advising-in",
+   "section": "main",
+   "num": "Table 2",
+   "kind": "table",
+   "title": "Average Program Use and Perceived Helpfulness of Program Components",
+   "tags": [
+    "Difference-in-differences",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/pol.20200515",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Does+Virtual+Advising+Increase+College+E",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Difference-in-differences, RCT / experiment): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/phillips-2022-does-virtual-advising-in/exhibits/main/table-2.png",
+   "pdf": "library/papers/phillips-2022-does-virtual-advising-in/exhibits/main/table-2.pdf"
+  },
+  {
+   "paper": "mello-2022-centralized-admissions",
+   "section": "main",
+   "num": "Table 2",
+   "kind": "table",
+   "title": "Expansion of Affirmative Action in the Brazilian Undergraduate Institutions",
+   "tags": [
+    "Heterogeneity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/pol.20190639",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Centralized+Admissions,+Affirmative+Acti",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Heterogeneity): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/mello-2022-centralized-admissions/exhibits/main/table-2.png",
+   "pdf": "library/papers/mello-2022-centralized-admissions/exhibits/main/table-2.pdf"
+  },
+  {
+   "paper": "mello-2022-centralized-admissions",
+   "section": "main",
+   "num": "Table 3",
+   "kind": "table",
+   "title": "Descriptive Statistics of Incoming Students in Public Higher Education Institutions",
+   "tags": [
+    "Heterogeneity",
+    "Summary statistics"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/pol.20190639",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Centralized+Admissions,+Affirmative+Acti",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Orienting descriptive exhibit: establishes the sample and key variables before identification — the reader sizes the setting first."
+   ],
+   "noteMap": "",
+   "png": "library/papers/mello-2022-centralized-admissions/exhibits/main/table-3.png",
+   "pdf": "library/papers/mello-2022-centralized-admissions/exhibits/main/table-3.pdf"
+  },
+  {
+   "paper": "mello-2022-centralized-admissions",
+   "section": "main",
+   "num": "Table 7",
+   "kind": "table",
+   "title": "Effect of AA and SISU on Enrollments of Out-of-State Students, Average Number of",
+   "tags": [
+    "Heterogeneity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/pol.20190639",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Centralized+Admissions,+Affirmative+Acti",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Heterogeneity): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/mello-2022-centralized-admissions/exhibits/main/table-7.png",
+   "pdf": "library/papers/mello-2022-centralized-admissions/exhibits/main/table-7.pdf"
+  },
+  {
+   "paper": "mello-2022-centralized-admissions",
+   "section": "main",
+   "num": "Figure 3",
+   "kind": "figure",
+   "title": "Effect of AA on Enrollments of ­Public School Students by Baseline Share",
+   "tags": [
+    "Heterogeneity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/pol.20190639",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Centralized+Admissions,+Affirmative+Acti",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Heterogeneity exhibit: effects across subgroups. A forest/coefficient plot reads faster than a wide interaction table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/mello-2022-centralized-admissions/exhibits/main/figure-3.png",
+   "pdf": "library/papers/mello-2022-centralized-admissions/exhibits/main/figure-3.pdf"
+  },
+  {
+   "paper": "dynarski-2021-closing-the-gap-the-eff",
+   "section": "main",
+   "num": "Figure 1",
+   "kind": "figure",
+   "title": "Selectivity of Colleges Attended by ­High-Achieving Michigan Students, by Income",
+   "tags": [
+    "Difference-in-differences",
+    "Heterogeneity",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/aer.20200451",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Closing+the+Gap:+The+Effect+of+Reducing+",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Heterogeneity exhibit: effects across subgroups. A forest/coefficient plot reads faster than a wide interaction table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/dynarski-2021-closing-the-gap-the-eff/exhibits/main/figure-1.png",
+   "pdf": "library/papers/dynarski-2021-closing-the-gap-the-eff/exhibits/main/figure-1.pdf"
+  },
+  {
+   "paper": "dynarski-2021-closing-the-gap-the-eff",
+   "section": "main",
+   "num": "Figure 2",
+   "kind": "figure",
+   "title": "HAIL Students Are Widely Dispersed across Michigan, First and Second HAIL Cohorts",
+   "tags": [
+    "Difference-in-differences",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/aer.20200451",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Closing+the+Gap:+The+Effect+of+Reducing+",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Exhibit supporting the Difference-in-differences, RCT / experiment analysis."
+   ],
+   "noteMap": "",
+   "png": "library/papers/dynarski-2021-closing-the-gap-the-eff/exhibits/main/figure-2.png",
+   "pdf": "library/papers/dynarski-2021-closing-the-gap-the-eff/exhibits/main/figure-2.pdf"
+  },
+  {
+   "paper": "dynarski-2021-closing-the-gap-the-eff",
+   "section": "main",
+   "num": "Figure 6",
+   "kind": "figure",
+   "title": "Estimated Effect of HAIL Scholarship on College Choice, First and Second HAIL Cohorts",
+   "tags": [
+    "Difference-in-differences",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/aer.20200451",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Closing+the+Gap:+The+Effect+of+Reducing+",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Exhibit supporting the Difference-in-differences, RCT / experiment analysis."
+   ],
+   "noteMap": "",
+   "png": "library/papers/dynarski-2021-closing-the-gap-the-eff/exhibits/main/figure-6.png",
+   "pdf": "library/papers/dynarski-2021-closing-the-gap-the-eff/exhibits/main/figure-6.pdf"
+  },
+  {
+   "paper": "dynarski-2021-closing-the-gap-the-eff",
+   "section": "main",
+   "num": "Table 5",
+   "kind": "table",
+   "title": "Estimated Effect of HAIL Scholarship on University of Michigan Application,",
+   "tags": [
+    "Difference-in-differences",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/aer.20200451",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Closing+the+Gap:+The+Effect+of+Reducing+",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Difference-in-differences, RCT / experiment): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/dynarski-2021-closing-the-gap-the-eff/exhibits/main/table-5.png",
+   "pdf": "library/papers/dynarski-2021-closing-the-gap-the-eff/exhibits/main/table-5.pdf"
+  },
+  {
+   "paper": "dynarski-2021-closing-the-gap-the-eff",
+   "section": "main",
+   "num": "Table 6",
+   "kind": "table",
+   "title": "Estimated Effect of HAIL Scholarship on University of Michigan Application,",
+   "tags": [
+    "Difference-in-differences",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/aer.20200451",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Closing+the+Gap:+The+Effect+of+Reducing+",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Difference-in-differences, RCT / experiment): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/dynarski-2021-closing-the-gap-the-eff/exhibits/main/table-6.png",
+   "pdf": "library/papers/dynarski-2021-closing-the-gap-the-eff/exhibits/main/table-6.pdf"
+  },
+  {
+   "paper": "dynarski-2021-closing-the-gap-the-eff",
+   "section": "main",
+   "num": "Table 9",
+   "kind": "table",
+   "title": "Financial Aid for HAIL Treatment and Control Students Enrolled at the",
+   "tags": [
+    "Difference-in-differences",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/aer.20200451",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Closing+the+Gap:+The+Effect+of+Reducing+",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Difference-in-differences, RCT / experiment): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/dynarski-2021-closing-the-gap-the-eff/exhibits/main/table-9.png",
+   "pdf": "library/papers/dynarski-2021-closing-the-gap-the-eff/exhibits/main/table-9.pdf"
+  },
+  {
+   "paper": "londo-o-v-lez-2020-upstream-and-downstream",
+   "section": "main",
+   "num": "Table 2",
+   "kind": "table",
+   "title": "Immediate Enrollment in Postsecondary Education, by Type of Institution",
+   "tags": [
+    "Difference-in-differences",
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/pol.20180131",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Upstream+and+Downstream+Impacts+of+Colle",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Heterogeneity exhibit: effects across subgroups. A forest/coefficient plot reads faster than a wide interaction table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/londo-o-v-lez-2020-upstream-and-downstream/exhibits/main/table-2.png",
+   "pdf": "library/papers/londo-o-v-lez-2020-upstream-and-downstream/exhibits/main/table-2.pdf"
+  },
+  {
+   "paper": "londo-o-v-lez-2020-upstream-and-downstream",
+   "section": "main",
+   "num": "Figure 6",
+   "kind": "figure",
+   "title": "Immediate Postsecondary Enrollment: High- versus Low-Quality Institutions",
+   "tags": [
+    "Difference-in-differences",
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/pol.20180131",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Upstream+and+Downstream+Impacts+of+Colle",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Identification figure (RD plot): binned means around the cutoff make the discontinuity visible — the emotional core of an RD paper. Check that bins and bandwidth aren't over-smoothed."
+   ],
+   "noteMap": "",
+   "png": "library/papers/londo-o-v-lez-2020-upstream-and-downstream/exhibits/main/figure-6.png",
+   "pdf": "library/papers/londo-o-v-lez-2020-upstream-and-downstream/exhibits/main/figure-6.pdf"
+  },
+  {
+   "paper": "londo-o-v-lez-2020-upstream-and-downstream",
+   "section": "main",
+   "num": "Figure 8",
+   "kind": "figure",
+   "title": "Immediate Postsecondary Enrollment: High- versus Low-Quality, Private versus Public",
+   "tags": [
+    "Difference-in-differences",
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/pol.20180131",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Upstream+and+Downstream+Impacts+of+Colle",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Identification figure (RD plot): binned means around the cutoff make the discontinuity visible — the emotional core of an RD paper. Check that bins and bandwidth aren't over-smoothed."
+   ],
+   "noteMap": "",
+   "png": "library/papers/londo-o-v-lez-2020-upstream-and-downstream/exhibits/main/figure-8.png",
+   "pdf": "library/papers/londo-o-v-lez-2020-upstream-and-downstream/exhibits/main/figure-8.pdf"
+  },
+  {
+   "paper": "bettinger-2019-the-long-run-impacts-of",
+   "section": "main",
+   "num": "Table 3",
+   "kind": "table",
+   "title": "Longer Run Income and Demographic Outcomes, 10–14 Years after Application",
+   "tags": [
+    "Heterogeneity",
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/pol.20170466",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=The+Long-Run+Impacts+of+Financial+Aid:+E",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Heterogeneity, Regression discontinuity): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/bettinger-2019-the-long-run-impacts-of/exhibits/main/table-3.png",
+   "pdf": "library/papers/bettinger-2019-the-long-run-impacts-of/exhibits/main/table-3.pdf"
+  },
+  {
+   "paper": "denning-2019-propelled-the-effects-o",
+   "section": "main",
+   "num": "Figure 2",
+   "kind": "figure",
+   "title": "Share of Four-Year Students with $0 EFC by Distance to the Automatic Zero EFC Threshold",
+   "tags": [
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/app.20180100",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=ProPelled:+The+Effects+of+Grants+on+Grad",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Identification figure (RD plot): binned means around the cutoff make the discontinuity visible — the emotional core of an RD paper. Check that bins and bandwidth aren't over-smoothed."
+   ],
+   "noteMap": "",
+   "png": "library/papers/denning-2019-propelled-the-effects-o/exhibits/main/figure-2.png",
+   "pdf": "library/papers/denning-2019-propelled-the-effects-o/exhibits/main/figure-2.pdf"
+  },
+  {
+   "paper": "denning-2019-propelled-the-effects-o",
+   "section": "main",
+   "num": "Figure 5",
+   "kind": "figure",
+   "title": "Graduation Rates by Distance to the Automatic Zero EFC Threshold: FTIC Students",
+   "tags": [
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/app.20180100",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=ProPelled:+The+Effects+of+Grants+on+Grad",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Identification figure (RD plot): binned means around the cutoff make the discontinuity visible — the emotional core of an RD paper. Check that bins and bandwidth aren't over-smoothed."
+   ],
+   "noteMap": "",
+   "png": "library/papers/denning-2019-propelled-the-effects-o/exhibits/main/figure-5.png",
+   "pdf": "library/papers/denning-2019-propelled-the-effects-o/exhibits/main/figure-5.pdf"
+  },
+  {
+   "paper": "denning-2019-propelled-the-effects-o",
+   "section": "main",
+   "num": "Figure 7",
+   "kind": "figure",
+   "title": "Total Grants, Loans, and Earnings by Distance to the Automatic Zero EFC Threshold",
+   "tags": [
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/app.20180100",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=ProPelled:+The+Effects+of+Grants+on+Grad",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Identification figure (RD plot): binned means around the cutoff make the discontinuity visible — the emotional core of an RD paper. Check that bins and bandwidth aren't over-smoothed."
+   ],
+   "noteMap": "",
+   "png": "library/papers/denning-2019-propelled-the-effects-o/exhibits/main/figure-7.png",
+   "pdf": "library/papers/denning-2019-propelled-the-effects-o/exhibits/main/figure-7.pdf"
+  },
+  {
+   "paper": "denning-2019-propelled-the-effects-o",
+   "section": "main",
+   "num": "Table 4",
+   "kind": "table",
+   "title": "IV Estimates of the Effect of Grant Aid on Longer Run Academic Outcomes",
+   "tags": [
+    "IV / 2SLS",
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/app.20180100",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=ProPelled:+The+Effects+of+Grants+on+Grad",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Regression discontinuity): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/denning-2019-propelled-the-effects-o/exhibits/main/table-4.png",
+   "pdf": "library/papers/denning-2019-propelled-the-effects-o/exhibits/main/table-4.pdf"
+  },
+  {
+   "paper": "denning-2019-propelled-the-effects-o",
+   "section": "main",
+   "num": "Table 5",
+   "kind": "table",
+   "title": "IV Estimates of the Effect of Grant Aid on Returning Longer Run Labor",
+   "tags": [
+    "IV / 2SLS",
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/app.20180100",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=ProPelled:+The+Effects+of+Grants+on+Grad",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Regression discontinuity): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/denning-2019-propelled-the-effects-o/exhibits/main/table-5.png",
+   "pdf": "library/papers/denning-2019-propelled-the-effects-o/exhibits/main/table-5.pdf"
+  },
+  {
+   "paper": "arcidiacono-2016-affirmative-action-and-t",
+   "section": "main",
+   "num": "Figure 4",
+   "kind": "figure",
+   "title": "Distribution of Academic Indexes for Minority Berkeley Admits and White UC Applicants",
+   "tags": [
+    "Results"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/jel.54.1.3",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Affirmative+Action+and+the+Quality-Fit+T",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Exhibit supporting the the paper's design analysis."
+   ],
+   "noteMap": "",
+   "png": "library/papers/arcidiacono-2016-affirmative-action-and-t/exhibits/main/figure-4.png",
+   "pdf": "library/papers/arcidiacono-2016-affirmative-action-and-t/exhibits/main/figure-4.pdf"
+  },
+  {
+   "paper": "fack-2015-improving-college-access",
+   "section": "main",
+   "num": "Figure 2",
+   "kind": "figure",
+   "title": "Amount of Annual Cash Allowance Awarded to Applicants with a FNA Score of 3 Points, as",
+   "tags": [
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/app.20130423",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Improving+College+Access+and+Success+for",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Identification figure (RD plot): binned means around the cutoff make the discontinuity visible — the emotional core of an RD paper. Check that bins and bandwidth aren't over-smoothed."
+   ],
+   "noteMap": "",
+   "png": "library/papers/fack-2015-improving-college-access/exhibits/main/figure-2.png",
+   "pdf": "library/papers/fack-2015-improving-college-access/exhibits/main/figure-2.pdf"
+  },
+  {
+   "paper": "fack-2015-improving-college-access",
+   "section": "main",
+   "num": "Table 1",
+   "kind": "table",
+   "title": "Summary Statistics on Applicants to BCS Need-Based Grants at Different Income",
+   "tags": [
+    "Regression discontinuity",
+    "Summary statistics"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/app.20130423",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Improving+College+Access+and+Success+for",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Orienting descriptive exhibit: establishes the sample and key variables before identification — the reader sizes the setting first."
+   ],
+   "noteMap": "",
+   "png": "library/papers/fack-2015-improving-college-access/exhibits/main/table-1.png",
+   "pdf": "library/papers/fack-2015-improving-college-access/exhibits/main/table-1.pdf"
+  },
+  {
+   "paper": "fack-2015-improving-college-access",
+   "section": "main",
+   "num": "Figure 3",
+   "kind": "figure",
+   "title": "McCrary (2008) Test for Manipulation of the Assignment Variable at Different Income",
+   "tags": [
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/app.20130423",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Improving+College+Access+and+Success+for",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Identification figure (RD plot): binned means around the cutoff make the discontinuity visible — the emotional core of an RD paper. Check that bins and bandwidth aren't over-smoothed."
+   ],
+   "noteMap": "",
+   "png": "library/papers/fack-2015-improving-college-access/exhibits/main/figure-3.png",
+   "pdf": "library/papers/fack-2015-improving-college-access/exhibits/main/figure-3.pdf"
+  },
+  {
+   "paper": "fack-2015-improving-college-access",
+   "section": "main",
+   "num": "Table 2",
+   "kind": "table",
+   "title": "Balance of Applicants’ Baseline Characteristics in the Year of Application, at Different",
+   "tags": [
+    "Balance / first stage",
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/app.20130423",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Improving+College+Access+and+Success+for",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Orienting descriptive exhibit: establishes the sample and key variables before identification — the reader sizes the setting first."
+   ],
+   "noteMap": "",
+   "png": "library/papers/fack-2015-improving-college-access/exhibits/main/table-2.png",
+   "pdf": "library/papers/fack-2015-improving-college-access/exhibits/main/table-2.pdf"
+  },
+  {
+   "paper": "fack-2015-improving-college-access",
+   "section": "main",
+   "num": "Figure 4",
+   "kind": "figure",
+   "title": "Fraction of Applicants Awarded a Conditional Grant and Average Amount of Allowance",
+   "tags": [
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/app.20130423",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Improving+College+Access+and+Success+for",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Identification figure (RD plot): binned means around the cutoff make the discontinuity visible — the emotional core of an RD paper. Check that bins and bandwidth aren't over-smoothed."
+   ],
+   "noteMap": "",
+   "png": "library/papers/fack-2015-improving-college-access/exhibits/main/figure-4.png",
+   "pdf": "library/papers/fack-2015-improving-college-access/exhibits/main/figure-4.pdf"
+  },
+  {
+   "paper": "fack-2015-improving-college-access",
+   "section": "main",
+   "num": "Figure 5",
+   "kind": "figure",
+   "title": "College Enrollment Rate of Grant Applicants at Different Income Eligibility Thresholds",
+   "tags": [
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/app.20130423",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Improving+College+Access+and+Success+for",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Identification figure (RD plot): binned means around the cutoff make the discontinuity visible — the emotional core of an RD paper. Check that bins and bandwidth aren't over-smoothed."
+   ],
+   "noteMap": "",
+   "png": "library/papers/fack-2015-improving-college-access/exhibits/main/figure-5.png",
+   "pdf": "library/papers/fack-2015-improving-college-access/exhibits/main/figure-5.pdf"
+  },
+  {
+   "paper": "fack-2015-improving-college-access",
+   "section": "main",
+   "num": "Table 3",
+   "kind": "table",
+   "title": "Discontinuities in College Enrollment Rates at Different Income Eligibility Thresholds",
+   "tags": [
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/app.20130423",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Improving+College+Access+and+Success+for",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Regression discontinuity): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/fack-2015-improving-college-access/exhibits/main/table-3.png",
+   "pdf": "library/papers/fack-2015-improving-college-access/exhibits/main/table-3.pdf"
+  },
+  {
+   "paper": "fack-2015-improving-college-access",
+   "section": "main",
+   "num": "Table 4",
+   "kind": "table",
+   "title": "Discontinuities in College Enrollment Rates at Different Income Eligibility Thresholds,",
+   "tags": [
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/app.20130423",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Improving+College+Access+and+Success+for",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Regression discontinuity): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/fack-2015-improving-college-access/exhibits/main/table-4.png",
+   "pdf": "library/papers/fack-2015-improving-college-access/exhibits/main/table-4.pdf"
+  },
+  {
+   "paper": "fack-2015-improving-college-access",
+   "section": "main",
+   "num": "Table 5",
+   "kind": "table",
+   "title": "Discontinuities in College Enrollment and Student Persistence Rates at the 1,500 euros",
+   "tags": [
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/app.20130423",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Improving+College+Access+and+Success+for",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Regression discontinuity): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/fack-2015-improving-college-access/exhibits/main/table-5.png",
+   "pdf": "library/papers/fack-2015-improving-college-access/exhibits/main/table-5.pdf"
+  },
+  {
+   "paper": "fack-2015-improving-college-access",
+   "section": "main",
+   "num": "Table 6",
+   "kind": "table",
+   "title": "Discontinuities in College Enrollment and Degree Completion Rates",
+   "tags": [
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/app.20130423",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Improving+College+Access+and+Success+for",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Regression discontinuity): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/fack-2015-improving-college-access/exhibits/main/table-6.png",
+   "pdf": "library/papers/fack-2015-improving-college-access/exhibits/main/table-6.pdf"
+  },
+  {
+   "paper": "cohodes-2014-merit-aid-college-quali",
+   "section": "main",
+   "num": "Table 4",
+   "kind": "table",
+   "title": "Impact of Aid Eligibility on Enrollment and Graduation, Classes of 2005-2006",
+   "tags": [
+    "Regression discontinuity",
+    "Robustness / placebo"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/app.6.4.251",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Merit+Aid,+College+Quality,+and+College+",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Regression discontinuity, Robustness / placebo): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/cohodes-2014-merit-aid-college-quali/exhibits/main/table-4.png",
+   "pdf": "library/papers/cohodes-2014-merit-aid-college-quali/exhibits/main/table-4.pdf"
+  },
+  {
+   "paper": "equityefficiency",
+   "section": "main",
+   "num": "Figure 2",
+   "kind": "figure",
+   "title": "Complier Characteristics Along the Boundaries of Financial Aid Eligibility",
+   "tags": [
+    "Balance / first stage",
+    "Heterogeneity",
+    "RCT / experiment",
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=EquityEfficiency",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Orienting descriptive exhibit: establishes the sample and key variables before identification — the reader sizes the setting first."
+   ],
+   "noteMap": "",
+   "png": "library/papers/equityefficiency/exhibits/main/figure-2.png",
+   "pdf": "library/papers/equityefficiency/exhibits/main/figure-2.pdf"
+  },
+  {
+   "paper": "equityefficiency",
+   "section": "main",
+   "num": "Figure 8",
+   "kind": "figure",
+   "title": "Enrollment as a Function of Test Scores for Low-SES Students",
+   "tags": [
+    "Balance / first stage",
+    "Heterogeneity",
+    "RCT / experiment",
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=EquityEfficiency",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Identification figure (RD plot): binned means around the cutoff make the discontinuity visible — the emotional core of an RD paper. Check that bins and bandwidth aren't over-smoothed."
+   ],
+   "noteMap": "",
+   "png": "library/papers/equityefficiency/exhibits/main/figure-8.png",
+   "pdf": "library/papers/equityefficiency/exhibits/main/figure-8.pdf"
+  },
+  {
+   "paper": "cattan-first-generation-elite",
+   "section": "appendix",
+   "num": "Figure A10",
+   "kind": "figure",
+   "title": "After the simulation, the intercept is higher suggesting a higher earnings rank for very",
+   "tags": [
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=First+generation+elite:+the+role+of+scho",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Exhibit supporting the RCT / experiment analysis."
+   ],
+   "noteMap": "",
+   "png": "library/papers/cattan-first-generation-elite/exhibits/appendix/figure-A10.png",
+   "pdf": "library/papers/cattan-first-generation-elite/exhibits/appendix/figure-A10.pdf"
+  },
+  {
+   "paper": "cattan-first-generation-elite",
+   "section": "main",
+   "num": "Figure 2",
+   "kind": "figure",
+   "title": "Intergenerational mobility: estimating the percentile rank-rank correlation across ex",
+   "tags": [
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=First+generation+elite:+the+role+of+scho",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Exhibit supporting the RCT / experiment analysis."
+   ],
+   "noteMap": "",
+   "png": "library/papers/cattan-first-generation-elite/exhibits/main/figure-2.png",
+   "pdf": "library/papers/cattan-first-generation-elite/exhibits/main/figure-2.pdf"
+  },
+  {
+   "paper": "cattan-first-generation-elite",
+   "section": "main",
+   "num": "Table 2",
+   "kind": "table",
+   "title": "Effect of elite peers on the probability of enrolling in an elite degree",
+   "tags": [
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=First+generation+elite:+the+role+of+scho",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (RCT / experiment): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/cattan-first-generation-elite/exhibits/main/table-2.png",
+   "pdf": "library/papers/cattan-first-generation-elite/exhibits/main/table-2.pdf"
+  },
+  {
+   "paper": "cattan-first-generation-elite",
+   "section": "main",
+   "num": "Table 5",
+   "kind": "table",
+   "title": "IV estimates and decomposition of the total effect of elite peers on elite degree",
+   "tags": [
+    "IV / 2SLS",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=First+generation+elite:+the+role+of+scho",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (RCT / experiment): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/cattan-first-generation-elite/exhibits/main/table-5.png",
+   "pdf": "library/papers/cattan-first-generation-elite/exhibits/main/table-5.pdf"
+  },
+  {
+   "paper": "cattan-first-generation-elite",
+   "section": "appendix",
+   "num": "Figure A1",
+   "kind": "figure",
+   "title": "Distribution of middle school GPA taken at age 16 before entry to high school",
+   "tags": [
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=First+generation+elite:+the+role+of+scho",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Exhibit supporting the RCT / experiment analysis."
+   ],
+   "noteMap": "",
+   "png": "library/papers/cattan-first-generation-elite/exhibits/appendix/figure-A1.png",
+   "pdf": "library/papers/cattan-first-generation-elite/exhibits/appendix/figure-A1.pdf"
+  },
+  {
+   "paper": "cattan-first-generation-elite",
+   "section": "appendix",
+   "num": "Figure A3",
+   "kind": "figure",
+   "title": "Marginal effect of exposure to elite social networks implied from quadratic specification",
+   "tags": [
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=First+generation+elite:+the+role+of+scho",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Robustness/placebo exhibit defending the design — shown for completeness; the value is that the estimate survives alternative choices."
+   ],
+   "noteMap": "",
+   "png": "library/papers/cattan-first-generation-elite/exhibits/appendix/figure-A3.png",
+   "pdf": "library/papers/cattan-first-generation-elite/exhibits/appendix/figure-A3.pdf"
+  },
+  {
+   "paper": "cattan-first-generation-elite",
+   "section": "appendix",
+   "num": "Figure A4",
+   "kind": "figure",
+   "title": "Marginal effect of exposure to elite social networks: allowing for interaction between",
+   "tags": [
+    "Heterogeneity",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=First+generation+elite:+the+role+of+scho",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Exhibit supporting the RCT / experiment analysis."
+   ],
+   "noteMap": "",
+   "png": "library/papers/cattan-first-generation-elite/exhibits/appendix/figure-A4.png",
+   "pdf": "library/papers/cattan-first-generation-elite/exhibits/appendix/figure-A4.pdf"
+  },
+  {
+   "paper": "cattan-first-generation-elite",
+   "section": "appendix",
+   "num": "Figure A5",
+   "kind": "figure",
+   "title": "Effect of exposure to elite peers on student outcomes by socioeconomic background",
+   "tags": [
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=First+generation+elite:+the+role+of+scho",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Heterogeneity exhibit: effects across subgroups. A forest/coefficient plot reads faster than a wide interaction table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/cattan-first-generation-elite/exhibits/appendix/figure-A5.png",
+   "pdf": "library/papers/cattan-first-generation-elite/exhibits/appendix/figure-A5.pdf"
+  },
+  {
+   "paper": "cattan-first-generation-elite",
+   "section": "appendix",
+   "num": "Figure A7",
+   "kind": "figure",
+   "title": "Marginal effect of exposure to elite social networks on high school teacher assessment",
+   "tags": [
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=First+generation+elite:+the+role+of+scho",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Exhibit supporting the RCT / experiment analysis."
+   ],
+   "noteMap": "",
+   "png": "library/papers/cattan-first-generation-elite/exhibits/appendix/figure-A7.png",
+   "pdf": "library/papers/cattan-first-generation-elite/exhibits/appendix/figure-A7.pdf"
+  },
+  {
+   "paper": "cattan-first-generation-elite",
+   "section": "appendix",
+   "num": "Figure A8",
+   "kind": "figure",
+   "title": "Marginal effect of exposure to elite social networks implied from quadratic specification",
+   "tags": [
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=First+generation+elite:+the+role+of+scho",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Robustness/placebo exhibit defending the design — shown for completeness; the value is that the estimate survives alternative choices."
+   ],
+   "noteMap": "",
+   "png": "library/papers/cattan-first-generation-elite/exhibits/appendix/figure-A8.png",
+   "pdf": "library/papers/cattan-first-generation-elite/exhibits/appendix/figure-A8.pdf"
+  },
+  {
+   "paper": "cattan-first-generation-elite",
+   "section": "appendix",
+   "num": "Figure A9",
+   "kind": "figure",
+   "title": "Marginal effect of exposure to elite social networks on student earnings age 30-32",
+   "tags": [
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=First+generation+elite:+the+role+of+scho",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Exhibit supporting the RCT / experiment analysis."
+   ],
+   "noteMap": "",
+   "png": "library/papers/cattan-first-generation-elite/exhibits/appendix/figure-A9.png",
+   "pdf": "library/papers/cattan-first-generation-elite/exhibits/appendix/figure-A9.pdf"
+  },
+  {
+   "paper": "cattan-first-generation-elite",
+   "section": "appendix",
+   "num": "Table A1",
+   "kind": "table",
+   "title": "Effect of exposure to elite families in high school on the probability of enrolling in an",
+   "tags": [
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=First+generation+elite:+the+role+of+scho",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (RCT / experiment): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/cattan-first-generation-elite/exhibits/appendix/table-A1.png",
+   "pdf": "library/papers/cattan-first-generation-elite/exhibits/appendix/table-A1.pdf"
+  },
+  {
+   "paper": "cattan-first-generation-elite",
+   "section": "appendix",
+   "num": "Table A2",
+   "kind": "table",
+   "title": "Oaxaca Binder decomposition of the SES gap in elite degree enrolment",
+   "tags": [
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=First+generation+elite:+the+role+of+scho",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (RCT / experiment): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/cattan-first-generation-elite/exhibits/appendix/table-A2.png",
+   "pdf": "library/papers/cattan-first-generation-elite/exhibits/appendix/table-A2.pdf"
+  },
+  {
+   "paper": "cattan-first-generation-elite",
+   "section": "appendix",
+   "num": "Table A3",
+   "kind": "table",
+   "title": "Placebo tests - Effect of elite peers on child birth outcomes",
+   "tags": [
+    "RCT / experiment",
+    "Robustness / placebo"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=First+generation+elite:+the+role+of+scho",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Robustness/placebo exhibit defending the design — shown for completeness; the value is that the estimate survives alternative choices."
+   ],
+   "noteMap": "",
+   "png": "library/papers/cattan-first-generation-elite/exhibits/appendix/table-A3.png",
+   "pdf": "library/papers/cattan-first-generation-elite/exhibits/appendix/table-A3.pdf"
+  },
+  {
+   "paper": "cattan-first-generation-elite",
+   "section": "appendix",
+   "num": "Table A4",
+   "kind": "table",
+   "title": "Defining ”Elite” peers by occupational status and high income",
+   "tags": [
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=First+generation+elite:+the+role+of+scho",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Heterogeneity exhibit: effects across subgroups. A forest/coefficient plot reads faster than a wide interaction table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/cattan-first-generation-elite/exhibits/appendix/table-A4.png",
+   "pdf": "library/papers/cattan-first-generation-elite/exhibits/appendix/table-A4.pdf"
+  },
+  {
+   "paper": "cattan-first-generation-elite",
+   "section": "appendix",
+   "num": "Table A6",
+   "kind": "table",
+   "title": "Elite peer effect on GPA rank within the high school cohort",
+   "tags": [
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=First+generation+elite:+the+role+of+scho",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (RCT / experiment): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/cattan-first-generation-elite/exhibits/appendix/table-A6.png",
+   "pdf": "library/papers/cattan-first-generation-elite/exhibits/appendix/table-A6.pdf"
+  },
+  {
+   "paper": "cattan-first-generation-elite",
+   "section": "appendix",
+   "num": "Table A8",
+   "kind": "table",
+   "title": "Balance. Dependent variable is the Instrumental Variable",
+   "tags": [
+    "Balance / first stage",
+    "IV / 2SLS",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=First+generation+elite:+the+role+of+scho",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Balance exhibit: checks that treatment/comparison groups are comparable on baseline covariates before causal claims."
+   ],
+   "noteMap": "",
+   "png": "library/papers/cattan-first-generation-elite/exhibits/appendix/table-A8.png",
+   "pdf": "library/papers/cattan-first-generation-elite/exhibits/appendix/table-A8.pdf"
+  },
+  {
+   "paper": "cattan-first-generation-elite",
+   "section": "appendix",
+   "num": "Table A9",
+   "kind": "table",
+   "title": "Mincer equation estimating correlation between elite degree programme and earnings",
+   "tags": [
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=First+generation+elite:+the+role+of+scho",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (RCT / experiment): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/cattan-first-generation-elite/exhibits/appendix/table-A9.png",
+   "pdf": "library/papers/cattan-first-generation-elite/exhibits/appendix/table-A9.pdf"
+  },
+  {
+   "paper": "cattan-first-generation-elite",
+   "section": "appendix",
+   "num": "Table A10",
+   "kind": "table",
+   "title": "Validity of the empirical strategy: dependent variable is earnings in richest decile",
+   "tags": [
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=First+generation+elite:+the+role+of+scho",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (RCT / experiment): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/cattan-first-generation-elite/exhibits/appendix/table-A10.png",
+   "pdf": "library/papers/cattan-first-generation-elite/exhibits/appendix/table-A10.pdf"
+  },
+  {
+   "paper": "cattan-first-generation-elite",
+   "section": "appendix",
+   "num": "Table A11",
+   "kind": "table",
+   "title": "Simulating a reassignment of low (high) SES students into schools with a high (low) level of",
+   "tags": [
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=First+generation+elite:+the+role+of+scho",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (RCT / experiment): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/cattan-first-generation-elite/exhibits/appendix/table-A11.png",
+   "pdf": "library/papers/cattan-first-generation-elite/exhibits/appendix/table-A11.pdf"
+  },
+  {
+   "paper": "cattan-first-generation-elite",
+   "section": "appendix",
+   "num": "Table A12",
+   "kind": "table",
+   "title": "Gender differences in effect of elite parent peers",
+   "tags": [
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=First+generation+elite:+the+role+of+scho",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (RCT / experiment): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/cattan-first-generation-elite/exhibits/appendix/table-A12.png",
+   "pdf": "library/papers/cattan-first-generation-elite/exhibits/appendix/table-A12.pdf"
+  },
+  {
+   "paper": "cattan-first-generation-elite",
+   "section": "appendix",
+   "num": "Table A13",
+   "kind": "table",
+   "title": "Gender differences in effect of elite parent peers",
+   "tags": [
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=First+generation+elite:+the+role+of+scho",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (RCT / experiment): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/cattan-first-generation-elite/exhibits/appendix/table-A13.png",
+   "pdf": "library/papers/cattan-first-generation-elite/exhibits/appendix/table-A13.pdf"
+  },
+  {
+   "paper": "scott-clayton-college-costs-financial",
+   "section": "main",
+   "num": "Figure 1",
+   "kind": "figure",
+   "title": "Average Public Tuition Fees and Percent of Students Receiving Public Financial",
+   "tags": [
+    "Heterogeneity",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=College+Costs,+Financial+Aid,+and+Studen",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Exhibit supporting the Heterogeneity, RCT / experiment analysis."
+   ],
+   "noteMap": "",
+   "png": "library/papers/scott-clayton-college-costs-financial/exhibits/main/figure-1.png",
+   "pdf": "library/papers/scott-clayton-college-costs-financial/exhibits/main/figure-1.pdf"
+  },
+  {
+   "paper": "scott-clayton-college-costs-financial",
+   "section": "main",
+   "num": "Table 1",
+   "kind": "table",
+   "title": "Support for Undergraduates in the U.S. by Source, Over Time (in Billions, 2020",
+   "tags": [
+    "Heterogeneity",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=College+Costs,+Financial+Aid,+and+Studen",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Orienting descriptive exhibit: establishes the sample and key variables before identification — the reader sizes the setting first."
+   ],
+   "noteMap": "",
+   "png": "library/papers/scott-clayton-college-costs-financial/exhibits/main/table-1.png",
+   "pdf": "library/papers/scott-clayton-college-costs-financial/exhibits/main/table-1.pdf"
+  },
+  {
+   "paper": "scott-clayton-college-costs-financial",
+   "section": "main",
+   "num": "Figure 2",
+   "kind": "figure",
+   "title": "Sticker Price versus Net Price, By Sector and Year (2021 Dollars)",
+   "tags": [
+    "Heterogeneity",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=College+Costs,+Financial+Aid,+and+Studen",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Heterogeneity exhibit: effects across subgroups. A forest/coefficient plot reads faster than a wide interaction table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/scott-clayton-college-costs-financial/exhibits/main/figure-2.png",
+   "pdf": "library/papers/scott-clayton-college-costs-financial/exhibits/main/figure-2.pdf"
+  },
+  {
+   "paper": "mountjoy-marginal-returns-to-publ",
+   "section": "main",
+   "num": "Figure 7",
+   "kind": "figure",
+   "title": "Impacts on Educational Attainment: Majors, Two-Year Credits, and Graduate School",
+   "tags": [
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Marginal+Returns+to+Public+Universities",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Identification figure (RD plot): binned means around the cutoff make the discontinuity visible — the emotional core of an RD paper. Check that bins and bandwidth aren't over-smoothed."
+   ],
+   "noteMap": "",
+   "png": "library/papers/mountjoy-marginal-returns-to-publ/exhibits/main/figure-7.png",
+   "pdf": "library/papers/mountjoy-marginal-returns-to-publ/exhibits/main/figure-7.pdf"
+  },
+  {
+   "paper": "mountjoy-marginal-returns-to-publ",
+   "section": "main",
+   "num": "Figure 11",
+   "kind": "figure",
+   "title": "Across Institutional Selectivity: Effects on Peer Quality and Educational Attainment",
+   "tags": [
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Marginal+Returns+to+Public+Universities",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Identification figure (RD plot): binned means around the cutoff make the discontinuity visible — the emotional core of an RD paper. Check that bins and bandwidth aren't over-smoothed."
+   ],
+   "noteMap": "",
+   "png": "library/papers/mountjoy-marginal-returns-to-publ/exhibits/main/figure-11.png",
+   "pdf": "library/papers/mountjoy-marginal-returns-to-publ/exhibits/main/figure-11.pdf"
+  },
+  {
+   "paper": "mountjoy-marginal-returns-to-publ",
+   "section": "main",
+   "num": "Figure 13",
+   "kind": "figure",
+   "title": "Across Student Backgrounds: Effects on Earnings, Degrees, and Institutional Quality",
+   "tags": [
+    "Regression discontinuity"
+   ],
+   "programs": [],
+   "packageUrl": "",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Marginal+Returns+to+Public+Universities",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Identification figure (RD plot): binned means around the cutoff make the discontinuity visible — the emotional core of an RD paper. Check that bins and bandwidth aren't over-smoothed."
+   ],
+   "noteMap": "",
+   "png": "library/papers/mountjoy-marginal-returns-to-publ/exhibits/main/figure-13.png",
+   "pdf": "library/papers/mountjoy-marginal-returns-to-publ/exhibits/main/figure-13.pdf"
   }
  ],
  "source": "Replication packages indexed by EJD (ejd.econ.mathematik.uni-ulm.de). Exhibits are shown for replication and methodological commentary."

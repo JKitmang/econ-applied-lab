@@ -161,7 +161,9 @@ function card(e){
   const badge=e.exports?'<span class="badge exp">Exports to file</span>':'<span class="badge log">Log only</span>';
   const progs=e.programs.length
     ?`<div class="progs">Code: ${e.programs.map(p=>`<a href="${p.url}" target="_blank">${esc(p.name)}</a>`).join(", ")}</div>`
-    :`<div class="progs">Produced outside the analysis scripts.</div>`;
+    :(e.packageUrl||e.ejdUrl
+      ?`<div class="progs">Code: ${e.packageUrl?`<a href="${e.packageUrl}" target="_blank">replication package ↗</a>`:""}${e.packageUrl&&e.ejdUrl?" · ":""}${e.ejdUrl?`<a href="${e.ejdUrl}" target="_blank">find on EJD ↗</a>`:""}</div>`
+      :`<div class="progs">Produced outside the analysis scripts.</div>`);
   const evalHtml=`<p class="evalh">Good-practice evaluation</p><ul class="eval">${e.evaluation.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`;
   const code=e.snippet?`<details class="code"><summary>Originating ${esc(e.lang)} code</summary><pre>${esc(e.snippet)}</pre></details>`:"";
   const noteMap=e.noteMap?`<div class="notemap">${esc(e.noteMap)}</div>`:"";
@@ -172,7 +174,7 @@ function card(e){
     <div class="cbody">
       <div class="chead"><span class="pbadge ${pcls}">${esc(paperShort(e.paper))}</span>
         <span class="num">${esc(e.num)}</span><span class="kind">${esc(e.kind)}</span>${badge}
-        <span class="badge lang">${esc(e.lang)}</span></div>
+        ${e.lang&&e.lang!=="—"?`<span class="badge lang">${esc(e.lang)}</span>`:""}</div>
       <p class="ctitle">${esc(e.title)}</p>
       <div class="tagrow">${tags}</div>
       ${noteMap}${progs}${evalHtml}${code}

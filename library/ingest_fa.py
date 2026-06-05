@@ -157,33 +157,52 @@ def ingest(meta, max_exhibits=24):
 def main():
     fa = json.load(open("/tmp/fa_papers.json"))
     SKIP_DOIS = {"10.3982/ECTA18385"}  # Kapor already hand-curated
-    # FOCUS: only applied papers with quasi-experimental designs (RD / DiD / IV).
-    # Curated keep-list (auto method tags are too noisy to gate on reliably).
-    KEEP_FA = {
+    # Curated keep-lists (auto method tags are too noisy to gate on reliably).
+    # Quasi-experimental designs (RD / DiD / IV):
+    KEEP_QUASI = {
         "bettinger-2019-the-long-run-impacts-of", "black-2023-taking-it-to-the-limit",
         "cohodes-2014-merit-aid-college-quali", "dalla-zuanna-2025-pulled-in-and-crowded-ou",
         "denning-2019-propelled-the-effects-o", "fack-2015-improving-college-access",
         "londo-o-v-lez-2020-upstream-and-downstream", "mountjoy-marginal-returns-to-publ",
         "mello-2022-centralized-admissions", "deneault-2023-college-enrollment-and-m",
     }
+    # Randomized experiments (RCT):
+    KEEP_RCT = {
+        "dynarski-2021-closing-the-gap-the-eff", "phillips-2022-does-virtual-advising-in",
+        "barr-2025-increasing-degree-attain", "harris-2025-should-college-be-free",
+        "ren-e-2025-the-long-term-effects-of",
+    }
+    FORCE_TAG = {pid: "RCT / experiment" for pid in KEEP_RCT}  # guarantee the family tag
+    KEEP = KEEP_QUASI | KEEP_RCT
     lib = json.load(open(LIBJSON))
     existing_ids = {p["id"] for p in lib["papers"]}
     for r in fa:
         if r.get("doi") in SKIP_DOIS or not r.get("pdf"): continue
-        if slug(r["author"], r.get("year", ""), r["title"]) not in KEEP_FA: continue  # quasi-experimental only
+        pid_pre = slug(r["author"], r.get("year", ""), r["title"])
+        if pid_pre not in KEEP: continue
         try:
             pmeta, recs = ingest(r)
         except Exception as e:
             print(f"  FAIL {r['title'][:40]}: {e}"); continue
         if not recs: continue
+        ft = FORCE_TAG.get(pmeta["id"])
+        if ft:                                   # guarantee the RCT family tag
+            if ft not in pmeta["methods"]: pmeta["methods"].insert(0, ft)
+            for e in recs:
+                if ft not in e["tags"]: e["tags"] = ([ft] + e["tags"])[:4]
         if pmeta["id"] in existing_ids:  # rebuild: replace
             lib["papers"] = [p for p in lib["papers"] if p["id"] != pmeta["id"]]
             lib["exhibits"] = [e for e in lib["exhibits"] if e["paper"] != pmeta["id"]]
         lib["papers"].append(pmeta); lib["exhibits"].extend(recs)
         existing_ids.add(pmeta["id"])
-    # ensure FA methodology tags are in the global tag list
-    for label, _ in KW:
-        if label not in lib["tags"]: lib["tags"].append(label)
+    # recompute the global tag list from tags actually used (ordered)
+    used = set(t for e in lib["exhibits"] for t in e["tags"])
+    ORDER = ["Regression discontinuity", "Difference-in-differences", "Event study", "IV / 2SLS",
+             "Reduced form", "OLS + fixed effects", "Quartile heterogeneity", "Linear-in-means peer effects",
+             "RCT / experiment", "Balance / first stage", "Heterogeneity", "Robustness / placebo",
+             "Placebo / robustness", "Model specification tests", "School-level aggregate",
+             "Non-test outcomes", "Summary statistics", "Descriptive figure (map)"]
+    lib["tags"] = [t for t in ORDER if t in used] + [t for t in sorted(used) if t not in ORDER]
     json.dump(lib, open(LIBJSON, "w"), indent=1, ensure_ascii=False)
     print(f"\nLibrary now: {len(lib['papers'])} papers, {len(lib['exhibits'])} exhibits")
 

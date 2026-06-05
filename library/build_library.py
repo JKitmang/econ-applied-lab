@@ -205,7 +205,7 @@ def main():
         papers.append(meta); exhibits.extend(exs)
     library = {
         "title": "Applied-Economics Exhibit Library",
-        "blurb": "Real tables and figures from published papers, organised by methodology, each paired with the code that produces it — so you can replicate the exhibit and adapt it to your context.",
+        "blurb": "Real tables and figures from applied papers with credible research designs — quasi-experimental (RD, difference-in-differences, IV) and randomized (RCT) — organised by methodology and each paired with the code that produces it, so you can replicate the exhibit and adapt it to your context.",
         "tags": TAGS, "papers": papers, "exhibits": exhibits,
         "source": "Replication packages indexed by EJD (ejd.econ.mathematik.uni-ulm.de). Exhibits are shown for replication and methodological commentary.",
     }

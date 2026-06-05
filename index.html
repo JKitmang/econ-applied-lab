@@ -23,7 +23,9 @@
   .wrap{max-width:var(--maxw);margin:0 auto;padding:24px}
   h1{font-size:26px;margin:2px 0 6px;letter-spacing:-.02em}
   .lede{color:var(--mut);font-size:15px;max-width:720px;margin:0 0 18px}
-  .tabs{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px}
+  .tabs{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px;align-items:center}
+  .tabs .fam{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:#9aa3ad;font-weight:600;margin-right:2px}
+  .tabs .famsep{width:1px;height:22px;background:var(--line);margin:0 6px}
   .tabs button{border:1px solid var(--line);background:#fff;border-radius:9px;padding:9px 15px;font:inherit;font-size:14px;cursor:pointer;color:var(--mut)}
   .tabs button.active{border-color:var(--blue);background:#eef6fc;color:var(--blue);font-weight:600}
   .methhead{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:20px}
@@ -63,7 +65,7 @@
 
 <div class="wrap">
   <h1>Story Builder</h1>
-  <p class="lede">For applied papers using <strong>quasi-experimental designs</strong> (RD, difference-in-differences, IV): the analyses and exhibits to produce to build a credible empirical narrative — in order, by methodology, with the considerations that make each one defensible. Every step links to <strong>real published examples</strong> in the Exhibit Library so you can see how leading papers do it and reuse their code.</p>
+  <p class="lede">For applied papers with credible research designs — <strong>quasi-experimental</strong> (RD, difference-in-differences, IV) and <strong>randomized</strong> (RCT): the analyses and exhibits to produce to build a credible empirical narrative — in order, by methodology, with the considerations that make each one defensible. Every step links to <strong>real published examples</strong> in the Exhibit Library so you can see how leading papers do it and reuse their code.</p>
 
   <div class="sandbox-note">Want to <em>play</em> with simulated data, standard-error definitions, and paper-vs-presentation styling? The interactive <a href="sandbox.html">Simulation Sandbox →</a> is still here.</div>
 
@@ -80,8 +82,8 @@
 <script src="js/taxonomy.js"></script>
 <script>
 const T=window.TAXONOMY;
-const ORDER=["did","rdd","iv"];               // quasi-experimental designs only
-const NAMES={did:"DiD / Event study",iv:"IV",rdd:"RDD"};
+const FAMILY=[["Quasi-experimental",["did","rdd","iv"]],["Randomized",["rct"]]];
+const NAMES={did:"DiD / Event study",rdd:"RDD",iv:"IV",rct:"RCT"};
 const METHOD_TAG={did:"Difference-in-differences",rct:"RCT / experiment",iv:"IV / 2SLS",rdd:"Regression discontinuity"};
 const ROLE_Q={summary:"",balance:"balance",robustness:"robustness",heterogeneity:"heterogeneity",rctHet:"heterogeneity",attrition:"attrition",firststage:"first stage",rdplot:"discontinuit"};
 const CONS={
@@ -112,8 +114,10 @@ function libLink(mk,ex){
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 
 function renderTabs(){
-  document.getElementById("tabs").innerHTML=ORDER.map(k=>
-    `<button data-k="${k}" class="${k===active?'active':''}">${esc(NAMES[k])}</button>`).join("");
+  document.getElementById("tabs").innerHTML=FAMILY.map(([fam,ks])=>
+    `<span class="fam">${esc(fam)}</span>`+ks.map(k=>
+      `<button data-k="${k}" class="${k===active?'active':''}">${esc(NAMES[k])}</button>`).join("")
+  ).join('<span class="famsep"></span>');
   document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>{active=b.dataset.k;render();});
 }
 function render(){

@@ -1,6 +1,6 @@
 {
  "title": "Applied-Economics Exhibit Library",
- "blurb": "Real tables and figures from applied papers using quasi-experimental designs (RD, difference-in-differences, IV), organised by methodology and each paired with the code that produces it — so you can replicate the exhibit and adapt it to your context.",
+ "blurb": "Real tables and figures from applied papers with credible research designs — quasi-experimental (RD, difference-in-differences, IV) and randomized (RCT) — organised by methodology and each paired with the code that produces it, so you can replicate the exhibit and adapt it to your context.",
  "tags": [
   "Regression discontinuity",
   "Difference-in-differences",
@@ -9,15 +9,16 @@
   "OLS + fixed effects",
   "Quartile heterogeneity",
   "Linear-in-means peer effects",
-  "Heterogeneity",
+  "RCT / experiment",
   "Balance / first stage",
+  "Heterogeneity",
   "Robustness / placebo",
+  "Placebo / robustness",
   "Model specification tests",
   "School-level aggregate",
   "Non-test outcomes",
   "Summary statistics",
-  "Descriptive figure (map)",
-  "Placebo / robustness"
+  "Descriptive figure (map)"
  ],
  "papers": [
   {
@@ -38,6 +39,55 @@
    "dataNote": "Micro-data are proprietary (HISD + Louisiana DOE); exhibits captured from the published PDF.",
    "site": "https://jkitmang.github.io/replication-katrina/website/exhibits.html",
    "n_exhibits": 58
+  },
+  {
+   "id": "harris-2025-should-college-be-free",
+   "short": "Harris (2025)",
+   "title": "Should College Be \"Free\"? Evidence on Free College, Early Commitment, and Merit Aid from an Eight-Year Randomized Trial",
+   "journal": "American Economic Journal: Economic Policy",
+   "year": "2025",
+   "doi": "10.1257/pol.20230100",
+   "methods": [
+    "Difference-in-differences",
+    "RCT / experiment"
+   ],
+   "lang": "—",
+   "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
+   "site": "",
+   "package": "https://doi.org/10.1257/pol.20230100",
+   "n_exhibits": 2
+  },
+  {
+   "id": "barr-2025-increasing-degree-attain",
+   "short": "Barr (2025)",
+   "title": "Increasing Degree Attainment among Low-Income Students: The Role of Intensive Advising and College Quality",
+   "journal": "American Economic Review",
+   "year": "2025",
+   "doi": "10.1257/aer.20240669",
+   "methods": [
+    "RCT / experiment"
+   ],
+   "lang": "—",
+   "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
+   "site": "",
+   "package": "https://doi.org/10.1257/aer.20240669",
+   "n_exhibits": 1
+  },
+  {
+   "id": "ren-e-2025-the-long-term-effects-of",
+   "short": "Renée (2025)",
+   "title": "The Long-Term Effects of Career Guidance in High School and Student Financial Aid: Evidence from a Randomized Experiment",
+   "journal": "American Economic Journal: Applied Economics",
+   "year": "2025",
+   "doi": "10.1257/app.20230342",
+   "methods": [
+    "RCT / experiment"
+   ],
+   "lang": "—",
+   "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
+   "site": "",
+   "package": "https://doi.org/10.1257/app.20230342",
+   "n_exhibits": 2
   },
   {
    "id": "dalla-zuanna-2025-pulled-in-and-crowded-ou",
@@ -66,7 +116,8 @@
    "doi": "10.1257/pol.20210360",
    "methods": [
     "Difference-in-differences",
-    "IV / 2SLS"
+    "IV / 2SLS",
+    "RCT / experiment"
    ],
    "lang": "—",
    "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
@@ -91,6 +142,23 @@
    "n_exhibits": 6
   },
   {
+   "id": "phillips-2022-does-virtual-advising-in",
+   "short": "Phillips (2022)",
+   "title": "Does Virtual Advising Increase College Enrollment? Evidence from a Random-Assignment College Access Field Experiment",
+   "journal": "American Economic Journal: Economic Policy",
+   "year": "2022",
+   "doi": "10.1257/pol.20200515",
+   "methods": [
+    "Difference-in-differences",
+    "RCT / experiment"
+   ],
+   "lang": "—",
+   "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
+   "site": "",
+   "package": "https://doi.org/10.1257/pol.20200515",
+   "n_exhibits": 1
+  },
+  {
    "id": "mello-2022-centralized-admissions",
    "short": "Mello (2022)",
    "title": "Centralized Admissions, Affirmative Action, and Access of Low-Income Students to Higher Education",
@@ -105,6 +173,23 @@
    "site": "",
    "package": "https://doi.org/10.1257/pol.20190639",
    "n_exhibits": 4
+  },
+  {
+   "id": "dynarski-2021-closing-the-gap-the-eff",
+   "short": "Dynarski (2021)",
+   "title": "Closing the Gap: The Effect of Reducing Complexity and Uncertainty in College Pricing on the Choices of Low-Income Students",
+   "journal": "American Economic Review",
+   "year": "2021",
+   "doi": "10.1257/aer.20200451",
+   "methods": [
+    "Difference-in-differences",
+    "RCT / experiment"
+   ],
+   "lang": "—",
+   "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
+   "site": "",
+   "package": "https://doi.org/10.1257/aer.20200451",
+   "n_exhibits": 6
   },
   {
    "id": "londo-o-v-lez-2020-upstream-and-downstream",
@@ -1826,6 +1911,119 @@
    "pdf": "library/papers/katrina/exhibits/appendix/a46.pdf"
   },
   {
+   "paper": "harris-2025-should-college-be-free",
+   "section": "main",
+   "num": "Table 4",
+   "kind": "table",
+   "title": "Average Treatment Effects on College Expectations and Nonmerit Effort (ITT)",
+   "tags": [
+    "Difference-in-differences",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/pol.20230100",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Should+College+Be+\"Free\"?+Evidence+on+Fr",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Difference-in-differences, RCT / experiment): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/harris-2025-should-college-be-free/exhibits/main/table-4.png",
+   "pdf": "library/papers/harris-2025-should-college-be-free/exhibits/main/table-4.pdf"
+  },
+  {
+   "paper": "harris-2025-should-college-be-free",
+   "section": "main",
+   "num": "Table 6",
+   "kind": "table",
+   "title": "Average Treatment Effects on College Graduation and Life Outcomes (ITT)",
+   "tags": [
+    "Difference-in-differences",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/pol.20230100",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Should+College+Be+\"Free\"?+Evidence+on+Fr",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Difference-in-differences, RCT / experiment): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/harris-2025-should-college-be-free/exhibits/main/table-6.png",
+   "pdf": "library/papers/harris-2025-should-college-be-free/exhibits/main/table-6.pdf"
+  },
+  {
+   "paper": "barr-2025-increasing-degree-attain",
+   "section": "main",
+   "num": "Table 4",
+   "kind": "table",
+   "title": "Heterogeneity in Treatment Effects by Presence of Suboptimal Baseline Preferences",
+   "tags": [
+    "Heterogeneity",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/aer.20240669",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Increasing+Degree+Attainment+among+Low-I",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Heterogeneity exhibit: effects across subgroups. A forest/coefficient plot reads faster than a wide interaction table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/barr-2025-increasing-degree-attain/exhibits/main/table-4.png",
+   "pdf": "library/papers/barr-2025-increasing-degree-attain/exhibits/main/table-4.pdf"
+  },
+  {
+   "paper": "ren-e-2025-the-long-term-effects-of",
+   "section": "main",
+   "num": "Table 3",
+   "kind": "table",
+   "title": "Gap in ­­Four-Year College Enrollment between High- and ­­Low-Income Students",
+   "tags": [
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/app.20230342",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=The+Long-Term+Effects+of+Career+Guidance",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (RCT / experiment): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/ren-e-2025-the-long-term-effects-of/exhibits/main/table-3.png",
+   "pdf": "library/papers/ren-e-2025-the-long-term-effects-of/exhibits/main/table-3.pdf"
+  },
+  {
+   "paper": "ren-e-2025-the-long-term-effects-of",
+   "section": "main",
+   "num": "Table 4",
+   "kind": "table",
+   "title": "I present the treatment effects of the three interventions on college comple",
+   "tags": [
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/app.20230342",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=The+Long-Term+Effects+of+Career+Guidance",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (RCT / experiment): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/ren-e-2025-the-long-term-effects-of/exhibits/main/table-4.png",
+   "pdf": "library/papers/ren-e-2025-the-long-term-effects-of/exhibits/main/table-4.pdf"
+  },
+  {
    "paper": "dalla-zuanna-2025-pulled-in-and-crowded-ou",
    "section": "main",
    "num": "Figure 2",
@@ -1953,7 +2151,8 @@
    "title": "Total FAFSAs Completed, FAFSA Completion Rate, and High School Graduation Rates",
    "tags": [
     "Difference-in-differences",
-    "IV / 2SLS"
+    "IV / 2SLS",
+    "RCT / experiment"
    ],
    "programs": [],
    "packageUrl": "https://doi.org/10.1257/pol.20210360",
@@ -2103,6 +2302,29 @@
    "pdf": "library/papers/black-2023-taking-it-to-the-limit/exhibits/main/table-12.pdf"
   },
   {
+   "paper": "phillips-2022-does-virtual-advising-in",
+   "section": "main",
+   "num": "Table 2",
+   "kind": "table",
+   "title": "Average Program Use and Perceived Helpfulness of Program Components",
+   "tags": [
+    "Difference-in-differences",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/pol.20200515",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Does+Virtual+Advising+Increase+College+E",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Difference-in-differences, RCT / experiment): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/phillips-2022-does-virtual-advising-in/exhibits/main/table-2.png",
+   "pdf": "library/papers/phillips-2022-does-virtual-advising-in/exhibits/main/table-2.pdf"
+  },
+  {
    "paper": "mello-2022-centralized-admissions",
    "section": "main",
    "num": "Table 2",
@@ -2190,6 +2412,145 @@
    "noteMap": "",
    "png": "library/papers/mello-2022-centralized-admissions/exhibits/main/figure-3.png",
    "pdf": "library/papers/mello-2022-centralized-admissions/exhibits/main/figure-3.pdf"
+  },
+  {
+   "paper": "dynarski-2021-closing-the-gap-the-eff",
+   "section": "main",
+   "num": "Figure 1",
+   "kind": "figure",
+   "title": "Selectivity of Colleges Attended by ­High-Achieving Michigan Students, by Income",
+   "tags": [
+    "Difference-in-differences",
+    "Heterogeneity",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/aer.20200451",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Closing+the+Gap:+The+Effect+of+Reducing+",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Heterogeneity exhibit: effects across subgroups. A forest/coefficient plot reads faster than a wide interaction table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/dynarski-2021-closing-the-gap-the-eff/exhibits/main/figure-1.png",
+   "pdf": "library/papers/dynarski-2021-closing-the-gap-the-eff/exhibits/main/figure-1.pdf"
+  },
+  {
+   "paper": "dynarski-2021-closing-the-gap-the-eff",
+   "section": "main",
+   "num": "Figure 2",
+   "kind": "figure",
+   "title": "HAIL Students Are Widely Dispersed across Michigan, First and Second HAIL Cohorts",
+   "tags": [
+    "Difference-in-differences",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/aer.20200451",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Closing+the+Gap:+The+Effect+of+Reducing+",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Exhibit supporting the Difference-in-differences, RCT / experiment analysis."
+   ],
+   "noteMap": "",
+   "png": "library/papers/dynarski-2021-closing-the-gap-the-eff/exhibits/main/figure-2.png",
+   "pdf": "library/papers/dynarski-2021-closing-the-gap-the-eff/exhibits/main/figure-2.pdf"
+  },
+  {
+   "paper": "dynarski-2021-closing-the-gap-the-eff",
+   "section": "main",
+   "num": "Figure 6",
+   "kind": "figure",
+   "title": "Estimated Effect of HAIL Scholarship on College Choice, First and Second HAIL Cohorts",
+   "tags": [
+    "Difference-in-differences",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/aer.20200451",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Closing+the+Gap:+The+Effect+of+Reducing+",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Exhibit supporting the Difference-in-differences, RCT / experiment analysis."
+   ],
+   "noteMap": "",
+   "png": "library/papers/dynarski-2021-closing-the-gap-the-eff/exhibits/main/figure-6.png",
+   "pdf": "library/papers/dynarski-2021-closing-the-gap-the-eff/exhibits/main/figure-6.pdf"
+  },
+  {
+   "paper": "dynarski-2021-closing-the-gap-the-eff",
+   "section": "main",
+   "num": "Table 5",
+   "kind": "table",
+   "title": "Estimated Effect of HAIL Scholarship on University of Michigan Application,",
+   "tags": [
+    "Difference-in-differences",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/aer.20200451",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Closing+the+Gap:+The+Effect+of+Reducing+",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Difference-in-differences, RCT / experiment): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/dynarski-2021-closing-the-gap-the-eff/exhibits/main/table-5.png",
+   "pdf": "library/papers/dynarski-2021-closing-the-gap-the-eff/exhibits/main/table-5.pdf"
+  },
+  {
+   "paper": "dynarski-2021-closing-the-gap-the-eff",
+   "section": "main",
+   "num": "Table 6",
+   "kind": "table",
+   "title": "Estimated Effect of HAIL Scholarship on University of Michigan Application,",
+   "tags": [
+    "Difference-in-differences",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/aer.20200451",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Closing+the+Gap:+The+Effect+of+Reducing+",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Difference-in-differences, RCT / experiment): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/dynarski-2021-closing-the-gap-the-eff/exhibits/main/table-6.png",
+   "pdf": "library/papers/dynarski-2021-closing-the-gap-the-eff/exhibits/main/table-6.pdf"
+  },
+  {
+   "paper": "dynarski-2021-closing-the-gap-the-eff",
+   "section": "main",
+   "num": "Table 9",
+   "kind": "table",
+   "title": "Financial Aid for HAIL Treatment and Control Students Enrolled at the",
+   "tags": [
+    "Difference-in-differences",
+    "RCT / experiment"
+   ],
+   "programs": [],
+   "packageUrl": "https://doi.org/10.1257/aer.20200451",
+   "ejdUrl": "https://ejd.econ.mathematik.uni-ulm.de/?search=Closing+the+Gap:+The+Effect+of+Reducing+",
+   "lang": "—",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Results table (Difference-in-differences, RCT / experiment): look for progressive specification columns, the outcome mean, and a clearly flagged preferred estimate."
+   ],
+   "noteMap": "",
+   "png": "library/papers/dynarski-2021-closing-the-gap-the-eff/exhibits/main/table-9.png",
+   "pdf": "library/papers/dynarski-2021-closing-the-gap-the-eff/exhibits/main/table-9.pdf"
   },
   {
    "paper": "londo-o-v-lez-2020-upstream-and-downstream",

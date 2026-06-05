@@ -116,8 +116,7 @@
    "doi": "10.1257/pol.20210360",
    "methods": [
     "Difference-in-differences",
-    "IV / 2SLS",
-    "RCT / experiment"
+    "IV / 2SLS"
    ],
    "lang": "—",
    "dataNote": "Exhibits captured from the published PDF. Replication package linked via DOI / EJD.",
@@ -2151,8 +2150,7 @@
    "title": "Total FAFSAs Completed, FAFSA Completion Rate, and High School Graduation Rates",
    "tags": [
     "Difference-in-differences",
-    "IV / 2SLS",
-    "RCT / experiment"
+    "IV / 2SLS"
    ],
    "programs": [],
    "packageUrl": "https://doi.org/10.1257/pol.20210360",

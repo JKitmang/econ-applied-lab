@@ -190,6 +190,10 @@ def main():
             if ft not in pmeta["methods"]: pmeta["methods"].insert(0, ft)
             for e in recs:
                 if ft not in e["tags"]: e["tags"] = ([ft] + e["tags"])[:4]
+        else:                                    # quasi paper: scrub false RCT tag
+            pmeta["methods"] = [t for t in pmeta["methods"] if t != "RCT / experiment"]
+            for e in recs:
+                e["tags"] = [t for t in e["tags"] if t != "RCT / experiment"] or ["Results"]
         if pmeta["id"] in existing_ids:  # rebuild: replace
             lib["papers"] = [p for p in lib["papers"] if p["id"] != pmeta["id"]]
             lib["exhibits"] = [e for e in lib["exhibits"] if e["paper"] != pmeta["id"]]

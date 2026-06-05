@@ -1,0 +1,1889 @@
+{
+ "title": "Applied-Economics Exhibit Library",
+ "blurb": "Real tables and figures from published papers, organised by methodology, each paired with the code that produces it — so you can replicate the exhibit and adapt it to your context.",
+ "tags": [
+  "Summary statistics",
+  "Descriptive figure (map)",
+  "OLS + fixed effects",
+  "Reduced form",
+  "IV / 2SLS",
+  "Quartile heterogeneity",
+  "Linear-in-means peer effects",
+  "Model specification tests",
+  "Placebo / robustness",
+  "School-level aggregate",
+  "Non-test outcomes",
+  "Structural estimation",
+  "Counterfactual simulation",
+  "Model fit",
+  "Welfare / diversity"
+ ],
+ "papers": [
+  {
+   "id": "katrina",
+   "short": "Imberman, Kugler & Sacerdote (2012)",
+   "title": "Katrina's Children: Evidence on the Structure of Peer Effects from Hurricane Evacuees",
+   "journal": "American Economic Review",
+   "year": 2012,
+   "doi": "10.1257/aer.102.5.2048",
+   "methods": [
+    "Reduced form",
+    "IV / 2SLS",
+    "OLS + fixed effects",
+    "Quartile heterogeneity",
+    "Linear-in-means peer effects"
+   ],
+   "lang": "Stata",
+   "dataNote": "Micro-data are proprietary (HISD + Louisiana DOE); exhibits captured from the published PDF.",
+   "site": "https://jkitmang.github.io/replication-katrina/website/exhibits.html",
+   "n_exhibits": 58
+  },
+  {
+   "id": "kapor-percent-plans",
+   "short": "Kapor (2025)",
+   "title": "Transparency and Percent Plans",
+   "journal": "Econometrica",
+   "year": 2025,
+   "doi": "",
+   "methods": [
+    "Structural estimation",
+    "Counterfactual simulation",
+    "Model fit",
+    "Welfare / diversity"
+   ],
+   "lang": "Julia (+ Stata setup)",
+   "dataNote": "Restricted-use THEOP data; exhibits captured from the published PDF. Code from the replication package.",
+   "site": "",
+   "n_exhibits": 7
+  }
+ ],
+ "exhibits": [
+  {
+   "paper": "katrina",
+   "section": "main",
+   "num": "Figure 1",
+   "kind": "figure",
+   "title": "Hurricane Katrina and Rita Evacuees in HISD by School, 2005–2006",
+   "tags": [
+    "Descriptive figure (map)"
+   ],
+   "programs": [],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Leads with geography: a school-level map orients the reader to the identifying variation (where evacuees landed) before any regression — textbook 'motivate the design first'.",
+    "Encodes intensity by shading, so the eye reads concentration without a table of shares.",
+    "Improvement: a companion histogram of the evacuee-share distribution would quantify the variation the map shows qualitatively."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/main/fig1.png",
+   "pdf": "library/papers/katrina/exhibits/main/fig1.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "main",
+   "num": "Figure 2",
+   "kind": "figure",
+   "title": "Hurricanes Katrina and Rita Evacuees in Louisiana by School, 2005–2006",
+   "tags": [
+    "Descriptive figure (map)"
+   ],
+   "programs": [],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Mirrors Figure 1 for the second dataset (Louisiana), giving the two-state design a parallel visual grammar — consistency across exhibits lowers reader load.",
+    "The notes flag excluded high-evacuee and Rita-landfall schools, making sample construction transparent on the figure itself.",
+    "Improvement: a shared legend/scale across Figures 1–2 would make the two states directly comparable."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/main/fig2.png",
+   "pdf": "library/papers/katrina/exhibits/main/fig2.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "main",
+   "num": "Table 1",
+   "kind": "table",
+   "title": "Characteristics of Evacuees and Incumbent Louisiana and Houston Students",
+   "tags": [
+    "Summary statistics"
+   ],
+   "programs": [
+    {
+     "name": "summary_stats_la.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/summary_stats_la.do"
+    },
+    {
+     "name": "sumstats_houston.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/sumstats_houston.do"
+    },
+    {
+     "name": "sumstats_b.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/sumstats_b.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "collapse (mean) percent_katrinaTIMESERIES* Kfraction* lagsample, by(sitecode grade_num year)\ncollapse (mean) percent_katrinaTIMESERIES* Kfraction* lagsample, by(sitecode grade_num year)",
+   "evaluation": [
+    "Classic Table 1: means/SDs for evacuees vs incumbents in both states, so the reader sizes selection before causal claims.",
+    "Columns mirror the two estimation samples (LA, HOU), matching the table to the analysis that follows.",
+    "Reporting note: it is a descriptive table by design — no SEs/stars needed; the comparison of group means is the message.",
+    "Improvement: a normalized-difference column would summarize imbalance in one glance (Imbens–Wooldridge)."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/main/t1.png",
+   "pdf": "library/papers/katrina/exhibits/main/t1.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "main",
+   "num": "Table 2",
+   "kind": "table",
+   "title": "Regressions of Test Scores on Katrina/Rita Evacuee Status Dummy",
+   "tags": [
+    "OLS + fixed effects"
+   ],
+   "programs": [
+    {
+     "name": "analysis_revision_linear.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/analysis_revision_linear.do"
+    },
+    {
+     "name": "katrina_nonkatrina.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_nonkatrina.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "areg math0005 katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num<=5 & year==2006 & mathQD1 != ., clus\nareg math0005 katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num>5 & year==2006 & mathQD1 != . & lags\nareg mathSTD katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num<=5 & year==2006 & mathQD1 != ., clust\nareg mathSTD katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num>5 & year==2006 & mathQD1 != .  & lags\nareg mathSTD katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num>5 & year==2007 & mathQD1 != .  & lags\nareg ela0005 katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num<=5 & year==2006 & elaQD1 != ., cluste\nareg ela0005 katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num>5 & year==2006 & elaQD1 != .  & lagsa\nareg elaSTD katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num<=5 & year==2006 & elaQD1 != ., cluster\nareg elaSTD katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num>5 & year==2006 & elaQD1 != .  & lagsam\nareg elaSTD katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num>5 & year==2007 & elaQD1 != .  & lagsam",
+   "evaluation": [
+    "Builds from a raw evacuee–native gap to FE-adjusted gaps in progressive columns, the canonical 'add controls across columns' structure.",
+    "School fixed effects isolate within-school comparisons, and the column layout makes the identifying variation legible.",
+    "Reports SEs and sample sizes per column; the reader can see how the estimate moves as FE are added.",
+    "Improvement: a control-mean-of-DV row would anchor the magnitude of the gap."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/main/t2.png",
+   "pdf": "library/papers/katrina/exhibits/main/t2.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "main",
+   "num": "Table 3",
+   "kind": "table",
+   "title": "Reduced-Form Estimates of Evacuee Share of Enrollment in Grade (Houston)",
+   "tags": [
+    "Reduced form",
+    "IV / 2SLS",
+    "OLS + fixed effects"
+   ],
+   "programs": [
+    {
+     "name": "katrina_by_quartiles_va_grade_statestd.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_by_quartiles_va_grade_statestd.do"
+    },
+    {
+     "name": "katrina_iv_gender_ethnicity_noshelter_grade.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_iv_gender_ethnicity_noshelter_grade.do"
+    },
+    {
+     "name": "katrina_placebotest_grade.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_placebotest_grade.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "\tareg taks_sdstate_min_math  katrina_frac_grade  ltaks_sdstate_min_math_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I* if taks_sd_min_math_quartile != .\n\tareg taks_sdstate_min_read  katrina_frac_grade  ltaks_sdstate_min_read_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I* if taks_sd_min_read_quartile != .\n\tareg `var'  katrina_frac_grade  l`var'_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I* , cluster(campus) absorb(campus);\n\t\tareg taks_sdstate_min_math katrina_frac_grade  ltaks_sdstate_min_math_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I*\n\t\tareg taks_sdstate_min_read katrina_frac_grade  ltaks_sdstate_min_read_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I*",
+   "evaluation": [
+    "The identification workhorse: reduced-form effect of grade-level evacuee share on incumbent achievement, with the Sept-13 share as the instrument for re-sorting.",
+    "Includes a placebo column (pre-period share) — defending the design inside the same table is good practice.",
+    "Grade×year and school FE rows tell the reader exactly what variation is used.",
+    "Improvement: showing the first-stage F alongside the 2SLS column would let readers judge instrument strength without leaving the table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/main/t3.png",
+   "pdf": "library/papers/katrina/exhibits/main/t3.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "main",
+   "num": "Table 4",
+   "kind": "table",
+   "title": "Linear-in-Means Models of Peer Effects in Achievement for Houston",
+   "tags": [
+    "Linear-in-means peer effects",
+    "IV / 2SLS",
+    "OLS + fixed effects"
+   ],
+   "programs": [
+    {
+     "name": "katrina_by_quartiles_lim_test_fullint_math.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_by_quartiles_lim_test_fullint_math.do"
+    },
+    {
+     "name": "katrina_by_quartiles_lim_test_fullint_read.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_by_quartiles_lim_test_fullint_read.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "\treg taks_sd_min_math taks_sd_min_math_peer_* _k* ltaks_sd_min_math_* _g*, cluster(campus) nocons\n\ttest taks_sd_min_math_peer_Q1 = taks_sd_min_math_peer_Q2 = taks_sd_min_math_peer_Q3 = taks_sd_min_math_peer_Q4\n\treg taks_sd_min_math katrina_frac_grade_math_Q*   _k*  ltaks_sd_min_math_*  _g* if taks_sd_min_math_peer_Q1 != ., cluster(campus) nocons\n\ttest katrina_frac_grade_math_Q1 = katrina_frac_grade_math_Q2 = katrina_frac_grade_math_Q3 = katrina_frac_grade_math_Q4\n\tivreg taks_sd_min_math  (taks_sd_min_math_peer_Q* = katrina_frac_grade_math_Q*)  _k* ltaks_sd_min_math_* _g*, cluster(campus) nocons\n\ttest taks_sd_min_math_peer_Q1 = taks_sd_min_math_peer_Q2 = taks_sd_min_math_peer_Q3 = taks_sd_min_math_peer_Q4",
+   "evaluation": [
+    "Estimates the linear-in-means peer model for Houston — the simplest peer structure, shown first so richer models in later tables have a baseline.",
+    "Separate math and reading columns keep subjects un-pooled, respecting that peer effects can differ by domain.",
+    "Improvement: the linear-in-means coefficient is only interpretable against the nonlinear models (Table 7); a cross-reference in the notes would help."
+   ],
+   "noteMap": "Per the package author's program→table map (numbering follows the working paper for the two linear-in-means tables).",
+   "png": "library/papers/katrina/exhibits/main/t4.png",
+   "pdf": "library/papers/katrina/exhibits/main/t4.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "main",
+   "num": "Table 5",
+   "kind": "table",
+   "title": "Reduced-Form Estimates of Evacuee Share of Enrollment in Grade (Louisiana)",
+   "tags": [
+    "Reduced form",
+    "Quartile heterogeneity",
+    "OLS + fixed effects"
+   ],
+   "programs": [
+    {
+     "name": "analysis_revision_linear.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/analysis_revision_linear.do"
+    },
+    {
+     "name": "quartile_analysis_revision_d.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_d.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "areg math0005 katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num<=5 & year==2006 & mathQD1 != ., clus\nareg math0005 katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num>5 & year==2006 & mathQD1 != . & lags\nareg mathSTD katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num<=5 & year==2006 & mathQD1 != ., clust\nareg mathSTD katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num>5 & year==2006 & mathQD1 != .  & lags\nareg mathSTD katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num>5 & year==2007 & mathQD1 != .  & lags\nareg ela0005 katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num<=5 & year==2006 & elaQD1 != ., cluste\nareg ela0005 katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num>5 & year==2006 & elaQD1 != .  & lagsa\nareg elaSTD katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num<=5 & year==2006 & elaQD1 != ., cluster\nareg elaSTD katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num>5 & year==2006 & elaQD1 != .  & lagsam\nareg elaSTD katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num>5 & year==2007 & elaQD1 != .  & lagsam",
+   "evaluation": [
+    "The Louisiana analog of Table 3, enabling a two-state replication of the headline reduced-form result — replication within the paper is itself a credibility device.",
+    "Introduces the 4×4 quartile structure that the paper's peer-structure tests rely on.",
+    "Exports directly via the workhorse quartile program, so the printed numbers are traceable to a single script.",
+    "Improvement: the 4×4 cells are dense; a heat-map companion figure would make the interaction pattern pop for presentations."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/main/t5.png",
+   "pdf": "library/papers/katrina/exhibits/main/t5.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "main",
+   "num": "Table 6",
+   "kind": "table",
+   "title": "Linear-in-Means Models of Peer Effects in Achievement for Louisiana",
+   "tags": [
+    "Linear-in-means peer effects",
+    "OLS + fixed effects"
+   ],
+   "programs": [
+    {
+     "name": "epple_romano_f_ela_grade_fullintb.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/epple_romano_f_ela_grade_fullintb.do"
+    },
+    {
+     "name": "epple_romano_f_math_grade_fullintb.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/epple_romano_f_math_grade_fullintb.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "collapse (p10) mathp10=mathSTD elap10=elaSTD  (p20) mathp20=mathSTD elap20=elaSTD  (p30) mathp30=mathSTD elap30=elaSTD  (p40) mathp40=mathSTD elap40=elaSTD  (p5\nreg elaSTD peer_mean_Q1 peer_mean_Q2 peer_mean_Q3 peer_mean_Q4 free_lunchA male black hisp asian gryr* _g*  if grade_num<=5 & elaQD1 != .,  cluster(sitecode)\ntest peer_mean_Q1=peer_mean_Q2=peer_mean_Q3=peer_mean_Q4\nreg elaSTD  contribution_katrina_Q1 contribution_katrina_Q2 contribution_katrina_Q3 contribution_katrina_Q4  free_lunchA male black hisp asian gryr* _g*  if gra\ntest contribution_katrina_Q1=contribution_katrina_Q2=contribution_katrina_Q3=contribution_katrina_Q4\nivreg elaSTD  (peer_mean_Q1 peer_mean_Q2 peer_mean_Q3 peer_mean_Q4 = contribution_katrina_Q1 contribution_katrina_Q2 contribution_katrina_Q3 contribution_katrin\ntest peer_mean_Q1=peer_mean_Q2=peer_mean_Q3=peer_mean_Q4\nreg elaSTD  peer_mean_Q1 peer_mean_Q2 peer_mean_Q3 peer_mean_Q4    free_lunchA male black hisp asian gryr* _g*    if grade_num >5  & lagsample == 1 & ela_lag_1 \ntest peer_mean_Q1=peer_mean_Q2=peer_mean_Q3=peer_mean_Q4\nreg elaSTD ela_lag_*  peer_mean_Q1 peer_mean_Q2 peer_mean_Q3 peer_mean_Q4  free_lunchA male black hisp asian gryr* _g* _l*   if grade_num>5 & lagsample==1 & ela",
+   "evaluation": [
+    "Louisiana linear-in-means estimates (Epple–Romano form), parallel to Table 4 for Houston — consistent structure across states.",
+    "The own-quartile interactions are spelled out, making the functional form explicit rather than buried in text.",
+    "Spans two pages; a tighter column set or an appendix overflow would improve at-a-glance readability."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/main/t6.png",
+   "pdf": "library/papers/katrina/exhibits/main/t6.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "main",
+   "num": "Table 7",
+   "kind": "table",
+   "title": "Nonlinear Models of Evacuee Share and Achievement on Incumbent Outcomes",
+   "tags": [
+    "Quartile heterogeneity",
+    "OLS + fixed effects"
+   ],
+   "programs": [
+    {
+     "name": "quartile_analysis_revision_d.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_d.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "areg mathSTD Kfraction_mathQ1 Kfraction_mathQ2 Kfraction_mathQ3 Kfraction_mathQ4 free_lunchA male black hisp asian gryr* if mathQD1 != . & grade_num<=5, absorb(\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"Math, Non-Linear, All\")\nlincom Kfraction_mathQ2-Kfraction_mathQ1\nlincom Kfraction_mathQ3-Kfraction_mathQ2\nlincom Kfraction_mathQ4-Kfraction_mathQ3\nlincom Kfraction_mathQ3-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ2\nareg elaSTD Kfraction_elaQ1 Kfraction_elaQ2 Kfraction_elaQ3 Kfraction_elaQ4 free_lunchA male black hisp asian gryr* if elaQD1 != . & grade_num<=5, absorb(siteco\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"ELA, Non-Linear, All\")",
+   "evaluation": [
+    "The paper's intellectual core: nonlinear (quartile-interacted) peer effects that distinguish linear-in-means from bad-apple and invidious-comparison models.",
+    "The 4×4 design directly maps theory to coefficients — each cell answers a specific peer-structure question.",
+    "Produced by the single workhorse script, so every cell is reproducible from one file (good provenance).",
+    "Improvement: significant cells could be shaded to guide the reader through a large coefficient matrix."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/main/t7.png",
+   "pdf": "library/papers/katrina/exhibits/main/t7.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "main",
+   "num": "Table 8",
+   "kind": "table",
+   "title": "Tests of Models of Peer Effects Using Estimates from Table 7",
+   "tags": [
+    "Model specification tests"
+   ],
+   "programs": [
+    {
+     "name": "quartile_analysis_revision_full_b_tests_nobon.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_full_b_tests_nobon.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "reg mathSTD math_lag_* Kfraction_mathQ1G Kfraction_mathQ2G Kfraction_mathQ3G Kfraction_mathQ4G free_lunchA male black hisp asian gryr* _I* if mathQD`quart' == 1\nreg elaSTD ela_lag_* Kfraction_elaQ1G Kfraction_elaQ2G Kfraction_elaQ3G Kfraction_elaQ4G free_lunchA male black hisp asian gryr* _I* if elaQD`quart' == 1\n  test \t[math1_mean]Kfraction_mathQ1G [math1_mean]Kfraction_mathQ2G [math1_mean]Kfraction_mathQ3G [math1_mean]Kfraction_mathQ4G\n  test \t([math1_mean]Kfraction_mathQ1G = [math1_mean]Kfraction_mathQ4G)\n  test \t([math1_mean]Kfraction_mathQ1G = [math1_mean]Kfraction_mathQ2G)\t/*FOR MONOTONICITY THESE SHOULD BE POSITIVE */\n  test \t([math1_mean]Kfraction_mathQ1G = [math1_mean]Kfraction_mathQ2G = [math1_mean]Kfraction_mathQ3G = [math1_mean]Kfraction_mathQ4G);\n  test \t [math1_mean]Kfraction_mathQ2G  /* THESE SHOULD BE POSITIVE FOR IC */\n  test \t([math1_mean]Kfraction_mathQ1G = [math1_mean]Kfraction_mathQ2G) /* THESE SHOULD BE POSITIVE FOR AG */\n   test [math1_mean]Kfraction_mathQ1G\n   test ([math4_mean]Kfraction_mathQ4G)\t/*  NEGATIVE = REJECT */",
+   "evaluation": [
+    "Turns estimates into formal model selection: linear restrictions (test/lincom) that reject or fail to reject each peer-structure model.",
+    "Pairing an estimate table (T7) with a dedicated test table (T8) is exemplary — it separates 'what we estimated' from 'what it implies'.",
+    "Reports the hypotheses explicitly so the reader can audit the mapping from theory to restriction.",
+    "Improvement: a multiple-testing note (the package has a Bonferroni variant) would preempt the 'many tests' critique."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/main/t8.png",
+   "pdf": "library/papers/katrina/exhibits/main/t8.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "main",
+   "num": "Table 9",
+   "kind": "table",
+   "title": "School-Level Placebo Test Regressions of School Performance Score",
+   "tags": [
+    "Placebo / robustness",
+    "School-level aggregate"
+   ],
+   "programs": [
+    {
+     "name": "school_level_placebo_b.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/school_level_placebo_b.do"
+    },
+    {
+     "name": "school-trend.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/school-trend.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "areg sps percent_katrinaTIMESERIES2 _I* if Kfraction_Q1 != ., absorb(sitecode) cluster(sitecode)\nareg sps Kfraction_Q1 Kfraction_Q2 Kfraction_Q3 Kfraction_Q4 _I*, absorb(sitecode) cluster(sitecode)\nareg sps percent_katrinaTIMESERIES2 _I* free_lunchA male black hisp asian gryr* if Kfraction_Q1 != ., absorb(sitecode) cluster(sitecode)\nareg sps Kfraction_Q1 Kfraction_Q2 Kfraction_Q3 Kfraction_Q4 _I* free_lunchA male black hisp asian gryr*, absorb(sitecode) cluster(sitecode)\nreg percent_katrinaTIMESERIES2 change_sps, robust",
+   "evaluation": [
+    "A placebo at the school level: if evacuee shares predicted aggregate school scores mechanically, the design would be suspect — this table checks that.",
+    "Aggregating to school level is the right unit for the placebo and is clearly labeled as such.",
+    "Improvement: pairing with a pre-trend figure would make the 'no effect where there should be none' point visually, not just in coefficients."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/main/t9.png",
+   "pdf": "library/papers/katrina/exhibits/main/t9.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "main",
+   "num": "Table 10",
+   "kind": "table",
+   "title": "Estimates of Evacuee Share on Incumbent Attendance and Discipline",
+   "tags": [
+    "IV / 2SLS",
+    "Non-test outcomes",
+    "OLS + fixed effects"
+   ],
+   "programs": [
+    {
+     "name": "katrina_by_quartiles_va_grade_statestd.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_by_quartiles_va_grade_statestd.do"
+    },
+    {
+     "name": "katrina_iv_gender_ethnicity_noshelter_grade.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_iv_gender_ethnicity_noshelter_grade.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "\tareg taks_sdstate_min_math  katrina_frac_grade  ltaks_sdstate_min_math_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I* if taks_sd_min_math_quartile != .\n\tareg taks_sdstate_min_read  katrina_frac_grade  ltaks_sdstate_min_read_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I* if taks_sd_min_read_quartile != .\n\tareg `var'  katrina_frac_grade  l`var'_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I* , cluster(campus) absorb(campus);\n\t\tareg taks_sdstate_min_math katrina_frac_grade  ltaks_sdstate_min_math_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I*\n\t\tareg taks_sdstate_min_read katrina_frac_grade  ltaks_sdstate_min_read_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I*",
+   "evaluation": [
+    "Extends the design to non-test outcomes (attendance, discipline), showing the peer mechanism is not a test-score artifact — good for external validity.",
+    "Reuses the Table 3 specification, so the reader reads it quickly by analogy.",
+    "Improvement: stating the control mean for each behavioral outcome would make the effect sizes interpretable (e.g., days absent)."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/main/t10.png",
+   "pdf": "library/papers/katrina/exhibits/main/t10.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 1",
+   "kind": "table",
+   "title": "Observation Counts in Estimating Samples",
+   "tags": [
+    "Summary statistics"
+   ],
+   "programs": [],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Summary statistics). Supports a main-text result by varying specification, sample, or outcome.",
+    "Printed to the Stata log in the package and hand-collected into the published table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a1.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a1.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 2",
+   "kind": "table",
+   "title": "Characteristics of Evacuees and Incumbent Louisiana & Houston Students - 2005-06",
+   "tags": [
+    "Summary statistics"
+   ],
+   "programs": [
+    {
+     "name": "sumstats_b.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/sumstats_b.do"
+    },
+    {
+     "name": "summary_stats_la.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/summary_stats_la.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "collapse (mean) katrina_frac*, by(campus grade year)",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Summary statistics). Supports a main-text result by varying specification, sample, or outcome.",
+    "Printed to the Stata log in the package and hand-collected into the published table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a2.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a2.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 3",
+   "kind": "table",
+   "title": "Reduced Form Estimates of School Level Evacuee Shares on Achievement - Houston",
+   "tags": [
+    "Reduced form",
+    "School-level aggregate"
+   ],
+   "programs": [
+    {
+     "name": "katrina_by_quartiles_va.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_by_quartiles_va.do"
+    },
+    {
+     "name": "katrina_iv_gender_ethnicity_noshelter.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_iv_gender_ethnicity_noshelter.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "\tareg `var'  katrina_frac_campus  l`var'_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I* if `var'_quartile != ., cluster(campus) absorb(campus);\n\tareg `var'  katrina_frac_campus  l`var'_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I* , cluster(campus) absorb(campus);\n\t\tareg `var' katrina_frac_campus  l`var'_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I*\n\t\tareg taks_sd_min_`var'  katrina_frac_`var'_median_1 katrina_frac_`var'_median_2\n\t\tlincom katrina_frac_`var'_median_2 - katrina_frac_`var'_median_1;\n\t\tlincom katrina_frac_`var'_median_2 + katrina_frac_`var'_median_1;\n\t\toutreg2 katrina_frac_`var'_median_1 katrina_frac_`var'_median_2\ncollapse (mean) katrina_count*  katrina_frac*, by(campus year)",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Reduced form). Supports a main-text result by varying specification, sample, or outcome.",
+    "Printed to the Stata log in the package and hand-collected into the published table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a3.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a3.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 4",
+   "kind": "table",
+   "title": "Houston Achievement Specification Tests - Grade Level Evacuee Share, Elementary",
+   "tags": [
+    "Placebo / robustness"
+   ],
+   "programs": [
+    {
+     "name": "katrina_iv_c.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_iv_c.do"
+    },
+    {
+     "name": "katrina_by_quartiles_va_fe.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_by_quartiles_va_fe.do"
+    },
+    {
+     "name": "katrina_by_quartiles_va_outlier.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_by_quartiles_va_outlier.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "\t\treg `subject' katrina_frac_campus female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I*, cluster(campus);\n      \t\t\treg katrina_frac_campus `instrument' female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I* if `subject' !=., cluster(campus);\n\t\t\ttest `instrument';\n      \t\t\tivreg2 `subject' (katrina_frac_campus = `instrument') female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I*,",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Placebo / robustness). Supports a main-text result by varying specification, sample, or outcome.",
+    "Printed to the Stata log in the package and hand-collected into the published table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a4.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a4.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 5",
+   "kind": "table",
+   "title": "Houston Achievement Specification Tests - Grade Level Evacuee Share, Middle/High",
+   "tags": [
+    "Placebo / robustness"
+   ],
+   "programs": [
+    {
+     "name": "katrina_iv_c.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_iv_c.do"
+    },
+    {
+     "name": "katrina_by_quartiles_va_class.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_by_quartiles_va_class.do"
+    },
+    {
+     "name": "katrina_by_quartiles_va_intpanel.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_by_quartiles_va_intpanel.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "\t\treg `subject' katrina_frac_campus female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I*, cluster(campus);\n      \t\t\treg katrina_frac_campus `instrument' female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I* if `subject' !=., cluster(campus);\n\t\t\ttest `instrument';\n      \t\t\tivreg2 `subject' (katrina_frac_campus = `instrument') female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I*,",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Placebo / robustness). Supports a main-text result by varying specification, sample, or outcome.",
+    "Printed to the Stata log in the package and hand-collected into the published table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a5.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a5.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 6",
+   "kind": "table",
+   "title": "Reduced Form Estimates of Grade Level Evacuee Shares on Achievement by Quintiles - Houston",
+   "tags": [
+    "Reduced form"
+   ],
+   "programs": [
+    {
+     "name": "katrina_by_quartiles_va_quintiles.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_by_quartiles_va_quintiles.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "\t\tareg `var' katrina_frac_grade  l`var'_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I*",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Reduced form). Supports a main-text result by varying specification, sample, or outcome.",
+    "Printed to the Stata log in the package and hand-collected into the published table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a6.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a6.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 7",
+   "kind": "table",
+   "title": "The Effect of Disruption from Evacuees on Achievement - Houston",
+   "tags": [
+    "Quartile heterogeneity"
+   ],
+   "programs": [
+    {
+     "name": "katrina_by_quartiles_avgweeklyenroll_b.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_by_quartiles_avgweeklyenroll_b.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "  collapse (sum) week_* katrina_week_*, by(campus year grade)\n\treg `var' avg_katrina_weekly_enr  l`var'_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I* if `var' != . & `var'_quartile != ., cluster(campus);\n\toutreg2 avg_katrina_weekly_enr using avgenr_`var', excel dec(2) ctitle(\"`var',OLS-Mean, ALL\");\n\t\treg `var' avg_katrina_weekly_enr  l`var'_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I*\n\t\toutreg2 avg_katrina_weekly_enr using avgenr_`var', excel dec(2) ctitle(\"`var',OLS-Mean, Quartile `quartile'\");\n  \treg `var' avg_katrina_weekly_enr sd_rel_weekly_enr  l`var'_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I* if `var' != . & `var'_quartile != ., cluste\n\toutreg2 avg_katrina_weekly_enr sd_rel_weekly_enr using avgenr_`var', excel dec(2) ctitle(\"`var',OLS-Mean&SD, All\");\n\t \treg `var' avg_katrina_weekly_enr  sd_rel_weekly_enr l`var'_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I*\n\t\toutreg2 avg_katrina_weekly_enr sd_rel_weekly_enr using avgenr_`var', excel dec(2) ctitle(\"`var',OLS-Mean&SD, Quartile `quartile'\");\n\treg sd_rel_weekly_enr avg_katrina_weekly_enr sd_katrina_weekly_enr l`var'_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I* if `var' != . & `var'_quartile",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Printed to the Stata log in the package and hand-collected into the published table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a7.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a7.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 8",
+   "kind": "table",
+   "title": "The Effect of Disruption from Evacuees on Achievement - Houston",
+   "tags": [
+    "Quartile heterogeneity"
+   ],
+   "programs": [
+    {
+     "name": "katrina_by_quartiles_halfyear_enroll.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_by_quartiles_halfyear_enroll.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "  collapse (sum) week_* katrina_week_* (mean) sem*entry*kat, by(campus year grade)\n  \treg `var' avg_katrina_weekly_enr sem1_entry_kat sem2_entry_kat  l`var'_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I* if `var' != . & `var'_quartile \n\toutreg2 avg_katrina_weekly_enr sem1_entry_kat sem2_entry_kat using semenr, excel dec(2) ctitle(\"`var',`grade', All\");\n\t \treg `var' avg_katrina_weekly_enr  sem1_entry_kat sem2_entry_kat l`var'_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I*\n\t\toutreg2 avg_katrina_weekly_enr  sem1_entry_kat sem2_entry_kat using semenr, excel dec(2) ctitle(\"`var',`grade', Quartile `quartile'\");\n  \treg `var' avg_katrina_weekly_enr  sem1_entry_kat sem2_entry_kat  l`var'_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I* if `var' != ., cluster(campus)\n\toutreg2 avg_katrina_weekly_enr  sem1_entry_kat sem2_entry_kat using semenr, excel dec(2) ctitle(\"`var',`grade', All\");",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Exports directly to a file via the package script — fully traceable."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a8.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a8.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 9",
+   "kind": "table",
+   "title": "Linear-in-Means Models of Peer Effects in Achievement for Houston",
+   "tags": [
+    "Linear-in-means peer effects"
+   ],
+   "programs": [
+    {
+     "name": "katrina_by_quartiles_lim_test_fullint_math.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_by_quartiles_lim_test_fullint_math.do"
+    },
+    {
+     "name": "katrina_by_quartiles_lim_test_fullint_read.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_by_quartiles_lim_test_fullint_read.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "\treg taks_sd_min_math taks_sd_min_math_peer_* _k* ltaks_sd_min_math_* _g*, cluster(campus) nocons\n\ttest taks_sd_min_math_peer_Q1 = taks_sd_min_math_peer_Q2 = taks_sd_min_math_peer_Q3 = taks_sd_min_math_peer_Q4\n\treg taks_sd_min_math katrina_frac_grade_math_Q*   _k*  ltaks_sd_min_math_*  _g* if taks_sd_min_math_peer_Q1 != ., cluster(campus) nocons\n\ttest katrina_frac_grade_math_Q1 = katrina_frac_grade_math_Q2 = katrina_frac_grade_math_Q3 = katrina_frac_grade_math_Q4\n\tivreg taks_sd_min_math  (taks_sd_min_math_peer_Q* = katrina_frac_grade_math_Q*)  _k* ltaks_sd_min_math_* _g*, cluster(campus) nocons\n\ttest taks_sd_min_math_peer_Q1 = taks_sd_min_math_peer_Q2 = taks_sd_min_math_peer_Q3 = taks_sd_min_math_peer_Q4",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Linear-in-means peer effects). Supports a main-text result by varying specification, sample, or outcome.",
+    "Printed to the Stata log in the package and hand-collected into the published table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a9.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a9.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 10",
+   "kind": "table",
+   "title": "Linear-in-Means Models of Peer Effects in Achievement for Houston",
+   "tags": [
+    "Linear-in-means peer effects"
+   ],
+   "programs": [
+    {
+     "name": "katrina_by_quartiles_lim_test_fullint_math.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_by_quartiles_lim_test_fullint_math.do"
+    },
+    {
+     "name": "katrina_by_quartiles_lim_test_fullint_read.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_by_quartiles_lim_test_fullint_read.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "\treg taks_sd_min_math taks_sd_min_math_peer_* _k* ltaks_sd_min_math_* _g*, cluster(campus) nocons\n\ttest taks_sd_min_math_peer_Q1 = taks_sd_min_math_peer_Q2 = taks_sd_min_math_peer_Q3 = taks_sd_min_math_peer_Q4\n\treg taks_sd_min_math katrina_frac_grade_math_Q*   _k*  ltaks_sd_min_math_*  _g* if taks_sd_min_math_peer_Q1 != ., cluster(campus) nocons\n\ttest katrina_frac_grade_math_Q1 = katrina_frac_grade_math_Q2 = katrina_frac_grade_math_Q3 = katrina_frac_grade_math_Q4\n\tivreg taks_sd_min_math  (taks_sd_min_math_peer_Q* = katrina_frac_grade_math_Q*)  _k* ltaks_sd_min_math_* _g*, cluster(campus) nocons\n\ttest taks_sd_min_math_peer_Q1 = taks_sd_min_math_peer_Q2 = taks_sd_min_math_peer_Q3 = taks_sd_min_math_peer_Q4",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Linear-in-means peer effects). Supports a main-text result by varying specification, sample, or outcome.",
+    "Printed to the Stata log in the package and hand-collected into the published table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a10.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a10.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 11",
+   "kind": "table",
+   "title": "Effects of Evacuees on Test Taking",
+   "tags": [
+    "Quartile heterogeneity"
+   ],
+   "programs": [
+    {
+     "name": "katrina_by_quartiles_testtaking.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_by_quartiles_testtaking.do"
+    },
+    {
+     "name": "check_non_test_takers2.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/check_non_test_takers2.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "\tareg `var'  katrina_frac_grade   female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I* , cluster(campus) absorb(campus);\n\tareg `var'  katrina_frac_campus   female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I* , cluster(campus) absorb(campus);",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Printed to the Stata log in the package and hand-collected into the published table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a11.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a11.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 12",
+   "kind": "table",
+   "title": "Reduced Form Estimates of Evacuee Share of Enrollment in School on Incumbent Test Scores -",
+   "tags": [
+    "Reduced form"
+   ],
+   "programs": [
+    {
+     "name": "analysis_revision_linear.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/analysis_revision_linear.do"
+    },
+    {
+     "name": "quartile_analysis_revision_d.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_d.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "areg math0005 katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num<=5 & year==2006 & mathQD1 != ., clus\nareg math0005 katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num>5 & year==2006 & mathQD1 != . & lags\nareg mathSTD katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num<=5 & year==2006 & mathQD1 != ., clust\nareg mathSTD katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num>5 & year==2006 & mathQD1 != .  & lags\nareg mathSTD katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num>5 & year==2007 & mathQD1 != .  & lags\nareg ela0005 katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num<=5 & year==2006 & elaQD1 != ., cluste\nareg ela0005 katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num>5 & year==2006 & elaQD1 != .  & lagsa\nareg elaSTD katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num<=5 & year==2006 & elaQD1 != ., cluster\nareg elaSTD katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num>5 & year==2006 & elaQD1 != .  & lagsam\nareg elaSTD katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num>5 & year==2007 & elaQD1 != .  & lagsam",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Reduced form). Supports a main-text result by varying specification, sample, or outcome.",
+    "Exports directly to a file via the package script — fully traceable."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a12.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a12.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 13",
+   "kind": "table",
+   "title": "Reduced Form Estimates of Evacuee Share of Enrollment in School on Incumbent Test Scores - Louisiana",
+   "tags": [
+    "Reduced form"
+   ],
+   "programs": [
+    {
+     "name": "analysis_revision_linear.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/analysis_revision_linear.do"
+    },
+    {
+     "name": "quartile_analysis_revision_d.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_d.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "areg math0005 katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num<=5 & year==2006 & mathQD1 != ., clus\nareg math0005 katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num>5 & year==2006 & mathQD1 != . & lags\nareg mathSTD katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num<=5 & year==2006 & mathQD1 != ., clust\nareg mathSTD katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num>5 & year==2006 & mathQD1 != .  & lags\nareg mathSTD katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num>5 & year==2007 & mathQD1 != .  & lags\nareg ela0005 katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num<=5 & year==2006 & elaQD1 != ., cluste\nareg ela0005 katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num>5 & year==2006 & elaQD1 != .  & lagsa\nareg elaSTD katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num<=5 & year==2006 & elaQD1 != ., cluster\nareg elaSTD katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num>5 & year==2006 & elaQD1 != .  & lagsam\nareg elaSTD katrina_sum free_lunchA male black asian hisp gryr* if katrina_district2==0  & percent_katrina<.7 & grade_num>5 & year==2007 & elaQD1 != .  & lagsam",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Reduced form). Supports a main-text result by varying specification, sample, or outcome.",
+    "Exports directly to a file via the package script — fully traceable."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a13.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a13.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 14",
+   "kind": "table",
+   "title": "Linear-in-Means Models of Peer Effects in Achievement for Louisiana",
+   "tags": [
+    "Linear-in-means peer effects"
+   ],
+   "programs": [
+    {
+     "name": "epple_romano_f_ela_grade_fullintb.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/epple_romano_f_ela_grade_fullintb.do"
+    },
+    {
+     "name": "epple_romano_f_math_grade_fullintb.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/epple_romano_f_math_grade_fullintb.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "collapse (p10) mathp10=mathSTD elap10=elaSTD  (p20) mathp20=mathSTD elap20=elaSTD  (p30) mathp30=mathSTD elap30=elaSTD  (p40) mathp40=mathSTD elap40=elaSTD  (p5\nreg elaSTD peer_mean_Q1 peer_mean_Q2 peer_mean_Q3 peer_mean_Q4 free_lunchA male black hisp asian gryr* _g*  if grade_num<=5 & elaQD1 != .,  cluster(sitecode)\ntest peer_mean_Q1=peer_mean_Q2=peer_mean_Q3=peer_mean_Q4\nreg elaSTD  contribution_katrina_Q1 contribution_katrina_Q2 contribution_katrina_Q3 contribution_katrina_Q4  free_lunchA male black hisp asian gryr* _g*  if gra\ntest contribution_katrina_Q1=contribution_katrina_Q2=contribution_katrina_Q3=contribution_katrina_Q4\nivreg elaSTD  (peer_mean_Q1 peer_mean_Q2 peer_mean_Q3 peer_mean_Q4 = contribution_katrina_Q1 contribution_katrina_Q2 contribution_katrina_Q3 contribution_katrin\ntest peer_mean_Q1=peer_mean_Q2=peer_mean_Q3=peer_mean_Q4\nreg elaSTD  peer_mean_Q1 peer_mean_Q2 peer_mean_Q3 peer_mean_Q4    free_lunchA male black hisp asian gryr* _g*    if grade_num >5  & lagsample == 1 & ela_lag_1 \ntest peer_mean_Q1=peer_mean_Q2=peer_mean_Q3=peer_mean_Q4\nreg elaSTD ela_lag_*  peer_mean_Q1 peer_mean_Q2 peer_mean_Q3 peer_mean_Q4  free_lunchA male black hisp asian gryr* _g* _l*   if grade_num>5 & lagsample==1 & ela",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Linear-in-means peer effects). Supports a main-text result by varying specification, sample, or outcome.",
+    "Printed to the Stata log in the package and hand-collected into the published table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a14.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a14.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 15",
+   "kind": "table",
+   "title": "Nonlinear Models of Evacuee Share in School by Evacuee Achievement on Incumbent Achievement - Louisiana",
+   "tags": [
+    "Quartile heterogeneity"
+   ],
+   "programs": [
+    {
+     "name": "quartile_analysis_revision_d.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_d.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "areg mathSTD Kfraction_mathQ1 Kfraction_mathQ2 Kfraction_mathQ3 Kfraction_mathQ4 free_lunchA male black hisp asian gryr* if mathQD1 != . & grade_num<=5, absorb(\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"Math, Non-Linear, All\")\nlincom Kfraction_mathQ2-Kfraction_mathQ1\nlincom Kfraction_mathQ3-Kfraction_mathQ2\nlincom Kfraction_mathQ4-Kfraction_mathQ3\nlincom Kfraction_mathQ3-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ2\nareg elaSTD Kfraction_elaQ1 Kfraction_elaQ2 Kfraction_elaQ3 Kfraction_elaQ4 free_lunchA male black hisp asian gryr* if elaQD1 != . & grade_num<=5, absorb(siteco\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"ELA, Non-Linear, All\")",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Exports directly to a file via the package script — fully traceable."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a15.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a15.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 16",
+   "kind": "table",
+   "title": "Nonlinear Models of Evacuee Share in School and Evacuee Achievement on Incumbent Achievement - Louisiana",
+   "tags": [
+    "Quartile heterogeneity"
+   ],
+   "programs": [
+    {
+     "name": "quartile_analysis_revision_d.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_d.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "areg mathSTD Kfraction_mathQ1 Kfraction_mathQ2 Kfraction_mathQ3 Kfraction_mathQ4 free_lunchA male black hisp asian gryr* if mathQD1 != . & grade_num<=5, absorb(\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"Math, Non-Linear, All\")\nlincom Kfraction_mathQ2-Kfraction_mathQ1\nlincom Kfraction_mathQ3-Kfraction_mathQ2\nlincom Kfraction_mathQ4-Kfraction_mathQ3\nlincom Kfraction_mathQ3-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ2\nareg elaSTD Kfraction_elaQ1 Kfraction_elaQ2 Kfraction_elaQ3 Kfraction_elaQ4 free_lunchA male black hisp asian gryr* if elaQD1 != . & grade_num<=5, absorb(siteco\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"ELA, Non-Linear, All\")",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Exports directly to a file via the package script — fully traceable."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a16.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a16.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 17",
+   "kind": "table",
+   "title": "Nonlinear Models of Evacuee Share and Evacuee Achievement on Incumbent Achievement - Louisiana",
+   "tags": [
+    "Quartile heterogeneity"
+   ],
+   "programs": [
+    {
+     "name": "quartile_analysis_revision_d.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_d.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "areg mathSTD Kfraction_mathQ1 Kfraction_mathQ2 Kfraction_mathQ3 Kfraction_mathQ4 free_lunchA male black hisp asian gryr* if mathQD1 != . & grade_num<=5, absorb(\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"Math, Non-Linear, All\")\nlincom Kfraction_mathQ2-Kfraction_mathQ1\nlincom Kfraction_mathQ3-Kfraction_mathQ2\nlincom Kfraction_mathQ4-Kfraction_mathQ3\nlincom Kfraction_mathQ3-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ2\nareg elaSTD Kfraction_elaQ1 Kfraction_elaQ2 Kfraction_elaQ3 Kfraction_elaQ4 free_lunchA male black hisp asian gryr* if elaQD1 != . & grade_num<=5, absorb(siteco\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"ELA, Non-Linear, All\")",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Exports directly to a file via the package script — fully traceable."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a17.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a17.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 18",
+   "kind": "table",
+   "title": "Nonlinear Models of Evacuee Share in Grade and Evacuee Achievement on Incumbent Achievement - Louisiana",
+   "tags": [
+    "Quartile heterogeneity"
+   ],
+   "programs": [
+    {
+     "name": "quartile_analysis_revision_d.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_d.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "areg mathSTD Kfraction_mathQ1 Kfraction_mathQ2 Kfraction_mathQ3 Kfraction_mathQ4 free_lunchA male black hisp asian gryr* if mathQD1 != . & grade_num<=5, absorb(\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"Math, Non-Linear, All\")\nlincom Kfraction_mathQ2-Kfraction_mathQ1\nlincom Kfraction_mathQ3-Kfraction_mathQ2\nlincom Kfraction_mathQ4-Kfraction_mathQ3\nlincom Kfraction_mathQ3-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ2\nareg elaSTD Kfraction_elaQ1 Kfraction_elaQ2 Kfraction_elaQ3 Kfraction_elaQ4 free_lunchA male black hisp asian gryr* if elaQD1 != . & grade_num<=5, absorb(siteco\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"ELA, Non-Linear, All\")",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Exports directly to a file via the package script — fully traceable."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a18.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a18.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 19",
+   "kind": "table",
+   "title": "Nonlinear Models of Evacuee Share in Grade and Evacuee Achievement on",
+   "tags": [
+    "Quartile heterogeneity"
+   ],
+   "programs": [
+    {
+     "name": "quartile_analysis_revision_d.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_d.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "areg mathSTD Kfraction_mathQ1 Kfraction_mathQ2 Kfraction_mathQ3 Kfraction_mathQ4 free_lunchA male black hisp asian gryr* if mathQD1 != . & grade_num<=5, absorb(\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"Math, Non-Linear, All\")\nlincom Kfraction_mathQ2-Kfraction_mathQ1\nlincom Kfraction_mathQ3-Kfraction_mathQ2\nlincom Kfraction_mathQ4-Kfraction_mathQ3\nlincom Kfraction_mathQ3-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ2\nareg elaSTD Kfraction_elaQ1 Kfraction_elaQ2 Kfraction_elaQ3 Kfraction_elaQ4 free_lunchA male black hisp asian gryr* if elaQD1 != . & grade_num<=5, absorb(siteco\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"ELA, Non-Linear, All\")",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Exports directly to a file via the package script — fully traceable."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a19.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a19.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 20",
+   "kind": "table",
+   "title": "Tests of Models of Peer Effects Using Estimates from Table 7 - Bonferroni Adjusted",
+   "tags": [
+    "Model specification tests"
+   ],
+   "programs": [
+    {
+     "name": "quartile_analysis_revision_full_b_tests_nobon.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_full_b_tests_nobon.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "reg mathSTD math_lag_* Kfraction_mathQ1G Kfraction_mathQ2G Kfraction_mathQ3G Kfraction_mathQ4G free_lunchA male black hisp asian gryr* _I* if mathQD`quart' == 1\nreg elaSTD ela_lag_* Kfraction_elaQ1G Kfraction_elaQ2G Kfraction_elaQ3G Kfraction_elaQ4G free_lunchA male black hisp asian gryr* _I* if elaQD`quart' == 1\n  test \t[math1_mean]Kfraction_mathQ1G [math1_mean]Kfraction_mathQ2G [math1_mean]Kfraction_mathQ3G [math1_mean]Kfraction_mathQ4G\n  test \t([math1_mean]Kfraction_mathQ1G = [math1_mean]Kfraction_mathQ4G)\n  test \t([math1_mean]Kfraction_mathQ1G = [math1_mean]Kfraction_mathQ2G)\t/*FOR MONOTONICITY THESE SHOULD BE POSITIVE */\n  test \t([math1_mean]Kfraction_mathQ1G = [math1_mean]Kfraction_mathQ2G = [math1_mean]Kfraction_mathQ3G = [math1_mean]Kfraction_mathQ4G);\n  test \t [math1_mean]Kfraction_mathQ2G  /* THESE SHOULD BE POSITIVE FOR IC */\n  test \t([math1_mean]Kfraction_mathQ1G = [math1_mean]Kfraction_mathQ2G) /* THESE SHOULD BE POSITIVE FOR AG */\n   test [math1_mean]Kfraction_mathQ1G\n   test ([math4_mean]Kfraction_mathQ4G)\t/*  NEGATIVE = REJECT */",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Model specification tests). Supports a main-text result by varying specification, sample, or outcome.",
+    "Printed to the Stata log in the package and hand-collected into the published table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a20.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a20.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 21",
+   "kind": "table",
+   "title": "Nonlinear Models of Evacuee Share in Grade and Evacuee Achievement on Incumbent Achievement - Louisiana",
+   "tags": [
+    "Quartile heterogeneity"
+   ],
+   "programs": [
+    {
+     "name": "quartile_analysis_revision_d.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_d.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "areg mathSTD Kfraction_mathQ1 Kfraction_mathQ2 Kfraction_mathQ3 Kfraction_mathQ4 free_lunchA male black hisp asian gryr* if mathQD1 != . & grade_num<=5, absorb(\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"Math, Non-Linear, All\")\nlincom Kfraction_mathQ2-Kfraction_mathQ1\nlincom Kfraction_mathQ3-Kfraction_mathQ2\nlincom Kfraction_mathQ4-Kfraction_mathQ3\nlincom Kfraction_mathQ3-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ2\nareg elaSTD Kfraction_elaQ1 Kfraction_elaQ2 Kfraction_elaQ3 Kfraction_elaQ4 free_lunchA male black hisp asian gryr* if elaQD1 != . & grade_num<=5, absorb(siteco\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"ELA, Non-Linear, All\")",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Exports directly to a file via the package script — fully traceable."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a21.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a21.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 22",
+   "kind": "table",
+   "title": "Nonlinear Models of Evacuee Share in Grade and Evacuee Achievement on Incumbent Achievement - Louisiana",
+   "tags": [
+    "Quartile heterogeneity"
+   ],
+   "programs": [
+    {
+     "name": "quartile_analysis_revision_d.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_d.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "areg mathSTD Kfraction_mathQ1 Kfraction_mathQ2 Kfraction_mathQ3 Kfraction_mathQ4 free_lunchA male black hisp asian gryr* if mathQD1 != . & grade_num<=5, absorb(\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"Math, Non-Linear, All\")\nlincom Kfraction_mathQ2-Kfraction_mathQ1\nlincom Kfraction_mathQ3-Kfraction_mathQ2\nlincom Kfraction_mathQ4-Kfraction_mathQ3\nlincom Kfraction_mathQ3-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ2\nareg elaSTD Kfraction_elaQ1 Kfraction_elaQ2 Kfraction_elaQ3 Kfraction_elaQ4 free_lunchA male black hisp asian gryr* if elaQD1 != . & grade_num<=5, absorb(siteco\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"ELA, Non-Linear, All\")",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Exports directly to a file via the package script — fully traceable."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a22.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a22.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 23",
+   "kind": "table",
+   "title": "Nonlinear Models of Evacuee Share in Grade and Evacuee Achievement on Incumbent Achievement - Louisiana",
+   "tags": [
+    "Quartile heterogeneity"
+   ],
+   "programs": [
+    {
+     "name": "quartile_analysis_revision_full_trends_b.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_full_trends_b.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "collapse (p10) mathp10=mathSTD elap10=elaSTD  (p20) mathp20=mathSTD elap20=elaSTD  (p30) mathp30=mathSTD elap30=elaSTD  (p40) mathp40=mathSTD elap40=elaSTD  (p5\nreg mathSTD Kfraction_mathQ1G Kfraction_mathQ2G Kfraction_mathQ3G Kfraction_mathQ4G free_lunchA male black hisp asian gryr* _I* if mathQD1 != . & grade_num <= 5\noutreg2 Kfraction_* using elem_trend.xls, excel dec(2) ctitle(\"Full Trend, Math, All\")\nreg elaSTD Kfraction_elaQ1G Kfraction_elaQ2G Kfraction_elaQ3G Kfraction_elaQ4G free_lunchA male black hisp asian gryr* _I* if elaQD1 != . & grade_num <= 5,  clu\noutreg2 Kfraction_* using elem_trend.xls, excel dec(2) ctitle(\"Full Trend, ELA, All\")\nreg mathSTD math_lag_* Kfraction_mathQ1G Kfraction_mathQ2G Kfraction_mathQ3G Kfraction_mathQ4G free_lunchA male black hisp asian gryr* _I* if lagsample == 1 & m\noutreg2 Kfraction_* using midhigh_trend.xls, excel dec(2) ctitle(\"Full Trend, Math, All\")\nreg elaSTD ela_lag_* Kfraction_elaQ1G Kfraction_elaQ2G Kfraction_elaQ3G Kfraction_elaQ4G free_lunchA male black hisp asian gryr* _I* if lagsample == 1 & elaQD1 \noutreg2 Kfraction_* using midhigh_trend.xls, excel dec(2) ctitle(\"Full Trend, ELA, All\")\nreg mathSTD Kfraction_mathQ1G Kfraction_mathQ2G Kfraction_mathQ3G Kfraction_mathQ4G free_lunchA male black hisp asian gryr* _I* if mathQD`quart' == 1 & grade_nu",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Printed to the Stata log in the package and hand-collected into the published table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a23.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a23.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 24",
+   "kind": "table",
+   "title": "Nonlinear Models of Evacuee Share in Grade and Evacuee Achievement on Incumbent Achievement - Louisiana",
+   "tags": [
+    "Quartile heterogeneity"
+   ],
+   "programs": [
+    {
+     "name": "quartile_analysis_revision_full_trends_b.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_full_trends_b.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "collapse (p10) mathp10=mathSTD elap10=elaSTD  (p20) mathp20=mathSTD elap20=elaSTD  (p30) mathp30=mathSTD elap30=elaSTD  (p40) mathp40=mathSTD elap40=elaSTD  (p5\nreg mathSTD Kfraction_mathQ1G Kfraction_mathQ2G Kfraction_mathQ3G Kfraction_mathQ4G free_lunchA male black hisp asian gryr* _I* if mathQD1 != . & grade_num <= 5\noutreg2 Kfraction_* using elem_trend.xls, excel dec(2) ctitle(\"Full Trend, Math, All\")\nreg elaSTD Kfraction_elaQ1G Kfraction_elaQ2G Kfraction_elaQ3G Kfraction_elaQ4G free_lunchA male black hisp asian gryr* _I* if elaQD1 != . & grade_num <= 5,  clu\noutreg2 Kfraction_* using elem_trend.xls, excel dec(2) ctitle(\"Full Trend, ELA, All\")\nreg mathSTD math_lag_* Kfraction_mathQ1G Kfraction_mathQ2G Kfraction_mathQ3G Kfraction_mathQ4G free_lunchA male black hisp asian gryr* _I* if lagsample == 1 & m\noutreg2 Kfraction_* using midhigh_trend.xls, excel dec(2) ctitle(\"Full Trend, Math, All\")\nreg elaSTD ela_lag_* Kfraction_elaQ1G Kfraction_elaQ2G Kfraction_elaQ3G Kfraction_elaQ4G free_lunchA male black hisp asian gryr* _I* if lagsample == 1 & elaQD1 \noutreg2 Kfraction_* using midhigh_trend.xls, excel dec(2) ctitle(\"Full Trend, ELA, All\")\nreg mathSTD Kfraction_mathQ1G Kfraction_mathQ2G Kfraction_mathQ3G Kfraction_mathQ4G free_lunchA male black hisp asian gryr* _I* if mathQD`quart' == 1 & grade_nu",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Printed to the Stata log in the package and hand-collected into the published table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a24.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a24.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 25",
+   "kind": "table",
+   "title": "School Level Placebo Test Regressions of School Performance Score on",
+   "tags": [
+    "School-level aggregate"
+   ],
+   "programs": [
+    {
+     "name": "school_level_placebo_b.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/school_level_placebo_b.do"
+    },
+    {
+     "name": "school-trend.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/school-trend.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "areg sps percent_katrinaTIMESERIES2 _I* if Kfraction_Q1 != ., absorb(sitecode) cluster(sitecode)\nareg sps Kfraction_Q1 Kfraction_Q2 Kfraction_Q3 Kfraction_Q4 _I*, absorb(sitecode) cluster(sitecode)\nareg sps percent_katrinaTIMESERIES2 _I* free_lunchA male black hisp asian gryr* if Kfraction_Q1 != ., absorb(sitecode) cluster(sitecode)\nareg sps Kfraction_Q1 Kfraction_Q2 Kfraction_Q3 Kfraction_Q4 _I* free_lunchA male black hisp asian gryr*, absorb(sitecode) cluster(sitecode)\nreg percent_katrinaTIMESERIES2 change_sps, robust",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (School-level aggregate). Supports a main-text result by varying specification, sample, or outcome.",
+    "Printed to the Stata log in the package and hand-collected into the published table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a25.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a25.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 26",
+   "kind": "table",
+   "title": "School Level Pre-Trend Regressions of School Performance Score on Evacuee Shares in Louisiana - 1999-00 Through 2004-05",
+   "tags": [
+    "Placebo / robustness",
+    "Quartile heterogeneity",
+    "School-level aggregate"
+   ],
+   "programs": [
+    {
+     "name": "school_level_placebo_b.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/school_level_placebo_b.do"
+    },
+    {
+     "name": "school-trend.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/school-trend.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "areg sps percent_katrinaTIMESERIES2 _I* if Kfraction_Q1 != ., absorb(sitecode) cluster(sitecode)\nareg sps Kfraction_Q1 Kfraction_Q2 Kfraction_Q3 Kfraction_Q4 _I*, absorb(sitecode) cluster(sitecode)\nareg sps percent_katrinaTIMESERIES2 _I* free_lunchA male black hisp asian gryr* if Kfraction_Q1 != ., absorb(sitecode) cluster(sitecode)\nareg sps Kfraction_Q1 Kfraction_Q2 Kfraction_Q3 Kfraction_Q4 _I* free_lunchA male black hisp asian gryr*, absorb(sitecode) cluster(sitecode)\nreg percent_katrinaTIMESERIES2 change_sps, robust",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Placebo / robustness). Supports a main-text result by varying specification, sample, or outcome.",
+    "Printed to the Stata log in the package and hand-collected into the published table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a26.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a26.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 27",
+   "kind": "table",
+   "title": "Nonlinear Models of Evacuee Share in Grade and Evacuee Achievement on Incumbent Achievement - Louisiana",
+   "tags": [
+    "Quartile heterogeneity"
+   ],
+   "programs": [
+    {
+     "name": "quartile_analysis_revision_d.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_d.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "areg mathSTD Kfraction_mathQ1 Kfraction_mathQ2 Kfraction_mathQ3 Kfraction_mathQ4 free_lunchA male black hisp asian gryr* if mathQD1 != . & grade_num<=5, absorb(\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"Math, Non-Linear, All\")\nlincom Kfraction_mathQ2-Kfraction_mathQ1\nlincom Kfraction_mathQ3-Kfraction_mathQ2\nlincom Kfraction_mathQ4-Kfraction_mathQ3\nlincom Kfraction_mathQ3-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ2\nareg elaSTD Kfraction_elaQ1 Kfraction_elaQ2 Kfraction_elaQ3 Kfraction_elaQ4 free_lunchA male black hisp asian gryr* if elaQD1 != . & grade_num<=5, absorb(siteco\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"ELA, Non-Linear, All\")",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Exports directly to a file via the package script — fully traceable."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a27.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a27.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 28",
+   "kind": "table",
+   "title": "Nonlinear Models of Evacuee Share in Grade and Evacuee Achievement on Incumbent Achievement - Louisiana",
+   "tags": [
+    "Quartile heterogeneity"
+   ],
+   "programs": [
+    {
+     "name": "quartile_analysis_revision_d.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_d.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "areg mathSTD Kfraction_mathQ1 Kfraction_mathQ2 Kfraction_mathQ3 Kfraction_mathQ4 free_lunchA male black hisp asian gryr* if mathQD1 != . & grade_num<=5, absorb(\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"Math, Non-Linear, All\")\nlincom Kfraction_mathQ2-Kfraction_mathQ1\nlincom Kfraction_mathQ3-Kfraction_mathQ2\nlincom Kfraction_mathQ4-Kfraction_mathQ3\nlincom Kfraction_mathQ3-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ2\nareg elaSTD Kfraction_elaQ1 Kfraction_elaQ2 Kfraction_elaQ3 Kfraction_elaQ4 free_lunchA male black hisp asian gryr* if elaQD1 != . & grade_num<=5, absorb(siteco\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"ELA, Non-Linear, All\")",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Exports directly to a file via the package script — fully traceable."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a28.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a28.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 29",
+   "kind": "table",
+   "title": "Nonlinear Models of Evacuee Share in Grade and Evacuee Achievement on Incumbent Achievement - Louisiana",
+   "tags": [
+    "Quartile heterogeneity"
+   ],
+   "programs": [
+    {
+     "name": "quartile_analysis_revision_full_scale.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_full_scale.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "areg math_scaled Kfraction_mathQ1G Kfraction_mathQ2G Kfraction_mathQ3G Kfraction_mathQ4G free_lunchA male black hisp asian gryr* if  grade_num<=5 & mathQD1 != .\noutreg2 Kfraction_* using scale.xls, excel dec(0) ctitle(\"Elem, Math, ALL\")\nareg ela_scaled Kfraction_elaQ1G Kfraction_elaQ2G Kfraction_elaQ3G Kfraction_elaQ4G free_lunchA male black hisp asian gryr* if grade_num<=5 & mathQD1 != ., abso\noutreg2 Kfraction_* using scale.xls, excel dec(0) ctitle(\"Elem, ELA, ALL\")\nareg math_scaled math_lag_* Kfraction_mathQ1G Kfraction_mathQ2G Kfraction_mathQ3G Kfraction_mathQ4G free_lunchA male black hisp asian gryr* if lagsample == 1 & \noutreg2 Kfraction_* using scale.xls, excel dec(0) ctitle(\"Midhigh, Math, ALL\")\nareg ela_scaled ela_lag_* Kfraction_elaQ1G Kfraction_elaQ2G Kfraction_elaQ3G Kfraction_elaQ4G free_lunchA male black hisp asian gryr* if lagsample == 1 & mathQD\noutreg2 Kfraction_* using scale.xls, excel dec(0) ctitle(\"Midhigh, Math, ALL\")\nareg math_scaled Kfraction_mathQ1G Kfraction_mathQ2G Kfraction_mathQ3G Kfraction_mathQ4G free_lunchA male black hisp asian gryr* if mathQD`quart' == 1 & grade_n\noutreg2 Kfraction_* using scale.xls, excel dec(0) ctitle(\"Elem, Math, Quartile `quart'\")",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Exports directly to a file via the package script — fully traceable."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a29.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a29.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 30",
+   "kind": "table",
+   "title": "Nonlinear Models of Evacuee Share in Grade and Evacuee Achievement on Incumbent Achievement - Louisiana",
+   "tags": [
+    "Quartile heterogeneity"
+   ],
+   "programs": [
+    {
+     "name": "quartile_analysis_revision_d.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_d.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "areg mathSTD Kfraction_mathQ1 Kfraction_mathQ2 Kfraction_mathQ3 Kfraction_mathQ4 free_lunchA male black hisp asian gryr* if mathQD1 != . & grade_num<=5, absorb(\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"Math, Non-Linear, All\")\nlincom Kfraction_mathQ2-Kfraction_mathQ1\nlincom Kfraction_mathQ3-Kfraction_mathQ2\nlincom Kfraction_mathQ4-Kfraction_mathQ3\nlincom Kfraction_mathQ3-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ2\nareg elaSTD Kfraction_elaQ1 Kfraction_elaQ2 Kfraction_elaQ3 Kfraction_elaQ4 free_lunchA male black hisp asian gryr* if elaQD1 != . & grade_num<=5, absorb(siteco\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"ELA, Non-Linear, All\")",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Exports directly to a file via the package script — fully traceable."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a30.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a30.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 31",
+   "kind": "table",
+   "title": "Nonlinear Models of Evacuee Share in School and Evacuee Achievement on Incumbent",
+   "tags": [
+    "Quartile heterogeneity"
+   ],
+   "programs": [
+    {
+     "name": "quartile_analysis_revision_full_FE_b.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_full_FE_b.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "collapse (p10) mathp10=mathSTD elap10=elaSTD  (p20) mathp20=mathSTD elap20=elaSTD  (p30) mathp30=mathSTD elap30=elaSTD  (p40) mathp40=mathSTD elap40=elaSTD  (p5\nxtreg mathSTD Kfraction_mathQ1G Kfraction_mathQ2G Kfraction_mathQ3G Kfraction_mathQ4G free_lunchA male black hisp asian gryr* _I* if mathQD1 != ., fe nonest  cl\nxtreg elaSTD Kfraction_elaQ1G Kfraction_elaQ2G Kfraction_elaQ3G Kfraction_elaQ4G free_lunchA male black hisp asian gryr* _I* if elaQD1 != ., fe nonest  cluster(\nxtreg mathSTD Kfraction_mathQ1G Kfraction_mathQ2G Kfraction_mathQ3G Kfraction_mathQ4G free_lunchA male black hisp asian gryr* _I* if mathQD`quart' == 1, fe none\nxtreg elaSTD Kfraction_elaQ1G Kfraction_elaQ2G Kfraction_elaQ3G Kfraction_elaQ4G free_lunchA male black hisp asian gryr* _I* if elaQD`quart' == 1, fe nonest  cl",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Printed to the Stata log in the package and hand-collected into the published table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a31.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a31.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 32",
+   "kind": "table",
+   "title": "Nonlinear Models of Evacuee Share in Grade and Evacuee Achievement on",
+   "tags": [
+    "Quartile heterogeneity"
+   ],
+   "programs": [
+    {
+     "name": "quartile_analysis_revision_d.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_d.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "areg mathSTD Kfraction_mathQ1 Kfraction_mathQ2 Kfraction_mathQ3 Kfraction_mathQ4 free_lunchA male black hisp asian gryr* if mathQD1 != . & grade_num<=5, absorb(\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"Math, Non-Linear, All\")\nlincom Kfraction_mathQ2-Kfraction_mathQ1\nlincom Kfraction_mathQ3-Kfraction_mathQ2\nlincom Kfraction_mathQ4-Kfraction_mathQ3\nlincom Kfraction_mathQ3-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ2\nareg elaSTD Kfraction_elaQ1 Kfraction_elaQ2 Kfraction_elaQ3 Kfraction_elaQ4 free_lunchA male black hisp asian gryr* if elaQD1 != . & grade_num<=5, absorb(siteco\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"ELA, Non-Linear, All\")",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Exports directly to a file via the package script — fully traceable."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a32.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a32.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 33",
+   "kind": "table",
+   "title": "Nonlinear Models of Evacuee Share in Grade and Evacuee Achievement on",
+   "tags": [
+    "Quartile heterogeneity"
+   ],
+   "programs": [
+    {
+     "name": "quartile_analysis_revision_d.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_d.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "areg mathSTD Kfraction_mathQ1 Kfraction_mathQ2 Kfraction_mathQ3 Kfraction_mathQ4 free_lunchA male black hisp asian gryr* if mathQD1 != . & grade_num<=5, absorb(\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"Math, Non-Linear, All\")\nlincom Kfraction_mathQ2-Kfraction_mathQ1\nlincom Kfraction_mathQ3-Kfraction_mathQ2\nlincom Kfraction_mathQ4-Kfraction_mathQ3\nlincom Kfraction_mathQ3-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ2\nareg elaSTD Kfraction_elaQ1 Kfraction_elaQ2 Kfraction_elaQ3 Kfraction_elaQ4 free_lunchA male black hisp asian gryr* if elaQD1 != . & grade_num<=5, absorb(siteco\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"ELA, Non-Linear, All\")",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Exports directly to a file via the package script — fully traceable."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a33.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a33.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 34",
+   "kind": "table",
+   "title": "Nonlinear Models of Evacuee Number in Grade and Evacuee Achievement on Incumbent Achievement While Controling for Quarti",
+   "tags": [
+    "Quartile heterogeneity"
+   ],
+   "programs": [
+    {
+     "name": "quartile_analysis_revision_d.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_d.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "areg mathSTD Kfraction_mathQ1 Kfraction_mathQ2 Kfraction_mathQ3 Kfraction_mathQ4 free_lunchA male black hisp asian gryr* if mathQD1 != . & grade_num<=5, absorb(\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"Math, Non-Linear, All\")\nlincom Kfraction_mathQ2-Kfraction_mathQ1\nlincom Kfraction_mathQ3-Kfraction_mathQ2\nlincom Kfraction_mathQ4-Kfraction_mathQ3\nlincom Kfraction_mathQ3-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ2\nareg elaSTD Kfraction_elaQ1 Kfraction_elaQ2 Kfraction_elaQ3 Kfraction_elaQ4 free_lunchA male black hisp asian gryr* if elaQD1 != . & grade_num<=5, absorb(siteco\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"ELA, Non-Linear, All\")",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Exports directly to a file via the package script — fully traceable."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a34.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a34.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 35",
+   "kind": "table",
+   "title": "Nonlinear Models of Evacuee Share in Grade and Evacuee Achievement on Incumbent Achievement - Louisiana",
+   "tags": [
+    "Quartile heterogeneity"
+   ],
+   "programs": [
+    {
+     "name": "quartile_analysis_revision_d.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_d.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "areg mathSTD Kfraction_mathQ1 Kfraction_mathQ2 Kfraction_mathQ3 Kfraction_mathQ4 free_lunchA male black hisp asian gryr* if mathQD1 != . & grade_num<=5, absorb(\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"Math, Non-Linear, All\")\nlincom Kfraction_mathQ2-Kfraction_mathQ1\nlincom Kfraction_mathQ3-Kfraction_mathQ2\nlincom Kfraction_mathQ4-Kfraction_mathQ3\nlincom Kfraction_mathQ3-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ2\nareg elaSTD Kfraction_elaQ1 Kfraction_elaQ2 Kfraction_elaQ3 Kfraction_elaQ4 free_lunchA male black hisp asian gryr* if elaQD1 != . & grade_num<=5, absorb(siteco\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"ELA, Non-Linear, All\")",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Exports directly to a file via the package script — fully traceable."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a35.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a35.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 36",
+   "kind": "table",
+   "title": "Nonlinear Models of Evacuee Share in Grade and Evacuee Achievement on Incumbent Achievement - Louisiana, Quintiles",
+   "tags": [
+    "Quartile heterogeneity"
+   ],
+   "programs": [
+    {
+     "name": "quartile_analysis_revision_d.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_d.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "areg mathSTD Kfraction_mathQ1 Kfraction_mathQ2 Kfraction_mathQ3 Kfraction_mathQ4 free_lunchA male black hisp asian gryr* if mathQD1 != . & grade_num<=5, absorb(\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"Math, Non-Linear, All\")\nlincom Kfraction_mathQ2-Kfraction_mathQ1\nlincom Kfraction_mathQ3-Kfraction_mathQ2\nlincom Kfraction_mathQ4-Kfraction_mathQ3\nlincom Kfraction_mathQ3-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ2\nareg elaSTD Kfraction_elaQ1 Kfraction_elaQ2 Kfraction_elaQ3 Kfraction_elaQ4 free_lunchA male black hisp asian gryr* if elaQD1 != . & grade_num<=5, absorb(siteco\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"ELA, Non-Linear, All\")",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Exports directly to a file via the package script — fully traceable."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a36.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a36.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 37",
+   "kind": "table",
+   "title": "Nonlinear Models of Evacuee Share in Grade and Evacuee Achievement on",
+   "tags": [
+    "Quartile heterogeneity"
+   ],
+   "programs": [
+    {
+     "name": "quartile_analysis_revision_d.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_d.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "areg mathSTD Kfraction_mathQ1 Kfraction_mathQ2 Kfraction_mathQ3 Kfraction_mathQ4 free_lunchA male black hisp asian gryr* if mathQD1 != . & grade_num<=5, absorb(\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"Math, Non-Linear, All\")\nlincom Kfraction_mathQ2-Kfraction_mathQ1\nlincom Kfraction_mathQ3-Kfraction_mathQ2\nlincom Kfraction_mathQ4-Kfraction_mathQ3\nlincom Kfraction_mathQ3-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ2\nareg elaSTD Kfraction_elaQ1 Kfraction_elaQ2 Kfraction_elaQ3 Kfraction_elaQ4 free_lunchA male black hisp asian gryr* if elaQD1 != . & grade_num<=5, absorb(siteco\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"ELA, Non-Linear, All\")",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Exports directly to a file via the package script — fully traceable."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a37.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a37.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 38",
+   "kind": "table",
+   "title": "Nonlinear Models of Evacuee Share in School and Evacuee Achievement on Incumbent Achievement - Louisiana",
+   "tags": [
+    "Quartile heterogeneity"
+   ],
+   "programs": [
+    {
+     "name": "quartile_analysis_revision_alt_standard2.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_alt_standard2.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "areg mathSTD Kfraction_mathQ1 Kfraction_mathQ2 Kfraction_mathQ3 Kfraction_mathQ4 free_lunchA male black hisp asian gryr* if mathQD1 != . & grade_num<=5, absorb(\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school_alt.xls, excel dec(2) ctitle(\"Math, Non-Linear, All\")\nlincom Kfraction_mathQ2-Kfraction_mathQ1\nlincom Kfraction_mathQ3-Kfraction_mathQ2\nlincom Kfraction_mathQ4-Kfraction_mathQ3\nlincom Kfraction_mathQ3-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ2\nareg elaSTD Kfraction_elaQ1 Kfraction_elaQ2 Kfraction_elaQ3 Kfraction_elaQ4 free_lunchA male black hisp asian gryr* if elaQD1 != . & grade_num<=5, absorb(siteco\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school_alt.xls, excel dec(2) ctitle(\"ELA, Non-Linear, All\")",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Exports directly to a file via the package script — fully traceable."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a38.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a38.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 39",
+   "kind": "table",
+   "title": "Nonlinear Models of Evacuee Share in Grade and Evacuee Achievement on Incumbent Achievement - Louisiana",
+   "tags": [
+    "Quartile heterogeneity"
+   ],
+   "programs": [
+    {
+     "name": "quartile_analysis_revision_d.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_d.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "areg mathSTD Kfraction_mathQ1 Kfraction_mathQ2 Kfraction_mathQ3 Kfraction_mathQ4 free_lunchA male black hisp asian gryr* if mathQD1 != . & grade_num<=5, absorb(\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"Math, Non-Linear, All\")\nlincom Kfraction_mathQ2-Kfraction_mathQ1\nlincom Kfraction_mathQ3-Kfraction_mathQ2\nlincom Kfraction_mathQ4-Kfraction_mathQ3\nlincom Kfraction_mathQ3-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ2\nareg elaSTD Kfraction_elaQ1 Kfraction_elaQ2 Kfraction_elaQ3 Kfraction_elaQ4 free_lunchA male black hisp asian gryr* if elaQD1 != . & grade_num<=5, absorb(siteco\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"ELA, Non-Linear, All\")",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Exports directly to a file via the package script — fully traceable."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a39.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a39.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 40",
+   "kind": "table",
+   "title": "Estimates of Evacuee Share of Enrollment in School on",
+   "tags": [
+    "Quartile heterogeneity"
+   ],
+   "programs": [
+    {
+     "name": "katrina_iv_gender_ethnicity_noshelter_grade.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_iv_gender_ethnicity_noshelter_grade.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "\t\tareg `subject' katrina_frac_grade l`subject'_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I* if female == `gender' & `subject'_quartile != ., absorb(ca\n\t\toutreg2 katrina_frac_grade using outreg_gender_ethnicity_grade, excel nocons bdec(2);\n\t\tareg `subject' katrina_frac_grade l`subject'_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I* if female == `gender', absorb(campus) cluster(campus);\n\t\toutreg2 katrina_frac_grade using outreg_gender_ethnicity_grade, excel nocons bdec(2);\n\t\tareg `subject' katrina_frac_grade l`subject'_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I* if ethnicity == `race' & `subject'_quartile != ., absorb(c\n\t\toutreg2 katrina_frac_grade using outreg_gender_ethnicity_grade, excel nocons bdec(2);\n\t\tareg `subject' katrina_frac_grade l`subject'_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I* if ethnicity == `race', absorb(campus) cluster(campus);\n\t\toutreg2 katrina_frac_grade using outreg_gender_ethnicity_grade, excel nocons bdec(2);",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Exports directly to a file via the package script — fully traceable."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a40.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a40.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 41",
+   "kind": "table",
+   "title": "Behavior Specification Tests",
+   "tags": [
+    "Placebo / robustness"
+   ],
+   "programs": [],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Placebo / robustness). Supports a main-text result by varying specification, sample, or outcome.",
+    "Printed to the Stata log in the package and hand-collected into the published table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a41.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a41.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 42",
+   "kind": "table",
+   "title": "Effect of Disruption on Attendance and Discipline - Houston",
+   "tags": [
+    "Non-test outcomes"
+   ],
+   "programs": [
+    {
+     "name": "katrina_by_quartiles_avgweeklyenroll_b.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_by_quartiles_avgweeklyenroll_b.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "  collapse (sum) week_* katrina_week_*, by(campus year grade)\n\treg `var' avg_katrina_weekly_enr  l`var'_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I* if `var' != . & `var'_quartile != ., cluster(campus);\n\toutreg2 avg_katrina_weekly_enr using avgenr_`var', excel dec(2) ctitle(\"`var',OLS-Mean, ALL\");\n\t\treg `var' avg_katrina_weekly_enr  l`var'_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I*\n\t\toutreg2 avg_katrina_weekly_enr using avgenr_`var', excel dec(2) ctitle(\"`var',OLS-Mean, Quartile `quartile'\");\n  \treg `var' avg_katrina_weekly_enr sd_rel_weekly_enr  l`var'_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I* if `var' != . & `var'_quartile != ., cluste\n\toutreg2 avg_katrina_weekly_enr sd_rel_weekly_enr using avgenr_`var', excel dec(2) ctitle(\"`var',OLS-Mean&SD, All\");\n\t \treg `var' avg_katrina_weekly_enr  sd_rel_weekly_enr l`var'_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I*\n\t\toutreg2 avg_katrina_weekly_enr sd_rel_weekly_enr using avgenr_`var', excel dec(2) ctitle(\"`var',OLS-Mean&SD, Quartile `quartile'\");\n\treg sd_rel_weekly_enr avg_katrina_weekly_enr sd_katrina_weekly_enr l`var'_* female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I* if `var' != . & `var'_quartile",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Non-test outcomes). Supports a main-text result by varying specification, sample, or outcome.",
+    "Printed to the Stata log in the package and hand-collected into the published table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a42.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a42.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 43",
+   "kind": "table",
+   "title": "Nonlinear Models of Evacuee Grade in School and Evacuee Achievement & Discipline in Incumbent Achievement - Louisiana",
+   "tags": [
+    "Quartile heterogeneity",
+    "Non-test outcomes"
+   ],
+   "programs": [
+    {
+     "name": "quartile_analysis_revision_d.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/quartile_analysis_revision_d.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "areg mathSTD Kfraction_mathQ1 Kfraction_mathQ2 Kfraction_mathQ3 Kfraction_mathQ4 free_lunchA male black hisp asian gryr* if mathQD1 != . & grade_num<=5, absorb(\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"Math, Non-Linear, All\")\nlincom Kfraction_mathQ2-Kfraction_mathQ1\nlincom Kfraction_mathQ3-Kfraction_mathQ2\nlincom Kfraction_mathQ4-Kfraction_mathQ3\nlincom Kfraction_mathQ3-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ1\nlincom Kfraction_mathQ4-Kfraction_mathQ2\nareg elaSTD Kfraction_elaQ1 Kfraction_elaQ2 Kfraction_elaQ3 Kfraction_elaQ4 free_lunchA male black hisp asian gryr* if elaQD1 != . & grade_num<=5, absorb(siteco\noutreg2 Kfraction_* using /work/i/imberman/imberman/la_data/elem_school.xls, excel dec(2) ctitle(\"ELA, Non-Linear, All\")",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Quartile heterogeneity). Supports a main-text result by varying specification, sample, or outcome.",
+    "Exports directly to a file via the package script — fully traceable."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a43.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a43.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 44",
+   "kind": "table",
+   "title": "Effect of Evacuee Share in School on Class Sizes",
+   "tags": [
+    "School-level aggregate",
+    "Non-test outcomes"
+   ],
+   "programs": [
+    {
+     "name": "analyze_school_level2_quartiles_b.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/analyze_school_level2_quartiles_b.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "areg percent_of_classes1_20 Kfraction_Q1-Kfraction_Q4 _I* free_lunchA male black hisp asian gryr* if category_code==\"001\", absorb(sitecode) cluster(sitecode)\nareg percent_of_classes1_20 Kfraction_Q1-Kfraction_Q4 _I* free_lunchA male black hisp asian gryr* if (category_code==\"002\" | category_code==\"003\"), absorb(sitec\nareg percent_of_classes21_26 Kfraction_Q1-Kfraction_Q4 _I* free_lunchA male black hisp asian gryr* if category_code==\"001\", absorb(sitecode) cluster(sitecode)\nareg percent_of_classes21_26 Kfraction_Q1-Kfraction_Q4 _I* free_lunchA male black hisp asian gryr* if (category_code==\"002\" | category_code==\"003\"),  absorb(sit\nareg percent_of_classes27p Kfraction_Q1-Kfraction_Q4 _I* free_lunchA male black hisp asian gryr* if category_code==\"001\", absorb(sitecode) cluster(sitecode)\nareg percent_of_classes27p Kfraction_Q1-Kfraction_Q4 _I* free_lunchA male black hisp asian gryr* if (category_code==\"002\" | category_code==\"003\"),   absorb(site\nareg  per_students_suspended_inschool percent_katrinaTIMESERIES2 yeardum4-yeardum6 , absorb(sitecode) cluster(sitecode)\nareg  per_students_suspended_inschool percent_katrinaTIMESERIES2 yeardum4-yeardum6 if percent_katrinaTIMESERIES2<.70, absorb(sitecode) cluster(sitecode)\nareg  per_students_suspended_inschool percent_katrinaTIMESERIES2 yeardum4-yeardum6 if percent_katrinaTIMESERIES2<.70 & new_orleans_msa==0, absorb(sitecode) clus\nareg per_students_suspended_inschool percent_katrinaTIMESERIES2 yeardum4-yeardum6 if percent_katrinaTIMESERIES2<.70 & new_orleans_msa==0 & category_code==\"001\",",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (School-level aggregate). Supports a main-text result by varying specification, sample, or outcome.",
+    "Printed to the Stata log in the package and hand-collected into the published table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a44.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a44.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 45",
+   "kind": "table",
+   "title": "Effect of Evacuee Share in School on School Resources and Staffing in Houston",
+   "tags": [
+    "Non-test outcomes"
+   ],
+   "programs": [
+    {
+     "name": "katrina_resources.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_resources.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": true,
+   "snippet": "reg change_enroll katrina_frac_campus enroll_black_perc enroll_hisp_perc enroll_asian_perc enroll_ind_perc enroll_econ_perc\n  \tareg `outcome' katrina_count_campus enroll_black_perc enroll_hisp_perc enroll_asian_perc enroll_ind_perc enroll_econ_perc\n\toutreg2 using resources_pooled, keep(katrina_count_campus) excel bdec(3) nocons;\n  \tareg `outcome' katrina_count_campus enroll_black_perc enroll_hisp_perc enroll_asian_perc enroll_ind_perc enroll_econ_perc\n\toutreg2 using resources_bygrade, keep(katrina_count_campus) excel bdec(3) nocons;\n  \tareg `outcome' katrina_frac_campus enroll_black_perc enroll_hisp_perc\n\toutreg2 using resources_pooled, keep(katrina_frac_campus) excel bdec(2) nocons;\n  \tareg `outcome' katrina_frac_campus enroll_black_perc enroll_hisp_perc\n\toutreg2 using resources_bygrade, keep(katrina_frac_campus) excel bdec(2) nocons;\n  \tareg `outcome' katrina_frac_median_1 katrina_frac_median_2",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Non-test outcomes). Supports a main-text result by varying specification, sample, or outcome.",
+    "Exports directly to a file via the package script — fully traceable."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a45.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a45.pdf"
+  },
+  {
+   "paper": "katrina",
+   "section": "appendix",
+   "num": "Appendix Table 46",
+   "kind": "table",
+   "title": "School Switching in Response to Evacuee Shares in Grade",
+   "tags": [
+    "Non-test outcomes"
+   ],
+   "programs": [
+    {
+     "name": "katrina_by_quartiles_leave.do",
+     "url": "https://github.com/JKitmang/replication-katrina/blob/main/programs/katrina_by_quartiles_leave.do"
+    }
+   ],
+   "lang": "Stata",
+   "exports": false,
+   "snippet": "\tareg `var'  katrina_frac_grade female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I*, cluster(campus) absorb(campus);\n\t  areg `var'  katrina_frac_grade female ethnicit_1-ethnicit_4 econdis_2-econdis_4 _I* if taks_sd_min_`test'_quartile == `quart', cluster(campus) absorb(campus)",
+   "evaluation": [
+    "Appendix robustness/extension exhibit (Non-test outcomes). Supports a main-text result by varying specification, sample, or outcome.",
+    "Printed to the Stata log in the package and hand-collected into the published table."
+   ],
+   "noteMap": "",
+   "png": "library/papers/katrina/exhibits/appendix/a46.png",
+   "pdf": "library/papers/katrina/exhibits/appendix/a46.pdf"
+  },
+  {
+   "paper": "kapor-percent-plans",
+   "section": "main",
+   "num": "Table I",
+   "kind": "table",
+   "title": "Estimated parameters (preferences and information)",
+   "tags": [
+    "Structural estimation"
+   ],
+   "programs": [
+    {
+     "name": "describeParameters2024.jl",
+     "url": "library/papers/kapor-percent-plans/code/describeParameters2024.jl"
+    },
+    {
+     "name": "estimate_2024.jl",
+     "url": "library/papers/kapor-percent-plans/code/estimate_2024.jl"
+    }
+   ],
+   "lang": "Julia",
+   "exports": true,
+   "snippet": "    println(f,\"\\\\begin{tabular}{l$(rvec)}\")\n        println(f,\" & \"*join(st, \" & \") * \" \\\\\\\\\")\n    println(f,\" & \"*join(titles, \" & \") * \" \\\\\\\\\")\n    println(f,\"\\\\hline\")\n        println(f,varnames[r] * \" & \"*join(myround.(Vector( dfmeans[r,:])), \" & \") * \" \\\\\\\\\")\n        println(f,              \" & (\"*join(myround.(Vector( dfsd[r,:])), \") & (\") * \") \\\\\\\\\")\n    println(f, \"\\\\hline \\\\hline\")\n    println(f,\"\\\\end{tabular}\")\ndf_γ_mean = DataFrame(gamma=[0;γadmit[J+1:end];0;1],\ndf_γ_sd = DataFrame(gamma=vec( std(γboot,dims=2,corrected=false)),)",
+   "evaluation": [
+    "A structural-parameters table: the estimated primitives (preferences, information, costs) that drive every counterfactual — the foundation the rest of the paper rests on.",
+    "Reporting structural estimates with standard errors (bootstrap) is the analog of a reduced-form coefficient table; transparency about identification lives in the surrounding text.",
+    "Improvement: a one-line 'what identifies this' annotation per parameter block helps readers who skip the methods section."
+   ],
+   "noteMap": "",
+   "png": "library/papers/kapor-percent-plans/exhibits/main/t1.png",
+   "pdf": "library/papers/kapor-percent-plans/exhibits/main/t1.pdf"
+  },
+  {
+   "paper": "kapor-percent-plans",
+   "section": "main",
+   "num": "Table II",
+   "kind": "table",
+   "title": "Admissions and Outcome Parameters",
+   "tags": [
+    "Structural estimation"
+   ],
+   "programs": [
+    {
+     "name": "fitOutcomeModels2024.jl",
+     "url": "library/papers/kapor-percent-plans/code/fitOutcomeModels2024.jl"
+    },
+    {
+     "name": "estimate_2024.jl",
+     "url": "library/papers/kapor-percent-plans/code/estimate_2024.jl"
+    }
+   ],
+   "lang": "Julia",
+   "exports": true,
+   "snippet": "    dfoutcomes = DataFrame(",
+   "evaluation": [
+    "Separates the admissions/outcome side of the model from preferences (Table I), keeping each estimation block legible.",
+    "Good practice: outcome-model parameters are shown before they are used to simulate counterfactuals, so the reader can audit the inputs.",
+    "Improvement: flag which parameters are estimated vs calibrated to avoid over-crediting the estimation."
+   ],
+   "noteMap": "",
+   "png": "library/papers/kapor-percent-plans/exhibits/main/t2.png",
+   "pdf": "library/papers/kapor-percent-plans/exhibits/main/t2.pdf"
+  },
+  {
+   "paper": "kapor-percent-plans",
+   "section": "main",
+   "num": "Table III",
+   "kind": "table",
+   "title": "Main Results",
+   "tags": [
+    "Counterfactual simulation",
+    "Welfare / diversity"
+   ],
+   "programs": [
+    {
+     "name": "counterfactuals_2024.jl",
+     "url": "library/papers/kapor-percent-plans/code/counterfactuals_2024.jl"
+    },
+    {
+     "name": "describeResults2024.jl",
+     "url": "library/papers/kapor-percent-plans/code/describeResults2024.jl"
+    }
+   ],
+   "lang": "Julia",
+   "exports": true,
+   "snippet": "    println(\"Δπ = $(ForwardDiff.value.(Δπ)), dif=$(ForwardDiff.value.(dif))\")\n        #println(\"getPosteriorQ: $ii\")",
+   "evaluation": [
+    "The headline table: counterfactual outcomes (transparency vs opaque percent plans) — the paper's actual contribution in one exhibit.",
+    "Columns as policy regimes is the structural analog of 'progressive specification columns' — the reader compares worlds, not controls.",
+    "Reports bootstrap uncertainty on counterfactuals, which is easy to omit and important to include.",
+    "Improvement: pairing each counterfactual column with a welfare/diversity summary row makes the trade-off explicit at a glance."
+   ],
+   "noteMap": "",
+   "png": "library/papers/kapor-percent-plans/exhibits/main/t3.png",
+   "pdf": "library/papers/kapor-percent-plans/exhibits/main/t3.pdf"
+  },
+  {
+   "paper": "kapor-percent-plans",
+   "section": "main",
+   "num": "Figure 1",
+   "kind": "figure",
+   "title": "Model Fit, Flagship Universities",
+   "tags": [
+    "Model fit"
+   ],
+   "programs": [
+    {
+     "name": "describeFit2024.jl",
+     "url": "library/papers/kapor-percent-plans/code/describeFit2024.jl"
+    }
+   ],
+   "lang": "Julia",
+   "exports": true,
+   "snippet": "open(numberspath*\"/fit_topdec_share_model.tex\",\"w\") do f\nopen(numberspath*\"/fit_rdd.tex\",\"w\") do f\nopen(numberspath*\"/jump_prA_surv.tex\",\"w\") do f\nopen(numberspath*\"/jump_prA_model.tex\",\"w\") do f\nopen(numberspath*\"/prA_model.tex\",\"w\") do f\nopen(numberspath*\"/prA_model_dif_nottt.tex\",\"w\") do f\nopen(numberspath*\"/jump_prA_surv_UTA.tex\",\"w\") do f\nopen(numberspath*\"/jump_prA_model_UTA.tex\",\"w\") do f\nopen(numberspath*\"/prA_model_UTA.tex\",\"w\") do f\nopen(numberspath*\"/prA_model_dif_nottt_UTA.tex\",\"w\") do f",
+   "evaluation": [
+    "A model-fit figure is the structural paper's identification figure: it shows the estimated model reproduces key moments (enrollment by type) before any counterfactual is trusted.",
+    "Overlaying model vs data is exactly the right visual contract with the reader.",
+    "Improvement: shading the moments that were targeted vs untargeted distinguishes fit from out-of-sample validation."
+   ],
+   "noteMap": "",
+   "png": "library/papers/kapor-percent-plans/exhibits/main/f1.png",
+   "pdf": "library/papers/kapor-percent-plans/exhibits/main/f1.pdf"
+  },
+  {
+   "paper": "kapor-percent-plans",
+   "section": "main",
+   "num": "Figure 2",
+   "kind": "figure",
+   "title": "Costs, Information, and Admission Parameters",
+   "tags": [
+    "Structural estimation"
+   ],
+   "programs": [
+    {
+     "name": "describeParameters2024.jl",
+     "url": "library/papers/kapor-percent-plans/code/describeParameters2024.jl"
+    }
+   ],
+   "lang": "Julia",
+   "exports": true,
+   "snippet": "    println(f,\"\\\\begin{tabular}{l$(rvec)}\")\n        println(f,\" & \"*join(st, \" & \") * \" \\\\\\\\\")\n    println(f,\" & \"*join(titles, \" & \") * \" \\\\\\\\\")\n    println(f,\"\\\\hline\")\n        println(f,varnames[r] * \" & \"*join(myround.(Vector( dfmeans[r,:])), \" & \") * \" \\\\\\\\\")\n        println(f,              \" & (\"*join(myround.(Vector( dfsd[r,:])), \") & (\") * \") \\\\\\\\\")\n    println(f, \"\\\\hline \\\\hline\")\n    println(f,\"\\\\end{tabular}\")\ndf_γ_mean = DataFrame(gamma=[0;γadmit[J+1:end];0;1],\ndf_γ_sd = DataFrame(gamma=vec( std(γboot,dims=2,corrected=false)),)",
+   "evaluation": [
+    "Visualizes estimated parameter gradients (costs/information by group) — far more legible than a dense parameter table for heterogeneous primitives.",
+    "Panels keep distinct primitives separate while sharing a scale.",
+    "Improvement: confidence bands on each curve would carry the uncertainty the companion table reports."
+   ],
+   "noteMap": "",
+   "png": "library/papers/kapor-percent-plans/exhibits/main/f2.png",
+   "pdf": "library/papers/kapor-percent-plans/exhibits/main/f2.pdf"
+  },
+  {
+   "paper": "kapor-percent-plans",
+   "section": "main",
+   "num": "Figure 3",
+   "kind": "figure",
+   "title": "Preferences and Awareness",
+   "tags": [
+    "Structural estimation"
+   ],
+   "programs": [
+    {
+     "name": "describeResults2024.jl",
+     "url": "library/papers/kapor-percent-plans/code/describeResults2024.jl"
+    }
+   ],
+   "lang": "Julia",
+   "exports": true,
+   "snippet": "    println(\"summarizing bootstrap rep $t\")\n    barplot(pos, x, yvals ,axis = (xticks = (x, xlab), title=\"$name\",\n    println(f,\"\\\\begin{tabular}{$(lvec)$(rvec)}\")\n    supertitles !== nothing && println(f, supertitles)\n    println(f, join(titles, \" & \") * \" \\\\\\\\\")\n    println(f,\"\\\\hline\")\n        r==1 && println(f,\"\\\\multicolumn{$(length(titles))}{l}{\\\\emph{A. Texas Top Ten}} \\\\\\\\ \\\\noalign{\\\\vskip 1mm}\")\n        r==3 && println(f,\"\\\\multicolumn{$(length(titles))}{l}{\\\\emph{B. Automatic Admission By \\$ z^\\\\text{admit}\\\\gamma \\$}} \\\\\\\\ \\\\noalign{\\\\vskip 1mm}\")\n        r==7 && println(f,\"\\\\multicolumn{$(length(titles))}{l}{\\\\emph{Class Balance: Additional Weight on Acad. Index}} \\\\\\\\ \\\\noalign{\\\\vskip 1mm}\")\n        println(f, join(string.(myround.(Vector( df_point[r,:]), digits=2)), \" & \") * \" \\\\\\\\\")",
+   "evaluation": [
+    "Turns latent preference/awareness estimates into average choice probabilities — translating structure into quantities readers understand.",
+    "Good storytelling: it answers 'who knows about the policy and who wants what' visually.",
+    "Improvement: a brief axis note on units (probabilities vs utils) avoids misreading."
+   ],
+   "noteMap": "",
+   "png": "library/papers/kapor-percent-plans/exhibits/main/f3.png",
+   "pdf": "library/papers/kapor-percent-plans/exhibits/main/f3.pdf"
+  },
+  {
+   "paper": "kapor-percent-plans",
+   "section": "main",
+   "num": "Figure 4",
+   "kind": "figure",
+   "title": "Demographics and Diversity",
+   "tags": [
+    "Counterfactual simulation",
+    "Welfare / diversity"
+   ],
+   "programs": [
+    {
+     "name": "counterfactuals_2024.jl",
+     "url": "library/papers/kapor-percent-plans/code/counterfactuals_2024.jl"
+    },
+    {
+     "name": "describeResults2024.jl",
+     "url": "library/papers/kapor-percent-plans/code/describeResults2024.jl"
+    }
+   ],
+   "lang": "Julia",
+   "exports": true,
+   "snippet": "    println(\"Δπ = $(ForwardDiff.value.(Δπ)), dif=$(ForwardDiff.value.(dif))\")\n        #println(\"getPosteriorQ: $ii\")",
+   "evaluation": [
+    "The payoff figure: decomposes the policy's impact on diversity by demographic group — the equity question the paper exists to answer.",
+    "A decomposition figure beats a table here because the composition shift is the message.",
+    "Improvement: anchoring to the status-quo baseline within the figure makes 'how much changed' unambiguous."
+   ],
+   "noteMap": "",
+   "png": "library/papers/kapor-percent-plans/exhibits/main/f4.png",
+   "pdf": "library/papers/kapor-percent-plans/exhibits/main/f4.pdf"
+  }
+ ],
+ "source": "Replication packages indexed by EJD (ejd.econ.mathematik.uni-ulm.de). Exhibits are shown for replication and methodological commentary."
+}

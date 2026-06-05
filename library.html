@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exhibit Library · Applied-Economics Lab</title>
+<style>
+  :root{
+    --blue:#0072B2; --green:#009E73; --orange:#D55E00; --yellow:#F0E442;
+    --ink:#1a1a1a; --mut:#5b6470; --line:#e3e6ea; --bg:#f7f8fa; --card:#fff;
+    --panel:#f2f4f7; --ok:#1e6b3a; --okbg:#e7f3ec; --warn:#8a5400; --warnbg:#fbf1df;
+    --mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --maxw:1280px;
+  }
+  *{box-sizing:border-box} html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);font-size:15px;line-height:1.55}
+  a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+  header.top{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);
+    display:flex;align-items:center;gap:14px;padding:12px 22px}
+  header.top .brand{font-weight:700;letter-spacing:-.01em}
+  header.top .brand span{color:var(--blue)}
+  header.top nav{margin-left:auto;display:flex;gap:6px;font-size:14px}
+  header.top nav a{color:var(--mut);padding:6px 12px;border-radius:8px}
+  header.top nav a.active{color:#fff;background:var(--blue);font-weight:600}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:22px}
+  h1{font-size:25px;margin:4px 0 4px;letter-spacing:-.02em}
+  .blurb{color:var(--mut);font-size:14.5px;max-width:760px;margin:0 0 16px}
+  /* paper strip */
+  .papers{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px;margin-bottom:18px}
+  .pcard{border:1px solid var(--line);border-radius:12px;background:#fff;padding:13px 15px}
+  .pcard h3{font-size:14.5px;margin:0 0 3px}
+  .pcard .meta{font-size:12.5px;color:var(--mut)}
+  .pcard .mtags{margin-top:7px;display:flex;flex-wrap:wrap;gap:4px}
+  .pcard .lang{font-size:11px;background:var(--panel);color:#41506a;padding:1px 7px;border-radius:20px}
+  /* filters */
+  .filters{position:sticky;top:53px;z-index:10;background:#fff;border:1px solid var(--line);border-radius:12px;
+    padding:13px 16px;margin-bottom:16px;display:grid;gap:9px}
+  .frow{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+  .frow .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut);min-width:92px}
+  .chip{border:1px solid var(--line);background:#fff;border-radius:20px;padding:5px 12px;font-size:13px;cursor:pointer;color:var(--mut)}
+  .chip:hover{border-color:var(--blue)} .chip.on{background:var(--blue);border-color:var(--blue);color:#fff}
+  #search{flex:1;min-width:200px;padding:7px 11px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:14px}
+  .count{font-size:13px;color:var(--mut);margin:0 0 12px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:18px}
+  .card{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+  .thumb{background:var(--panel);border-bottom:1px solid var(--line);text-align:center;position:relative;max-height:340px;overflow:hidden}
+  .thumb img{width:100%;display:block}
+  .thumb .open{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:6px;padding:3px 9px;font-size:12px}
+  .cbody{padding:13px 15px;display:flex;flex-direction:column;gap:9px}
+  .chead{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+  .pbadge{font-size:11px;font-weight:700;color:#fff;background:var(--ink);padding:2px 9px;border-radius:20px}
+  .pbadge.kapor{background:var(--green)} .pbadge.katrina{background:var(--orange)}
+  .num{font-size:11.5px;font-weight:600;color:var(--blue)}
+  .kind{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut);border:1px solid var(--line);padding:1px 6px;border-radius:4px}
+  .ctitle{font-size:14.5px;font-weight:600;margin:0;line-height:1.35}
+  .tagrow{display:flex;flex-wrap:wrap;gap:5px}
+  .tag{font-size:11px;background:#eef3fb;color:#2b4a6b;padding:2px 8px;border-radius:20px}
+  .badge{font-size:11px;padding:2px 8px;border-radius:20px}
+  .badge.exp{background:var(--okbg);color:var(--ok)} .badge.log{background:var(--panel);color:var(--mut)}
+  .badge.lang{background:#efeafc;color:#5b3fa6}
+  .evalh{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut);margin:2px 0 0}
+  ul.eval{margin:0;padding-left:17px;font-size:13px;color:#36404e} ul.eval li{margin:3px 0}
+  .progs{font-size:12.5px;color:var(--mut)} .progs a{font-family:var(--mono);font-size:12px}
+  details.code{border-top:1px dashed var(--line);padding-top:7px}
+  details.code summary{font-size:12.5px;color:var(--blue);cursor:pointer}
+  details.code pre{background:#1e1e1e;color:#e8e8e8;padding:10px 12px;border-radius:7px;overflow-x:auto;font-family:var(--mono);font-size:11px;margin:7px 0 0;white-space:pre}
+  .notemap{font-size:11.5px;color:var(--warn);background:var(--warnbg);padding:5px 9px;border-radius:6px}
+  footer{color:var(--mut);font-size:12.5px;text-align:center;padding:30px 0}
+  @media(max-width:560px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">Applied-Economics <span>Lab</span></div>
+  <nav>
+    <a href="index.html">Simulation Lab</a>
+    <a href="library.html" class="active">Exhibit Library</a>
+  </nav>
+</header>
+
+<div class="wrap">
+  <h1>Exhibit Library</h1>
+  <p class="blurb" id="blurb"></p>
+
+  <div class="papers" id="papers"></div>
+
+  <div class="filters">
+    <div class="frow"><span class="lbl">Paper</span><span id="fPaper"></span></div>
+    <div class="frow"><span class="lbl">Methodology</span><span id="fTags"></span></div>
+    <div class="frow"><span class="lbl">Section</span><span id="fSection"></span>
+      <span class="lbl" style="min-width:48px">Type</span><span id="fKind"></span>
+      <span class="lbl" style="min-width:48px">Code</span><span id="fExports"></span></div>
+    <div class="frow"><span class="lbl">Search</span><input id="search" placeholder="title, method, program, paper…"></div>
+  </div>
+
+  <p class="count" id="count"></p>
+  <div class="grid" id="grid"></div>
+</div>
+
+<footer id="foot"></footer>
+
+<script>
+const state={paper:"all",section:"all",kind:"all",exports:"all",tags:new Set(),q:""};
+let LIB=null;
+fetch("library/library.json").then(r=>r.json()).then(d=>{LIB=d;init();})
+  .catch(e=>{document.getElementById("grid").innerHTML="<p>Could not load library.json ("+e+").</p>";});
+
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function init(){
+  document.getElementById("blurb").textContent=LIB.blurb;
+  document.getElementById("foot").textContent=LIB.source;
+  // paper summary cards
+  document.getElementById("papers").innerHTML=LIB.papers.map(p=>`
+    <div class="pcard">
+      <h3>${esc(p.short)} — <span style="font-weight:500">${esc(p.title)}</span></h3>
+      <div class="meta">${esc(p.journal)} ${p.year} · ${p.n_exhibits} exhibits · <span class="lang">${esc(p.lang)}</span>
+        ${p.doi?` · <a href="https://doi.org/${p.doi}" target="_blank">doi</a>`:""}
+        ${p.site?` · <a href="${p.site}" target="_blank">dedicated site ↗</a>`:""}</div>
+      <div class="mtags">${p.methods.map(m=>`<span class="tag">${esc(m)}</span>`).join("")}</div>
+      <div class="meta" style="margin-top:6px">${esc(p.dataNote)}</div>
+    </div>`).join("");
+  // filters
+  const paperOpts=[["all","All papers"]].concat(LIB.papers.map(p=>[p.id,p.short]));
+  chips("fPaper",paperOpts,v=>state.paper=v,()=>state.paper);
+  chips("fSection",[["all","All"],["main","Main"],["appendix","Appendix"]],v=>state.section=v,()=>state.section);
+  chips("fKind",[["all","All"],["table","Tables"],["figure","Figures"]],v=>state.kind=v,()=>state.kind);
+  chips("fExports",[["all","All"],["yes","Exports to file"],["no","Log only"]],v=>state.exports=v,()=>state.exports);
+  const tb=document.getElementById("fTags");
+  LIB.tags.forEach(t=>{const c=document.createElement("span");c.className="chip";c.textContent=t;
+    c.onclick=()=>{state.tags.has(t)?state.tags.delete(t):state.tags.add(t);c.classList.toggle("on");render();};tb.appendChild(c);});
+  document.getElementById("search").addEventListener("input",e=>{state.q=e.target.value.toLowerCase();render();});
+  render();
+}
+function chips(id,opts,set,get){
+  const box=document.getElementById(id);
+  opts.forEach(([v,label])=>{const c=document.createElement("span");c.className="chip"+(get()===v?" on":"");c.textContent=label;
+    c.onclick=()=>{set(v);[...box.children].forEach(x=>x.classList.remove("on"));c.classList.add("on");render();};box.appendChild(c);});
+}
+function match(e){
+  if(state.paper!=="all"&&e.paper!==state.paper)return false;
+  if(state.section!=="all"&&e.section!==state.section)return false;
+  if(state.kind!=="all"&&e.kind!==state.kind)return false;
+  if(state.exports==="yes"&&!e.exports)return false;
+  if(state.exports==="no"&&e.exports)return false;
+  if(state.tags.size&&!e.tags.some(t=>state.tags.has(t)))return false;
+  if(state.q){const hay=(e.num+" "+e.title+" "+e.tags.join(" ")+" "+e.programs.map(p=>p.name).join(" ")+" "+e.paper).toLowerCase();
+    if(!hay.includes(state.q))return false;}
+  return true;
+}
+function paperShort(id){const p=LIB.papers.find(x=>x.id===id);return p?p.short:id;}
+function render(){
+  const items=LIB.exhibits.filter(match);
+  document.getElementById("count").textContent=
+    items.length+" exhibit"+(items.length!==1?"s":"")+" shown · "+LIB.exhibits.length+" total across "+LIB.papers.length+" papers";
+  document.getElementById("grid").innerHTML=items.map(card).join("")||"<p>No exhibits match these filters.</p>";
+}
+function card(e){
+  const tags=e.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("");
+  const badge=e.exports?'<span class="badge exp">Exports to file</span>':'<span class="badge log">Log only</span>';
+  const progs=e.programs.length
+    ?`<div class="progs">Code: ${e.programs.map(p=>`<a href="${p.url}" target="_blank">${esc(p.name)}</a>`).join(", ")}</div>`
+    :`<div class="progs">Produced outside the analysis scripts.</div>`;
+  const evalHtml=`<p class="evalh">Good-practice evaluation</p><ul class="eval">${e.evaluation.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`;
+  const code=e.snippet?`<details class="code"><summary>Originating ${esc(e.lang)} code</summary><pre>${esc(e.snippet)}</pre></details>`:"";
+  const noteMap=e.noteMap?`<div class="notemap">${esc(e.noteMap)}</div>`:"";
+  const pcls=e.paper.split("-")[0];
+  return `<article class="card">
+    <div class="thumb"><a href="${e.pdf}" target="_blank"><img loading="lazy" src="${e.png}" alt="${esc(e.num)}"></a>
+      <a class="open" href="${e.pdf}" target="_blank">PDF ↗</a></div>
+    <div class="cbody">
+      <div class="chead"><span class="pbadge ${pcls}">${esc(paperShort(e.paper))}</span>
+        <span class="num">${esc(e.num)}</span><span class="kind">${esc(e.kind)}</span>${badge}
+        <span class="badge lang">${esc(e.lang)}</span></div>
+      <p class="ctitle">${esc(e.title)}</p>
+      <div class="tagrow">${tags}</div>
+      ${noteMap}${progs}${evalHtml}${code}
+    </div>
+  </article>`;
+}
+</script>
+</body>
+</html>

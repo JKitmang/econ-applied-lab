@@ -63,7 +63,7 @@
 
 <div class="wrap">
   <h1>Story Builder</h1>
-  <p class="lede">The analyses and exhibits to produce to build a credible empirical narrative — in order, by methodology, with the considerations that make each one defensible. Every step links to <strong>real published examples</strong> in the Exhibit Library so you can see how leading papers do it and reuse their code.</p>
+  <p class="lede">For applied papers using <strong>quasi-experimental designs</strong> (RD, difference-in-differences, IV): the analyses and exhibits to produce to build a credible empirical narrative — in order, by methodology, with the considerations that make each one defensible. Every step links to <strong>real published examples</strong> in the Exhibit Library so you can see how leading papers do it and reuse their code.</p>
 
   <div class="sandbox-note">Want to <em>play</em> with simulated data, standard-error definitions, and paper-vs-presentation styling? The interactive <a href="sandbox.html">Simulation Sandbox →</a> is still here.</div>
 
@@ -80,8 +80,8 @@
 <script src="js/taxonomy.js"></script>
 <script>
 const T=window.TAXONOMY;
-const ORDER=["did","rct","iv","rdd"];
-const NAMES={did:"DiD / Event study",rct:"RCT",iv:"IV",rdd:"RDD"};
+const ORDER=["did","rdd","iv"];               // quasi-experimental designs only
+const NAMES={did:"DiD / Event study",iv:"IV",rdd:"RDD"};
 const METHOD_TAG={did:"Difference-in-differences",rct:"RCT / experiment",iv:"IV / 2SLS",rdd:"Regression discontinuity"};
 const ROLE_Q={summary:"",balance:"balance",robustness:"robustness",heterogeneity:"heterogeneity",rctHet:"heterogeneity",attrition:"attrition",firststage:"first stage",rdplot:"discontinuit"};
 const CONS={

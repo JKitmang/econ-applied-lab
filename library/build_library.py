@@ -198,7 +198,9 @@ def build_kapor():
 def main():
     os.makedirs(PAPERS, exist_ok=True)
     papers, exhibits = [], []
-    for builder in (import_katrina, build_kapor):
+    # Focus: applied papers with QUASI-EXPERIMENTAL designs (RD / DiD / IV).
+    # Katrina (reduced-form / IV / peer effects) qualifies; Kapor (structural) does not.
+    for builder in (import_katrina,):
         meta, exs = builder()
         papers.append(meta); exhibits.extend(exs)
     library = {

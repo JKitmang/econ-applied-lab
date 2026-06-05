@@ -157,10 +157,20 @@ def ingest(meta, max_exhibits=24):
 def main():
     fa = json.load(open("/tmp/fa_papers.json"))
     SKIP_DOIS = {"10.3982/ECTA18385"}  # Kapor already hand-curated
+    # FOCUS: only applied papers with quasi-experimental designs (RD / DiD / IV).
+    # Curated keep-list (auto method tags are too noisy to gate on reliably).
+    KEEP_FA = {
+        "bettinger-2019-the-long-run-impacts-of", "black-2023-taking-it-to-the-limit",
+        "cohodes-2014-merit-aid-college-quali", "dalla-zuanna-2025-pulled-in-and-crowded-ou",
+        "denning-2019-propelled-the-effects-o", "fack-2015-improving-college-access",
+        "londo-o-v-lez-2020-upstream-and-downstream", "mountjoy-marginal-returns-to-publ",
+        "mello-2022-centralized-admissions", "deneault-2023-college-enrollment-and-m",
+    }
     lib = json.load(open(LIBJSON))
     existing_ids = {p["id"] for p in lib["papers"]}
     for r in fa:
         if r.get("doi") in SKIP_DOIS or not r.get("pdf"): continue
+        if slug(r["author"], r.get("year", ""), r["title"]) not in KEEP_FA: continue  # quasi-experimental only
         try:
             pmeta, recs = ingest(r)
         except Exception as e:
